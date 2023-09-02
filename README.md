@@ -37,6 +37,7 @@ Este proyecto está construido usando una arquitectura de micro frontends.
 Para iniciar todas las aplicaciones al mismo tiempo, puedes usar el siguiente comando en la raíz del proyecto:
 
 ```bash
+cd telocambio/host-app
 yarn start:all
 ```
 
