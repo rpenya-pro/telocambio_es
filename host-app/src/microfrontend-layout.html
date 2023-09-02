@@ -1,10 +1,9 @@
 <single-spa-router>
-  <div class="container-fluid">
-    <nav>
-      <application name="@app-navigation/react-project"></application>
-    </nav>
-  </div>
-  <div class="container-fluid">
+  <nav class="navigation-base">
+    <application name="@app-navigation/react-project"></application>
+  </nav>
+
+  <div class="landing-base container-fluid">
     <main>
       <route default>
         <application name="@app-landing/react-landing"></application>
