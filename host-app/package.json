@@ -2,10 +2,11 @@
   "name": "@telocambio/root-config",
   "scripts": {
     "start": "webpack serve --port 9000 --env isLocal",
-    "start:all": "concurrently \"yarn run start\" \"yarn run start:app-navigation\" \"yarn run start:app-landing\" \"yarn run start:app-footer\"",
+    "start:all": "concurrently \"yarn run start\" \"yarn run start:app-navigation\" \"yarn run start:app-landing\" \"yarn run start:app-footer\"  \"yarn run start:app-shared\"",
     "start:app-navigation": "cd ../app-navigation && yarn run start:standalone",
     "start:app-landing": "cd ../app-landing && yarn run start:standalone",
     "start:app-footer": "cd ../app-footer && yarn run start:standalone",
+    "start:app-shared": "cd ../app-shared && yarn run start",
     "lint": "eslint src --ext js,ts,tsx",
     "test": "cross-env BABEL_ENV=test jest --passWithNoTests",
     "format": "prettier --write .",

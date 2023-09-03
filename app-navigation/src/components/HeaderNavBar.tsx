@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import logoTeLoCambio from "../assets/images/test.svg";
+import { logoTeLoCambio, homeIcon } from "../assets/images";
+
 import ErrorBoundary from "./ErrorBoundary";
 
 const HeaderNavBar = () => {
@@ -10,7 +11,11 @@ const HeaderNavBar = () => {
       <nav className="navbar navbar-expand-lg navbar-light  navigation">
         <div className="container-fluid">
           <a className="navbar-brand" href="#">
-            <img src={logoTeLoCambio} alt="logo" />
+            <img
+              src={logoTeLoCambio}
+              alt="TeLoCambioEs, conecta con personas e intercambia"
+              className="navigation__logotipo"
+            />
           </a>
           <button
             className="navbar-toggler"
@@ -25,17 +30,31 @@ const HeaderNavBar = () => {
           </button>
           <div className="collapse navbar-collapse" id="navbarScroll">
             <ul className="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll">
-              <li className="nav-item navigation__item">
+              <li className="nav-item navigation__item me-3">
                 <a className="nav-link active" aria-current="page" href="#">
-                  Home
+                  <img
+                    src={homeIcon}
+                    alt="Home Page"
+                    className="navigation__iconos-nav"
+                  />
                 </a>
               </li>
-              <li className="nav-item">
+              <li className="nav-item navigation__item">
                 <a className="nav-link" href="#">
-                  Link
+                  Contacta
                 </a>
               </li>
-              <li className="nav-item dropdown">
+              <li className="nav-item navigation__item navigation__item--divider">
+                <a className="nav-link" href="#">
+                  FAQs
+                </a>
+              </li>
+              <li className="nav-item navigation__item navigation__item--accede">
+                <a className="nav-link" href="#">
+                  Accede
+                </a>
+              </li>
+              {/* <li className="nav-item dropdown navigation__item">
                 <a
                   className="nav-link dropdown-toggle"
                   href="#"
@@ -70,11 +89,11 @@ const HeaderNavBar = () => {
                   </li>
                 </ul>
               </li>
-              <li className="nav-item">
+              <li className="nav-item navigation__item">
                 <a className="nav-link disabled" href="#" aria-disabled="true">
                   Link
                 </a>
-              </li>
+              </li> */}
             </ul>
             {isLanding ? null : (
               <form className="d-flex">
