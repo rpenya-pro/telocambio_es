@@ -1,0 +1,14 @@
+{
+  "extends": "ts-config-single-spa",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "declarationDir": "dist",
+    "baseUrl": "./",  // Es necesario para que "paths" funcione
+    "paths": {
+      "@app-shared/react-shared": ["../app-shared/src/components/"]  // Ajusta la ruta según corresponda
+    }
+  },
+  "files": ["src/app-dashboard-react-dashboard.tsx"],
+  "include": ["src/**/*"],
+  "exclude": ["src/**/*.test*"]
+}

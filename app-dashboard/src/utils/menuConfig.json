@@ -1,0 +1,164 @@
+[
+    {
+        "title": "Dashboard Home",
+        "submenus": [
+            [
+                "Resumen de Actividad"
+            ],
+            [
+                "Libros Pendientes de Lectura"
+            ],
+            [
+                "Eventos Próximos"
+            ]
+        ]
+    },
+    {
+        "title": "Perfil de usuario",
+        "submenus": [
+            [
+                "Configuración Personal"
+            ],
+            [
+                "Historial de Intercambio"
+            ],
+            [
+                "Calificaciones y Reseñas Recibidas"
+            ]
+        ]
+    },
+    {
+        "title": "Clubes de lectura",
+        "submenus": [
+            [
+                "Clubes a los que Pertenezco"
+            ],
+            [
+                "Clubes Populares"
+            ],
+            [
+                "Crear un Club de Lectura"
+            ]
+        ]
+    },
+    {
+        "title": "Libros",
+        "submenus": [
+            [
+                "libracos",
+                "Another action",
+                "Something else here"
+            ],
+            [
+                "Action 2",
+                "Another action 2",
+                "Something else here 2"
+            ],
+            [
+                "Action 3",
+                "Another action 3",
+                "Something else here 3"
+            ]
+        ]
+    },
+    {
+        "title": "Foros",
+        "submenus": [
+            [
+                "foros",
+                "Another action",
+                "Something else here"
+            ],
+            [
+                "Action 2",
+                "Another action 2",
+                "Something else here 2"
+            ],
+            [
+                "Action 3",
+                "Another action 3",
+                "Something else here 3"
+            ]
+        ]
+    },
+    {
+        "title": "Eventos",
+        "submenus": [
+            [
+                "eventos",
+                "Another action",
+                "Something else here"
+            ],
+            [
+                "Action 2",
+                "Another action 2",
+                "Something else here 2"
+            ],
+            [
+                "Action 3",
+                "Another action 3",
+                "Something else here 3"
+            ]
+        ]
+    },
+    {
+        "title": "Mensajería",
+        "submenus": [
+            [
+                "mensajería",
+                "Another action",
+                "Something else here"
+            ],
+            [
+                "Action 2",
+                "Another action 2",
+                "Something else here 2"
+            ],
+            [
+                "Action 3",
+                "Another action 3",
+                "Something else here 3"
+            ]
+        ]
+    },
+    {
+        "title": "Monetización",
+        "submenus": [
+            [
+                "monetización",
+                "Another action",
+                "Something else here"
+            ],
+            [
+                "Action 2",
+                "Another action 2",
+                "Something else here 2"
+            ],
+            [
+                "Action 3",
+                "Another action 3",
+                "Something else here 3"
+            ]
+        ]
+    },
+    {
+        "title": "Ayuda y soporte",
+        "submenus": [
+            [
+                "ayuda soporte",
+                "Another action",
+                "Something else here"
+            ],
+            [
+                "Action 2",
+                "Another action 2",
+                "Something else here 2"
+            ],
+            [
+                "Action 3",
+                "Another action 3",
+                "Something else here 3"
+            ]
+        ]
+    }
+]
