@@ -6,13 +6,13 @@ interface LoginProps {
 }
 
 const Login: React.FC<LoginProps> = ({ closeModal }) => {
-  const [username, setUsername] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
 
   const handleLogin = async (): Promise<void> => {
     try {
-      const { success, message } = await authenticate(username, password);
+      const { success, message } = await authenticate(email, password);
       if (success) {
         closeModal(); // Cierra el modal
         window.location.href = "http://localhost:9000/dashboard";
@@ -29,8 +29,8 @@ const Login: React.FC<LoginProps> = ({ closeModal }) => {
     <div>
       <input
         type="text"
-        placeholder="Username"
-        onChange={(e) => setUsername(e.target.value)}
+        placeholder="E-mail"
+        onChange={(e) => setEmail(e.target.value)}
       />
       <input
         type="password"
