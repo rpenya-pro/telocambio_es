@@ -1,5 +1,6 @@
 const { merge } = require("webpack-merge");
-const webpack = require("webpack"); // Importar webpack
+const webpack = require("webpack");
+
 const path = require("path");
 const singleSpaDefaults = require("webpack-config-single-spa-react-ts");
 
@@ -13,7 +14,7 @@ module.exports = (webpackConfigEnv, argv) => {
 
   return merge(defaultConfig, {
     devServer: {
-      port: 9002, // Especifica que el puerto sea 9002
+      port: 9002,
     },
     resolve: {
       alias: {
@@ -22,14 +23,21 @@ module.exports = (webpackConfigEnv, argv) => {
           "../app-shared/src/components/"
         ),
       },
+      fallback: {
+        process: require.resolve("process/browser"),
+        buffer: require.resolve("buffer/"),
+        crypto: require.resolve("crypto-browserify"),
+        stream: require.resolve("stream-browserify"),
+        util: require.resolve("util/"),
+      },
     },
     plugins: [
-      // Añadir DefinePlugin para hacer disponibles las variables de entorno
       new webpack.DefinePlugin({
         "process.env.REACT_APP_MONGODB_URI": JSON.stringify(
           process.env.REACT_APP_MONGODB_URI
         ),
         "process.env.JWT_SECRET": JSON.stringify(process.env.JWT_SECRET),
+        "process.env.NODE_ENV": JSON.stringify("development"), // o 'production'
       }),
     ],
   });
