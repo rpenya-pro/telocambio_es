@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import Cookies from "js-cookie";
-import jwt from "jsonwebtoken";
+import process from "process";
+import { KJUR, KEYUTIL } from "jsrsasign";
 import { User } from "../models"; // Importa el modelo de usuario
 import { UserDocument } from "../interfaces"; // Importa la interfaz del usuario
 
@@ -11,7 +12,7 @@ interface AuthResponse {
 }
 
 const dbConnection = process.env.REACT_APP_MONGODB_URI;
-const jwtSecret = process.env.JWT_SECRET;
+const privateKey = process.env.JWT_SECRET;
 
 export async function connectToDB() {
   try {
@@ -32,8 +33,18 @@ export async function authenticate(
   const user = await User.findOne({ email, password }); // Busca en la base de datos usando el modelo de Mongoose
 
   if (user) {
-    // Simulamos un token JWT
-    const token = btoa(`${user.email}:${user.password}`);
+    const payload = {
+      email: user.email,
+      id: user._id,
+    };
+
+    const header = { alg: "RS256", typ: "JWT" };
+    const sHeader = JSON.stringify(header);
+    const sPayload = JSON.stringify(payload);
+
+    // Usa KJUR para firmar el token
+    const token = KJUR.jws.JWS.sign("RS256", sHeader, sPayload, privateKey);
+
     Cookies.set("authToken", token);
     return {
       success: true,
@@ -45,45 +56,12 @@ export async function authenticate(
       message: "Invalid username or password",
     };
   }
-  // if (user) {
-  //   const payload = {
-  //     email: user.email,
-  //     id: user._id,
-  //   };
-
-  //   const token = jwt.sign(payload, jwtSecret, {
-  //     expiresIn: "12h",
-  //   });
-
-  //   Cookies.set("authToken", token);
-  //   return {
-  //     success: true,
-  //     token,
-  //   };
-  // } else {
-  //   return {
-  //     success: false,
-  //     message: "Invalid username or password",
-  //   };
-  // }
 }
 
 export function isAuthenticated(): boolean {
   const token = Cookies.get("authToken");
   return Boolean(token);
 }
-
-// export function isAuthenticated(): boolean {
-//   const token = Cookies.get("authToken");
-//   if (!token) return false;
-
-//   try {
-//     jwt.verify(token, jwtSecret);
-//     return true;
-//   } catch (error) {
-//     return false;
-//   }
-// }
 
 export function logout(): void {
   Cookies.remove("authToken");

@@ -1,18 +1,20 @@
 {
   "name": "@app-landing/react-landing",
   "scripts": {
-    "start": "webpack serve",
-    "start:standalone": "webpack serve --env standalone",
-    "build": "concurrently yarn:build:*",
-    "build:webpack": "webpack --mode=production",
-    "analyze": "webpack --mode=production --env analyze",
+    "start": "webpack serve --port 9000 --env isLocal",
+    "start:all": "concurrently \"yarn run start\" \"yarn run start:app-navigation\" \"yarn run start:app-landing\" \"yarn run start:app-footer\"  \"yarn run start:app-shared\"  \"yarn run start:app-dashboard\"",
+    "start:app-navigation": "cd ../app-navigation && yarn run start:standalone",
+    "start:app-landing": "cd ../app-landing && yarn run start:standalone",
+    "start:app-footer": "cd ../app-footer && yarn run start:standalone",
+    "start:app-shared": "cd ../app-shared && yarn run start",
+    "start:app-dashboard": "cd ../app-dashboard && yarn run start:standalone",
     "lint": "eslint src --ext js,ts,tsx",
+    "test": "cross-env BABEL_ENV=test jest --passWithNoTests",
     "format": "prettier --write .",
     "check-format": "prettier --check .",
-    "test": "cross-env BABEL_ENV=test jest",
-    "watch-tests": "cross-env BABEL_ENV=test jest --watch",
     "prepare": "husky install",
-    "coverage": "cross-env BABEL_ENV=test jest --coverage",
+    "build": "concurrently yarn:build:*",
+    "build:webpack": "webpack --mode=production",
     "build:types": "tsc"
   },
   "devDependencies": {
