@@ -1,0 +1,54 @@
+[
+    {
+        "nombre": "John",
+        "apellido": "Doe",
+        "correo": "john.doe@example.com",
+        "password": "pass1",
+        "calificacion": 4,
+        "insignias": [
+            "insignia1",
+            "insignia2"
+        ],
+        "librosIntercambiados": [
+            "id1",
+            "id2"
+        ],
+        "direccion": {
+            "calle": "123 Main St",
+            "ciudad": "Somewhere",
+            "estado": "ST",
+            "codigoPostal": "12345",
+            "pais": "USA"
+        },
+        "ubicacionActual": {
+            "latitud": 40.712776,
+            "longitud": -74.005974,
+            "timestamp": "2023-09-01T00:00:00.000Z"
+        }
+    },
+    {
+        "nombre": "Jane",
+        "apellido": "Doe",
+        "correo": "jane.doe@example.com",
+        "password": "pass2",
+        "calificacion": 5,
+        "insignias": [
+            "insignia3"
+        ],
+        "librosIntercambiados": [
+            "id3"
+        ],
+        "direccion": {
+            "calle": "456 Another St",
+            "ciudad": "Another City",
+            "estado": "TS",
+            "codigoPostal": "67890",
+            "pais": "USA"
+        },
+        "ubicacionActual": {
+            "latitud": 41.712776,
+            "longitud": -73.005974,
+            "timestamp": "2023-09-02T00:00:00.000Z"
+        }
+    }
+]

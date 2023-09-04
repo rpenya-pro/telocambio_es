@@ -3,6 +3,7 @@
   "compilerOptions": {
     "jsx": "react-jsx",
     "declarationDir": "dist",
+    "esModuleInterop": true,
     "baseUrl": "./",  // Es necesario para que "paths" funcione
     "paths": {
       "@app-shared/react-shared": ["../app-shared/src/components/"]  // Ajusta la ruta según corresponda

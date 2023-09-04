@@ -13,5 +13,13 @@ module.exports = (webpackConfigEnv, argv) => {
     devServer: {
       port: 9004,
     },
+    module: {
+      rules: [
+        {
+          test: /\.(png|svg|jpg|jpeg|gif)$/i,
+          type: "asset/resource",
+        },
+      ],
+    },
   });
 };

@@ -1,0 +1,76 @@
+.dashboard {
+  .dashboard__menu-back {
+    background-color: #000;
+  }
+
+  .dashboard__menu {
+    height: 60px;
+  }
+
+  .dashboard__menu-horizontal-scroll {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    overflow-x: auto;
+    width: 100%;
+    gap: 1rem;
+  }
+
+  .item {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  .nav-link {
+    color: #ffffff;
+  }
+
+  .active-item .nav-link {
+    color: rgb(230, 181, 99);
+  }
+
+  .dashboard__menu-drop-padding {
+    min-height: 120px;
+    background-color: aliceblue;
+    padding-left: 6.5%;
+    padding-right: 6.5%;
+    padding-top: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Ocultar botones laterales */
+  .dashboard__menu-horizontal-scroll::-webkit-scrollbar-button {
+    display: none;
+  }
+
+  /* Estilizar la barra de desplazamiento */
+  .dashboard__menu-horizontal-scroll::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  /* Estilizar el pulgar (la parte móvil de la barra de desplazamiento) */
+  .dashboard__menu-horizontal-scroll::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 2px;
+  }
+
+  /* Cambiar el color al pasar el ratón */
+  .dashboard__menu-horizontal-scroll::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+  @media (max-width: 768px) {
+    .dashboard__menu-horizontal-scroll {
+      justify-content: start;
+    }
+
+    .dashboard__menu-horizontal-scroll {
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .dashboard__menu-drop-padding {
+      padding-left: 0px;
+      padding-right: 0px;
+    }
+  }
+}

@@ -1,0 +1,15 @@
+.shared {
+  .shared__protected--container {
+    min-height: 700px;
+  }
+
+  @media (max-width: 767.98px) {
+    .shared__protected--container {
+      min-height: 400px;
+    }
+  }
+
+  .shared__munyeca {
+    height: 400px;
+  }
+}

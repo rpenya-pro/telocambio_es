@@ -1,5 +1,6 @@
 const { merge } = require("webpack-merge");
-const path = require("path"); // Añadir esta línea si aún no está presente
+const webpack = require("webpack"); // Importar webpack
+const path = require("path");
 const singleSpaDefaults = require("webpack-config-single-spa-react-ts");
 
 module.exports = (webpackConfigEnv, argv) => {
@@ -15,7 +16,6 @@ module.exports = (webpackConfigEnv, argv) => {
       port: 9002, // Especifica que el puerto sea 9002
     },
     resolve: {
-      // Añadir esta sección
       alias: {
         "@app-shared/react-shared": path.resolve(
           __dirname,
@@ -23,5 +23,14 @@ module.exports = (webpackConfigEnv, argv) => {
         ),
       },
     },
+    plugins: [
+      // Añadir DefinePlugin para hacer disponibles las variables de entorno
+      new webpack.DefinePlugin({
+        "process.env.REACT_APP_MONGODB_URI": JSON.stringify(
+          process.env.REACT_APP_MONGODB_URI
+        ),
+        "process.env.JWT_SECRET": JSON.stringify(process.env.JWT_SECRET),
+      }),
+    ],
   });
 };

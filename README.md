@@ -29,6 +29,9 @@ Este proyecto está construido usando una arquitectura de micro frontends.
 
     cd telocambio/app-footer
     yarn install
+
+    cd telocambio/app-shared
+    yarn install
     ```
     ...y del resto de aplicaciones que se vayan añadiendo.
 
@@ -52,3 +55,10 @@ Para iniciar la aplicación de navegación de forma independiente, ejecuta:
 cd app-navigation //app-landing, app-footer, etc
 yarn start:standalone
 ```
+
+En el **caso de app-shared NO se puede ejectuar** en standalone porque **es una aplicacion repositorio** y no carga en el root-config.
+
+
+**IMPORTANTE:** los estilos se hallan ubicados en **host-app**, en el archivo global que apunta al directorio **/scss**,  desde allí se realizarán todas las modificaciones y archivos de estilos.
+
+Es **extremadamente importante** que cada aplicación tenga su archivo propio y que los estilos se marquen usando BEM (Block Element Modifier).

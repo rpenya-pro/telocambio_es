@@ -10,13 +10,18 @@ const Login: React.FC<LoginProps> = ({ closeModal }) => {
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
 
-  const handleLogin = (): void => {
-    const { success, message } = authenticate(username, password);
-    if (success) {
-      closeModal(); // Cierra el modal
-      window.location.href = "http://localhost:9000/";
-    } else {
-      setError(message);
+  const handleLogin = async (): Promise<void> => {
+    try {
+      const { success, message } = await authenticate(username, password);
+      if (success) {
+        closeModal(); // Cierra el modal
+        window.location.href = "http://localhost:9000/dashboard";
+      } else {
+        setError(message);
+      }
+    } catch (error) {
+      console.error("Ocurrió un error durante la autenticación", error);
+      setError("Ocurrió un error inesperado");
     }
   };
 

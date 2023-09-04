@@ -1,4 +1,5 @@
 const { merge } = require("webpack-merge");
+const path = require("path");
 const singleSpaDefaults = require("webpack-config-single-spa-react-ts");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
@@ -21,6 +22,15 @@ module.exports = (webpackConfigEnv, argv) => {
           type: "asset/resource",
         },
       ],
+    },
+    resolve: {
+      // Añadir esta sección
+      alias: {
+        "@app-shared/react-shared": path.resolve(
+          __dirname,
+          "../app-shared/src/components/"
+        ),
+      },
     },
   });
 };
