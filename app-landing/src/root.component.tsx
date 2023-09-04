@@ -1,4 +1,6 @@
 import { CarouselLanding } from "./components/CarouselLanding";
+import { connectToDB } from "./auth/Auth"; // Asegúrate de ajustar esta importación a tu estructura de carpetas
+
 import { HowToLanding } from "./components/HowToLanding";
 import { StartComponentLanding } from "./components/StartComponentLanding";
 import { isAuthenticated } from "./auth/Auth";
