@@ -1,19 +1,13 @@
+// user.module.ts
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { User, UserSchema } from './user.schema';
-import { UserService } from './user.service';
+import { User, UserSchema } from './model/user.schema';
 import { UserController } from './user.controller';
+import { UserService } from './user.service';
 
 @Module({
-  imports: [
-    MongooseModule.forRootAsync({
-      useFactory: () => ({
-        uri: process.env.MONGODB_URI,
-      }),
-    }),
-    MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
-  ],
-  providers: [UserService],
+  imports: [MongooseModule.forFeature([{ name: 'User', schema: UserSchema }])],
   controllers: [UserController],
+  providers: [UserService],
 })
 export class UserModule {}
