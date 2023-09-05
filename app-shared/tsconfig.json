@@ -2,7 +2,12 @@
   "extends": "ts-config-single-spa",
   "compilerOptions": {
     "jsx": "react-jsx",
-    "declarationDir": "dist"
+    "declarationDir": "dist",
+    "baseUrl": ".", 
+    "paths": {  
+      "@app-shared/react-hooks": ["src/hooks/*"],
+      "@app-shared/react-shared": ["src/components/*"]
+    }
   },
   "files": ["src/app-shared-react-shared.tsx"],
   "include": ["src/**/*"],

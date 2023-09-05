@@ -1,23 +1,42 @@
-import React, { useState } from "react";
-import { authenticate } from "./Auth";
+import React, { useEffect, useState } from "react";
+import { authenticate, renewToken } from "./Auth";
+import useValidateForm from "../hooks/useValidateFormLogin"; // Asegúrate de que la ruta sea la correcta
+import Swal from "sweetalert2";
 
 interface LoginProps {
   closeModal: () => void;
 }
 
 const Login: React.FC<LoginProps> = ({ closeModal }) => {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [error, setError] = useState<string | null>(null);
+  const initialState = {
+    email: "rafa@webentorn.com",
+    password: "111111",
+  };
 
-  const handleLogin = async (): Promise<void> => {
+  const { values, errors, isValid, handleChange } =
+    useValidateForm(initialState);
+
+  const [error, setError] = useState("");
+
+  const handleLogin = async (event: React.FormEvent): Promise<void> => {
+    event.preventDefault();
+
     try {
-      const { success, message } = await authenticate(email, password);
+      const { success, message } = await authenticate(
+        values.email,
+        values.password
+      );
+
       if (success) {
-        closeModal(); // Cierra el modal
-        window.location.href = "http://localhost:9000/dashboard";
+        closeModal();
+        window.location.href = `/dashboard`;
       } else {
         setError(message);
+        Swal.fire({
+          icon: "error",
+          title: "Error de inicio de sesión",
+          text: message || "Ocurrió un error durante el inicio de sesión.",
+        });
       }
     } catch (error) {
       console.error("Ocurrió un error durante la autenticación", error);
@@ -26,20 +45,53 @@ const Login: React.FC<LoginProps> = ({ closeModal }) => {
   };
 
   return (
-    <div>
-      <input
-        type="text"
-        placeholder="E-mail"
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button onClick={handleLogin}>Login</button>
-      {error && <p>{error}</p>}
-    </div>
+    <form onSubmit={handleLogin}>
+      <div className="w-100 mb-5">
+        Si ya tienes tu cuenta en telocambio.es, accede desde aquí.
+      </div>
+      <div className="container-vertical-login">
+        <div className="row mt-3 mb-4">
+          <div className="col-md-12">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="E-mail"
+              value={values.email}
+              onChange={(e) => handleChange("email", e.target.value)}
+            />
+            {errors.email && <span>{errors.email}</span>}
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-md-12">
+            <input
+              type="password"
+              className="form-control"
+              placeholder="Password"
+              value={values.password}
+              onChange={(e) => handleChange("password", e.target.value)}
+            />
+            {errors.password && <span>{errors.password}</span>}
+          </div>
+        </div>
+        {/* Resto del formulario */}
+        {/* ... */}
+        <div className="row mt-4">
+          <div className="col-md-12 mt-4">
+            <button
+              type="submit"
+              id="loginButton"
+              title="Login"
+              className="btn landing__form-btn mt-5"
+              disabled={!isValid}
+            >
+              Accede
+            </button>
+          </div>
+        </div>
+        <p>{error}</p>
+      </div>
+    </form>
   );
 };
 

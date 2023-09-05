@@ -15,12 +15,20 @@ module.exports = (webpackConfigEnv, argv) => {
   return merge(defaultConfig, {
     devServer: {
       port: 9002,
+      proxy: {
+        "/api": "http://localhost:3000",
+      },
     },
+
     resolve: {
       alias: {
         "@app-shared/react-shared": path.resolve(
           __dirname,
           "../app-shared/src/components/"
+        ),
+        "@app-shared/react-hooks": path.resolve(
+          __dirname,
+          "../app-shared/src/hooks/"
         ),
       },
       fallback: {

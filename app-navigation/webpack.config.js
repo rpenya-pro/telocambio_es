@@ -24,11 +24,14 @@ module.exports = (webpackConfigEnv, argv) => {
       ],
     },
     resolve: {
-      // Añadir esta sección
       alias: {
         "@app-shared/react-shared": path.resolve(
           __dirname,
           "../app-shared/src/components/"
+        ),
+        "@app-shared/react-hooks": path.resolve(
+          __dirname,
+          "../app-shared/src/hooks/"
         ),
       },
     },

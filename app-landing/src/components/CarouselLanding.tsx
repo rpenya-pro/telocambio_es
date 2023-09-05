@@ -3,9 +3,10 @@ import { logoTeLoCambio } from "../assets/images";
 import { Carousel } from "./Carousel";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import Login from "../auth/Login";
+import ModalWindow from "./ModalWindow";
 
 export const CarouselLanding = () => {
-  const modalRef = useRef(null);
+  const modalRef = useRef<HTMLDivElement>(null);
   let modalInstance: any = null;
 
   const openModal = () => {
@@ -65,30 +66,7 @@ export const CarouselLanding = () => {
         </div>
       </div>
 
-      <div className="landing modal fade" tabIndex={-1} ref={modalRef}>
-        <div className="modal-dialog modal-dialog-centered landing__modal-dialog">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title">Título del Modal</h5>
-            </div>
-            <div className="modal-body">
-              <Login closeModal={closeModal} />
-            </div>
-            <div className="modal-footer">
-              <button
-                type="button"
-                className="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Cerrar
-              </button>
-              <button type="button" className="btn btn-primary">
-                Guardar cambios
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <ModalWindow closeModal={closeModal} modalRef={modalRef} />
     </>
   );
 };

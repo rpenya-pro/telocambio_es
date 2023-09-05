@@ -1,7 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { munyeca } from "../assets/images";
+import { useNavigate } from "react-router-dom"; // Importa useHistory
 
 export const ErrorProtectedComponent = () => {
+  // const [redirectToHome, setRedirectToHome] = useState(false);
+  // const history = useNavigate(); // Obtén el objeto history
+
+  // useEffect(() => {
+  //   const timeout = setTimeout(() => {
+  //     setRedirectToHome(true);
+  //   }, 6000);
+
+  //   return () => clearTimeout(timeout);
+  // }, []);
+
+  // // Redirige si redirectToHome es true
+  // if (redirectToHome) {
+  //   history("/");
+  // }
+
   return (
     <div className="container-fluid shared">
       <div className="row">

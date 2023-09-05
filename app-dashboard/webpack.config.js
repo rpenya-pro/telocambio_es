@@ -12,7 +12,7 @@ module.exports = (webpackConfigEnv, argv) => {
 
   return merge(defaultConfig, {
     devServer: {
-      port: 9005, // Especifica que el puerto sea 9002
+      port: 9005,
     },
     module: {
       rules: [
@@ -23,11 +23,14 @@ module.exports = (webpackConfigEnv, argv) => {
       ],
     },
     resolve: {
-      // Añadir esta sección
       alias: {
         "@app-shared/react-shared": path.resolve(
           __dirname,
           "../app-shared/src/components/"
+        ),
+        "@app-shared/react-hooks": path.resolve(
+          __dirname,
+          "../app-shared/src/hooks/"
         ),
       },
     },

@@ -1,4 +1,5 @@
 const webpack = require("webpack");
+const path = require("path"); // Importar path
 const { merge } = require("webpack-merge");
 const singleSpaDefaults = require("webpack-config-single-spa-ts");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -30,6 +31,19 @@ module.exports = (webpackConfigEnv, argv) => {
           ],
         },
       ],
+    },
+    resolve: {
+      // Añadir esta sección
+      alias: {
+        "@app-shared/react-shared": path.resolve(
+          __dirname,
+          "../app-shared/src/components/"
+        ),
+        "@app-shared/react-hooks": path.resolve(
+          __dirname,
+          "../app-shared/src/hooks/"
+        ),
+      },
     },
     plugins: [
       new webpack.DefinePlugin({
