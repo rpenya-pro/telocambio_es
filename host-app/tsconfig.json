@@ -2,7 +2,14 @@
   "extends": "ts-config-single-spa",
   "files": ["src/telocambio-root-config.ts"],
   "compilerOptions": {
-    "declarationDir": "dist"
+    "jsx": "react-jsx",
+    "declarationDir": "dist",
+    "esModuleInterop": true,
+    "baseUrl": "./",  // Es necesario para que "paths" funcione
+    "paths": {
+      "@app-shared/react-shared": ["../app-shared/src/components/"] ,
+      "@app-shared/react-hooks": ["../app-shared/src/hooks/*"]
+    }
   },
   "include": ["src/**/*"],
   "exclude": ["src/**/*.test*"]

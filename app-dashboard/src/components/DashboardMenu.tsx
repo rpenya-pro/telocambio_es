@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import menuItems from "../utils/menuConfig.json";
+import { RenewToken } from "../auth";
 
 // Define una interfaz para los elementos en menuItems
 interface MenuItem {
@@ -63,7 +64,7 @@ export const DashboardMenu = () => {
                   </div>
                 </div>
               ))}
-              {/* Puedes agregar más items estáticos aquí si lo necesitas */}
+              <RenewToken />
             </div>
           </div>
         </div>

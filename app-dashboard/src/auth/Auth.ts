@@ -1,31 +1,28 @@
 import Cookies from "js-cookie";
-import users from "./users.json";
-import { Usuario } from "../interfaces";
+import axios from "axios";
+import process from "process";
+import { KJUR, KEYUTIL } from "jsrsasign";
 
-interface AuthResponse {
-  success: boolean;
-  token?: string;
-  message?: string;
+const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:3000";
+interface Payload {
+  email?: string;
+  exp?: number;
 }
 
-export function authenticate(correo: string, password: string): AuthResponse {
-  const user: Usuario | undefined = users.find(
-    (u) => u.correo === correo && u.password === password
-  );
-
-  if (user) {
-    // Simulamos un token JWT
-    const token = btoa(`${user.correo}:${user.password}`);
-    Cookies.set("authToken", token);
-    return {
-      success: true,
-      token,
-    };
-  } else {
-    return {
-      success: false,
-      message: "Invalid username or password",
-    };
+export async function renewToken(email: string): Promise<string | null> {
+  try {
+    const response = await axios.post(
+      `${process.env.REACT_APP_API_URL}/renew`,
+      {
+        email: email,
+      }
+    );
+    const { access_token } = response.data;
+    return access_token;
+  } catch (error) {
+    console.error("Error renewing token:", error);
+    // Manejar el error, como mostrar un mensaje al usuario
+    return null;
   }
 }
 

@@ -1,4 +1,6 @@
-import mongoose from "mongoose";
+import axios from "axios";
+import Swal from "sweetalert2";
+
 import Cookies from "js-cookie";
 import process from "process";
 import { KJUR, KEYUTIL } from "jsrsasign";
@@ -10,50 +12,93 @@ interface AuthResponse {
   token?: string;
   message?: string;
 }
+const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:3000";
 
-const dbConnection = process.env.REACT_APP_MONGODB_URI;
 const privateKey = process.env.JWT_SECRET;
 
-export async function connectToDB() {
+export async function registerUser(
+  email: string,
+  password: string
+): Promise<AuthResponse> {
+  Cookies.remove("authToken");
+
   try {
-    await mongoose.connect(dbConnection, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    } as any);
-    console.log("Successfully connected to MongoDB");
+    const response = await axios.post(`${apiUrl}/user/register`, {
+      email,
+      password,
+    });
+
+    if (response.status === 200 || response.status === 201) {
+      return {
+        success: true,
+        message: "User successfully registered",
+      };
+    } else {
+      return {
+        success: false,
+        message: response.data.message || "Registration failed",
+      };
+    }
   } catch (error) {
-    console.error("Error connecting to MongoDB:", error);
+    if (error.response && error.response.status === 409) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "El usuario ya existe, prueba con otro e-mail!",
+      });
+      return {
+        success: false,
+        message: "El usuario ya existe, prueba con otro e-mail",
+      };
+    }
+
+    return {
+      success: false,
+      message: "An unexpected error occurred",
+    };
   }
 }
 
+/**
+ * AUTHENTICATE
+ * @param email
+ * @param password
+ * @returns
+ */
 export async function authenticate(
   email: string,
   password: string
 ): Promise<AuthResponse> {
-  const user = await User.findOne({ email, password }); // Busca en la base de datos usando el modelo de Mongoose
+  try {
+    const response = await axios.post(`${apiUrl}/user/login`, {
+      email,
+      password,
+    });
 
-  if (user) {
-    const payload = {
-      email: user.email,
-      id: user._id,
-    };
+    if (response.status === 200 || response.status === 201) {
+      const token = response.data.access_token;
+      Cookies.set("authToken", token);
 
-    const header = { alg: "RS256", typ: "JWT" };
-    const sHeader = JSON.stringify(header);
-    const sPayload = JSON.stringify(payload);
-
-    // Usa KJUR para firmar el token
-    const token = KJUR.jws.JWS.sign("RS256", sHeader, sPayload, privateKey);
-
-    Cookies.set("authToken", token);
-    return {
-      success: true,
-      token,
-    };
-  } else {
+      return {
+        success: true,
+        token,
+      };
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Los datos de autenticación no parecen correctos",
+      });
+      return {
+        success: false,
+        message: response.data.message || "Authentication failed",
+      };
+    }
+  } catch (error) {
+    console.error("Error while authenticating", error);
     return {
       success: false,
-      message: "Invalid username or password",
+      message: "An unexpected error occurred",
     };
   }
 }
@@ -65,4 +110,21 @@ export function isAuthenticated(): boolean {
 
 export function logout(): void {
   Cookies.remove("authToken");
+}
+
+export async function renewToken(email: string): Promise<string | null> {
+  try {
+    const response = await axios.post(
+      `${process.env.REACT_APP_API_URL}/renew`,
+      {
+        email: email,
+      }
+    );
+    const { access_token } = response.data;
+    return access_token;
+  } catch (error) {
+    console.error("Error renewing token:", error);
+    // Manejar el error, como mostrar un mensaje al usuario
+    return null;
+  }
 }
