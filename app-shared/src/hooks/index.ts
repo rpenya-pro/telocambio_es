@@ -1,1 +1,1 @@
-export * from "./useValidateToken";
+export { useValidateToken } from "./useValidateToken";

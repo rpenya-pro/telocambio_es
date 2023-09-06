@@ -78,6 +78,7 @@ export async function authenticate(
     if (response.status === 200 || response.status === 201) {
       const token = response.data.access_token;
       Cookies.set("authToken", token);
+      Cookies.set("stored_email", email);
 
       return {
         success: true,

@@ -1,3 +1,7 @@
+// Asignar React y ReactDOM desde el objeto window
+const React = window.React;
+const ReactDOM = window.ReactDOM;
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ErrorProtectedComponent } from "@app-shared/react-shared";
 import { CarouselLanding } from "./components/CarouselLanding";

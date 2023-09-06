@@ -69,3 +69,8 @@ declare module "*.svg" {
   const src: string;
   export default src;
 }
+
+interface Window {
+  React: typeof import("react");
+  ReactDOM: typeof import("react-dom");
+}
