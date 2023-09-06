@@ -5,17 +5,16 @@ import { StartComponentLanding } from "../components/StartComponentLanding";
 import { useValidateToken } from "@app-shared/react-hooks";
 
 export const HomeLanding = () => {
-  // const isValid = useValidateToken();
+  const isValid = useValidateToken(); // Aquí usamos el Hook
 
-  // if (isValid === null) {
-  //   return <p>Validando...</p>;
-  // }
-
+  if (isValid === null) {
+    return <p>Validando...</p>;
+  }
   return (
     <div className="landing">
       <div className="row landing__carousel">
         <div className="col-12">
-          {/* {isValid ? "El token es válido." : "El token no es válido."} */}
+          {!isValid ? "token no valido" : "token valido"}
           <CarouselLanding />
         </div>
       </div>

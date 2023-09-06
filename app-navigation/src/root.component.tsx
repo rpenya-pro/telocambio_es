@@ -1,3 +1,7 @@
+// Asignar React y ReactDOM desde el objeto window
+const React = window.React;
+const ReactDOM = window.ReactDOM;
+
 import HeaderNavBar from "./components/HeaderNavBar";
 import { isAuthenticated, logout } from "./auth/Auth";
 // import {
