@@ -10,8 +10,6 @@ interface Payload {
 export function useValidateToken() {
   const [isValid, setIsValid] = useState(false);
 
-  // ¡Nunca almacenes claves secretas directamente en el código!
-  // Esto es solo un ejemplo, y deberías usar una solución más segura.
   const secretKey = "a1b2c3d4e5f67890abcdef1234567890";
 
   useEffect(() => {
