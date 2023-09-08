@@ -1,5 +1,4 @@
 const { merge } = require("webpack-merge");
-const webpack = require("webpack");
 const path = require("path");
 const singleSpaDefaults = require("webpack-config-single-spa-react-ts");
 const ModuleFederationPlugin =
@@ -7,20 +6,24 @@ const ModuleFederationPlugin =
 
 module.exports = (webpackConfigEnv, argv) => {
   const defaultConfig = singleSpaDefaults({
-    orgName: "app-landing",
-    projectName: "react-landing",
+    orgName: "app-profile",
+    projectName: "react-profile",
     webpackConfigEnv,
     argv,
   });
 
   return merge(defaultConfig, {
     devServer: {
-      port: 9002,
-      proxy: {
-        "/api": "http://localhost:3000",
-      },
+      port: 9006,
     },
-
+    module: {
+      rules: [
+        {
+          test: /\.(png|svg|jpg|jpeg|gif)$/i,
+          type: "asset/resource",
+        },
+      ],
+    },
     resolve: {
       alias: {
         "@app-shared/react-shared": path.resolve(
@@ -32,18 +35,11 @@ module.exports = (webpackConfigEnv, argv) => {
           "../app-shared/src/hooks/"
         ),
       },
-      fallback: {
-        process: require.resolve("process/browser"),
-        buffer: require.resolve("buffer/"),
-        crypto: require.resolve("crypto-browserify"),
-        stream: require.resolve("stream-browserify"),
-        util: require.resolve("util/"),
-      },
     },
 
     plugins: [
       new ModuleFederationPlugin({
-        name: "app_landing",
+        name: "app_profile",
         remotes: {
           host_app: "host_app@http://localhost:9000/remoteEntry.js", // Ajusta la URL y el puerto según tu configuración
         },
@@ -56,14 +52,6 @@ module.exports = (webpackConfigEnv, argv) => {
           },
         },
       }),
-
-      // new webpack.DefinePlugin({
-      //   "process.env.REACT_APP_MONGODB_URI": JSON.stringify(
-      //     process.env.REACT_APP_MONGODB_URI
-      //   ),
-      //   "process.env.JWT_SECRET": JSON.stringify(process.env.JWT_SECRET),
-      //   "process.env.NODE_ENV": JSON.stringify("development"), // o 'production'
-      // }),
     ],
   });
 };

@@ -12,9 +12,7 @@ interface AuthResponse {
   token?: string;
   message?: string;
 }
-const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:3000";
-
-const privateKey = process.env.JWT_SECRET;
+const apiUrl = "http://localhost:3000";
 
 export async function registerUser(
   email: string,
@@ -115,12 +113,9 @@ export function logout(): void {
 
 export async function renewToken(email: string): Promise<string | null> {
   try {
-    const response = await axios.post(
-      `${process.env.REACT_APP_API_URL}/renew`,
-      {
-        email: email,
-      }
-    );
+    const response = await axios.post(`http://localhost:9000/renew`, {
+      email: email,
+    });
     const { access_token } = response.data;
     return access_token;
   } catch (error) {

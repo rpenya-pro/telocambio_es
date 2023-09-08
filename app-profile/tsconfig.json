@@ -9,7 +9,7 @@
       "@app-shared/react-hooks": ["../app-shared/src/hooks"]
     }
   },
-  "files": ["src/app-navigation-react-project.tsx"],
+  "files": ["src/app-profile-react-profile.tsx"],
   "include": ["src/**/*"],
   "exclude": ["src/**/*.test*"]
 }

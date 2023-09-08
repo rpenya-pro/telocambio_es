@@ -1,5 +1,5 @@
 {
-  "name": "@app-dashboard/react-dashboard",
+  "name": "@app-profile/react-profile",
   "scripts": {
     "start": "webpack serve",
     "start:standalone": "webpack serve --env standalone",
@@ -74,5 +74,5 @@
     "single-spa-react": "^4.3.1",
     "teloc-hooks": "^0.1.1"
   },
-  "types": "dist/app-dashboard-react-dashboard.d.ts"
+  "types": "dist/app-profile-react-profile.d.ts"
 }

@@ -1,0 +1,45 @@
+microfrontend/
+├── angular-app/
+│   ├── alquiler/
+│   │   ├── .angular/
+│   │   ├── .vscode/
+│   │   ├── dist/
+│   │   ├── node_modules/
+│   │   ├── src/
+│   │   ├── .editorconfig
+│   │   ├── .gitignore
+│   │   ├── angular.json
+│   │   ├── custom-webpack.config.js
+│   │   ├── Dockerfile
+│   │   ├── package-lock.json
+│   │   ├── package.json
+│   │   ├── README.md
+│   │   ├── tsconfig.app.json
+│   │   ├── tsconfig.json
+│   │   └── tsconfig.spec.json
+│   ├── venta/
+│   │   ├── .angular/
+│   │   ├── .vscode/
+│   │   ├── dist/
+│   │   ├── node_modules/
+│   │   ├── src/
+│   │   ├── .editorconfig
+│   │   ├── .gitignore
+│   │   ├── angular.json
+│   │   ├── custom-webpack.config.js
+│   │   ├── Dockerfile
+│   │   ├── package-lock.json
+│   │   ├── package.json
+│   │   ├── README.md
+│   │   ├── tsconfig.app.json
+│   │   ├── tsconfig.json
+│   │   └── tsconfig.spec.json
+├── host-app/
+│   ├── dist/
+│   ├── node_modules/
+│   ├── src/
+│   └── Dockerfile
+├── shared-css/
+│   ├── styles.css
+│   
+└── docker-compose.yml
