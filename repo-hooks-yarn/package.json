@@ -1,6 +1,6 @@
 {
   "name": "teloc-hooks",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "hooks pack for telocambio",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -11,9 +11,11 @@
     "compile": "tsc"
   },
   "dependencies": {
+    "@sweetalert/with-react": "^0.1.1",
     "axios": "^1.5.0",
     "js-cookie": "^3.0.5",
-    "jsrsasign": "^10.8.6"
+    "jsrsasign": "^10.8.6",
+    "sweetalert2": "^11.7.27"
   },
   "peerDependencies": {
     "react": "^17.0.2"
