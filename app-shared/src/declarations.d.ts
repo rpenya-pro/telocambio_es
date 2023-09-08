@@ -37,10 +37,3 @@ declare module "*.svg" {
   const src: string;
   export default src;
 }
-
-declare module "@app-shared/react-hooks" {
-  export function useValidateToken(): any;
-  export function useGetPayloadFromToken(): any;
-  export function useFetchUserById(): any;
-  export function useDataProfileProcessor(): any;
-}

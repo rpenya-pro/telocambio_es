@@ -6,7 +6,7 @@
     "baseUrl": "./",  
     "paths": {
       "@app-shared/react-shared": ["../app-shared/src/components/"] ,
-      "@app-shared/react-hooks": ["../app-shared/src/hooks"]
+
     }
   },
   "files": ["src/app-navigation-react-project.tsx"],

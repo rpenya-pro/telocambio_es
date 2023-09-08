@@ -5,7 +5,7 @@
     "declarationDir": "dist",
     "baseUrl": ".", 
     "paths": {  
-      "@app-shared/react-hooks": ["src/hooks/*"],
+
       "@app-shared/react-shared": ["src/components/*"]
     }
   },

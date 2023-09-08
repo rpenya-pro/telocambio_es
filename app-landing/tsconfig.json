@@ -7,7 +7,7 @@
     "baseUrl": "./",  // Es necesario para que "paths" funcione
     "paths": {
       "@app-shared/react-shared": ["../app-shared/src/components/"] ,
-      "@app-shared/react-hooks": ["../app-shared/src/hooks"]
+
     }
   },
   "files": ["src/app-landing-react-landing.tsx"],

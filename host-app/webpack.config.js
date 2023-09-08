@@ -33,10 +33,6 @@ module.exports = (webpackConfigEnv, argv) => {
           __dirname,
           "../app-shared/src/components/"
         ),
-        "@app-shared/react-hooks": path.resolve(
-          __dirname,
-          "../app-shared/src/hooks/"
-        ),
       },
     },
     plugins: [
