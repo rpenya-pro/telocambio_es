@@ -62,3 +62,16 @@ En el **caso de app-shared NO se puede ejectuar** en standalone porque **es una 
 **IMPORTANTE:** los estilos se hallan ubicados en **host-app**, en el archivo global que apunta al directorio **/scss**,  desde allí se realizarán todas las modificaciones y archivos de estilos.
 
 Es **extremadamente importante** que cada aplicación tenga su archivo propio y que los estilos se marquen usando BEM (Block Element Modifier).
+
+
+### Descripción de las aplicaciones:
+
+- app-dashboard
+- app-footer
+- app-landing
+- app-navigation
+- app-profile: app para gestionar el perfil de usuario
+- app-shared: app- que contiene elementos para compartir qu eno incluyen lógica de datos
+- host-app: aplicación host de todo el microfrontend
+- nest-backend: backend eventual
+- repo-hooks-yarn: cama de hooks para colgar en npmjs, todos los directorios que empiecen por repo- son para repositorio externo
