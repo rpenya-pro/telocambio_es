@@ -70,7 +70,7 @@
     "single-spa": "^5.9.3",
     "single-spa-layout": "^2.2.0",
     "single-spa-react": "^4.3.1",
-    "teloc-hooks": "^0.2.2"
+    "teloc-hooks": "*"
   },
   "types": "dist/app-navigation-react-project.d.ts"
 }

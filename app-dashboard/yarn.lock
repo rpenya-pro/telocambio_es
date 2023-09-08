@@ -6636,10 +6636,10 @@ tapable@^2.0.0, tapable@^2.1.1, tapable@^2.2.0:
   resolved "https://registry.npmjs.org/tapable/-/tapable-2.2.1.tgz"
   integrity sha512-GNzQvQTOIP6RyTfE2Qxb8ZVlNmw0n88vp1szwWRimP02mnTsx3Wtn5qRdqY9w2XduFNUgvOwhNnQsjwCp+kqaQ==
 
-teloc-hooks@^0.2.2:
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/teloc-hooks/-/teloc-hooks-0.2.2.tgz#957a3809a509b8e31ffc027414b3aada497d86ff"
-  integrity sha512-BPyb3fy5ohlEwECspiXoD1mLreA89kBymltHOqnQtzCwVnmXKGVcrvTWQiASZT9BaP6xjOyppViMO9J9mXIm3Q==
+teloc-hooks@*:
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/teloc-hooks/-/teloc-hooks-0.3.2.tgz#5b191b904093150e29c5e4938eb97d89c28ce430"
+  integrity sha512-iCiVU0FxIIQlgsji+3LvVbYSGw190zgCLBo5ijJ9rkXW8RK9t2D3OmdtCiTVOFGcvWtsavHsrD5tq7QSyCa9nw==
   dependencies:
     "@sweetalert/with-react" "^0.1.1"
     axios "^1.5.0"
