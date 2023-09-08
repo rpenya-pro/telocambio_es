@@ -68,7 +68,7 @@ Es **extremadamente importante** que cada aplicación tenga su archivo propio y 
 
 - app-dashboard
 - app-footer
-- app-landing
+- app-landing: app landing, gestiona la validacion de login
 - app-navigation
 - app-profile: app para gestionar el perfil de usuario
 - app-shared: app- que contiene elementos para compartir qu eno incluyen lógica de datos

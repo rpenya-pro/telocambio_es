@@ -129,6 +129,65 @@ Aquí tienes un resumen de lo que hace:
 
 En resumen, este hook proporciona una manera conveniente de procesar y enviar datos actualizados del perfil de usuario a través del servicio `userService`. Puede ser utilizado en componentes para gestionar la lógica de actualización de perfiles de usuario de manera más sencilla y reutilizable.
 
+## useValidateRegisterForm
+
+Este hook, llamado **useValidateRegisterForm**, se utiliza para gestionar la validación y el estado de un formulario de registro. A continuación, se presenta un resumen de lo que hace:
+
+1. **Estado Inicial**: El hook toma un estado inicial que representa los campos del formulario de registro, incluyendo el email, la contraseña y un campo para repetir la contraseña.
+
+2. **Estado de Validación**: El hook mantiene un estado que almacena los valores de los campos del formulario, los errores de validación y un valor booleano que indica si el formulario es válido o no.
+
+3. **Validación de Campos**: El hook realiza la validación de los campos del formulario, verificando si el email tiene un formato válido, si la contraseña tiene más de 4 caracteres y si la repetición de la contraseña coincide con la contraseña original.
+
+4. **Validación Completa**: Verifica si todos los campos del formulario están llenos, si el checkbox de política de privacidad está marcado y si no hay errores de validación.
+
+5. **Actualización de Estado**: Cuando se producen cambios en los campos del formulario o en el estado del checkbox, el hook actualiza el estado de acuerdo con los nuevos valores y errores de validación.
+
+6. **Retorno de Valores**: Devuelve un objeto que contiene los valores actuales de los campos del formulario, los errores de validación, un indicador de validez y una función para manejar los cambios en los campos del formulario.
+
+En resumen, este hook facilita la gestión de la validación de un formulario de registro en una aplicación React, lo que permite a los desarrolladores mantener un control preciso sobre el estado y la validación de los campos del formulario.
+
+## useValidateLoginForm
+
+El hook **useValidateLoginForm** se utiliza para validar un formulario de inicio de sesión en una aplicación React. Aquí tienes un resumen de lo que hace:
+
+1. **Inicialización de Estado:** El hook inicia tres estados: `values` para almacenar los valores de los campos del formulario, `errors` para mantener los errores de validación y `isValid` para rastrear si el formulario es válido en su conjunto.
+
+2. **Validación de Campos:** Cuando se llama a la función `validate`, realiza las siguientes validaciones:
+   - Comprueba si el campo de correo electrónico (`email`) es válido según un patrón de dirección de correo electrónico.
+   - Verifica si la contraseña (`password`) tiene al menos 5 caracteres.
+
+3. **Actualización de Errores y Validez:** Después de cada validación, actualiza el estado `errors` con los errores encontrados y ajusta el estado `isValid` basándose en si los campos tienen valores válidos.
+
+4. **Manejo de Cambios en los Campos:** La función `handleChange` se utiliza para actualizar los valores de los campos del formulario a medida que el usuario ingresa datos. Esto garantiza que las validaciones se realicen en tiempo real a medida que se ingresan los datos.
+
+5. **Efecto de Validación:** Utiliza el hook `useEffect` para realizar la validación cada vez que cambian los valores de los campos del formulario (`values`). Esto asegura que los errores y la validez se actualicen a medida que el usuario interactúa con el formulario.
+
+6. **Retorno de Valores:** El hook retorna un objeto con cuatro propiedades:
+   - `values`: Los valores actuales de los campos del formulario.
+   - `errors`: Los errores de validación encontrados en los campos del formulario.
+   - `isValid`: Un indicador booleano que muestra si el formulario es válido en su conjunto.
+   - `handleChange`: Una función para manejar cambios en los campos del formulario.
+
+En resumen, este hook proporciona la lógica necesaria para validar un formulario de inicio de sesión en React, incluyendo la validación en tiempo real de campos como el correo electrónico y la contraseña, y la gestión de errores y la validez del formulario en su conjunto.
+
+
+## useAuth
+
+El hook **useAuth** se encarga de gestionar la autenticación de usuarios en una aplicación React. Aquí está un resumen de sus principales funciones y responsabilidades:
+
+1. **Estado de Autenticación**: Utiliza `useState` para mantener un estado que almacena el resultado de la autenticación, que incluye información sobre si la operación tuvo éxito y un mensaje opcional.
+
+2. **Registro de Usuario**: La función `handleRegister` permite a los usuarios registrarse en la aplicación. Llama a la función `register` proporcionada por el hook `useService`, que envía una solicitud de registro al servidor. Si el registro es exitoso, se muestra un mensaje de éxito; de lo contrario, se muestra un mensaje de error.
+
+3. **Inicio de Sesión de Usuario**: La función `handleLogin` permite a los usuarios iniciar sesión en la aplicación. Llama a la función `login` proporcionada por el hook `useService`, que envía una solicitud de inicio de sesión al servidor. Si el inicio de sesión es exitoso, se muestra un mensaje de éxito; de lo contrario, se muestra un mensaje de error.
+
+4. **Renovación de Token**: La función `renew` se utiliza para renovar el token de autenticación de un usuario. Envía una solicitud al servidor para obtener un nuevo token basado en el correo electrónico del usuario. Si la renovación es exitosa, se devuelve el nuevo token; de lo contrario, se maneja un error y se devuelve `null`.
+
+En resumen, este hook proporciona las funciones necesarias para registrar usuarios, iniciar sesión y renovar tokens de autenticación, mientras maneja las respuestas y muestra mensajes de éxito o error al usuario. Es una herramienta útil para administrar la autenticación en una aplicación React.
+
+<br>
+
 ### Directorios anexos
 
 ## services/userService.ts

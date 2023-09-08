@@ -1,29 +1,25 @@
-import { Document } from "mongoose";
-
-export interface Address {
-  street: string;
-  city: string;
-  state: string;
-  postalCode: string;
-  country: string;
+interface Address {
+  street?: string;
+  city?: string;
+  state?: string;
+  postalCode?: string;
+  country?: string;
 }
 
-export interface CurrentLocation {
-  latitude: number;
-  longitude: number;
-  timestamp: Date;
+interface CurrentLocation {
+  latitude?: number;
+  longitude?: number;
+  timestamp?: Date;
 }
 
-interface UserBase {
-  firstName: string;
-  lastName: string;
-  email: string;
+export interface Usuario {
+  firstName?: string;
+  lastName?: string;
   password: string;
-  rating: number;
-  badges: string[];
-  address: Address;
-  otherAddresses: Address[];
-  currentLocation: CurrentLocation;
+  email: string;
+  rating?: number;
+  badges?: string[];
+  address?: Address;
+  otherAddresses?: Address;
+  currentLocation?: CurrentLocation;
 }
-
-export interface UserDocument extends UserBase, Document {}

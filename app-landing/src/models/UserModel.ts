@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { UserDocument } from "../interfaces";
+import { Usuario } from "../interfaces";
 
 const AddressSchema = new mongoose.Schema({
   street: String,
@@ -27,4 +27,4 @@ const UserSchema = new mongoose.Schema({
   currentLocation: { type: CurrentLocationSchema, required: true },
 });
 
-export const User = mongoose.model<UserDocument>("User", UserSchema);
+export const User = mongoose.model<Usuario>("User", UserSchema);

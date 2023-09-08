@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import { UserDocument } from "../interfaces/usuario"; // Asegúrate de que la ruta sea la correcta
+import { Usuario } from "../interfaces/usuario"; // Asegúrate de que la ruta sea la correcta
 
-interface RegisterFields extends Partial<UserDocument> {
+interface RegisterFields extends Partial<Usuario> {
   email: string;
   password: string;
 }
 
-const useValidateForm = (initialState: RegisterFields) => {
+export function useValidateLoginForm(initialState: RegisterFields) {
   const [values, setValues] = useState<RegisterFields>(initialState);
   const [errors, setErrors] = useState<Partial<RegisterFields>>({});
   const [isValid, setIsValid] = useState(false);
@@ -50,6 +50,4 @@ const useValidateForm = (initialState: RegisterFields) => {
     isValid,
     handleChange,
   };
-};
-
-export default useValidateForm;
+}

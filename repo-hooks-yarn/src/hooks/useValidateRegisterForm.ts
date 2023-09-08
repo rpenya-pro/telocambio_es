@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
-import { UserDocument } from "../interfaces/usuario"; // Asegúrate de que la ruta sea la correcta
+import { Usuario } from "../interfaces/usuario"; // Asegúrate de que la ruta sea la correcta
 
-interface RegisterFields extends Partial<UserDocument> {
+interface RegisterFields extends Partial<Usuario> {
   repeat?: string; // Campo para repetir la contraseña
 }
 
-const useValidateForm = (
+export function useValidateRegisterForm(
   initialState: RegisterFields,
   isCheckboxChecked: boolean
-) => {
+) {
   const [values, setValues] = useState<RegisterFields>(initialState);
   const [errors, setErrors] = useState<Partial<RegisterFields>>({});
   const [isValid, setIsValid] = useState(false);
@@ -63,6 +63,4 @@ const useValidateForm = (
     isValid,
     handleChange,
   };
-};
-
-export default useValidateForm;
+}

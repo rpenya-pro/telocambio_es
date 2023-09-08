@@ -18,14 +18,12 @@ export function useValidateToken() {
         // Capturar el stored_email de las cookies
         const storedEmail = Cookies.get("stored_email");
         if (!storedEmail) {
-          console.error("No se encontró el stored_email en las cookies");
           return false;
         }
 
         // Obtener el token de las cookies
         const token = Cookies.get("authToken");
         if (!token) {
-          console.error("No se encontró el token en las cookies");
           return false;
         }
 
@@ -42,11 +40,6 @@ export function useValidateToken() {
         ) {
           const payload: Payload = decodedToken.payloadObj;
           const email = payload.email;
-
-          if (email != null) {
-            console.log("El Email", email);
-            console.log("Stored", storedEmail);
-          }
 
           // Valida que email y stored_email sean iguales
           // TODO: almacenar y recoger el email de cookies encryptado, actualmente está visible

@@ -15,6 +15,7 @@ interface CurrentLocation {
 export interface Usuario {
   firstName: string;
   lastName: string;
+  password: string;
   email: string;
   rating: number;
   badges: string[];

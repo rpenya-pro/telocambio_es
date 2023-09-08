@@ -37,3 +37,5 @@ declare module "*.svg" {
   const src: string;
   export default src;
 }
+
+declare var bootstrap: any;

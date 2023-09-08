@@ -1,46 +1,49 @@
-import React, { useEffect, useState } from "react";
-import { authenticate, renewToken } from "./Auth";
-import useValidateForm from "../hooks/useValidateFormLogin"; // Asegúrate de que la ruta sea la correcta
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { useValidateLoginForm, useAuth } from "teloc-hooks";
 
 interface LoginProps {
-  closeModal: () => void;
+  handleClose: () => void;
 }
 
-const Login: React.FC<LoginProps> = ({ closeModal }) => {
+const Login: React.FC<LoginProps> = ({ handleClose }) => {
   const initialState = {
     email: "rafa@webentorn.com",
     password: "111111",
   };
 
+  const navigate = useNavigate();
+  const { login } = useAuth();
   const { values, errors, isValid, handleChange } =
-    useValidateForm(initialState);
-
-  const [error, setError] = useState("");
+    useValidateLoginForm(initialState);
 
   const handleLogin = async (event: React.FormEvent): Promise<void> => {
     event.preventDefault();
 
     try {
-      const { success, message } = await authenticate(
-        values.email,
-        values.password
-      );
+      const { success, message } = await login(values.email, values.password);
 
       if (success) {
-        closeModal();
-        window.location.href = `/dashboard`;
+        handleClose(); // Cierra el modal
+        // Puedes redirigir usando react-router-dom si lo estás utilizando
+        navigate("/dashboard");
       } else {
-        setError(message);
         Swal.fire({
           icon: "error",
           title: "Error de inicio de sesión",
-          text: message || "Ocurrió un error durante el inicio de sesión.",
+          text:
+            message ||
+            "Credenciales incorrectas o error en el inicio de sesión.",
         });
       }
     } catch (error) {
       console.error("Ocurrió un error durante la autenticación", error);
-      setError("Ocurrió un error inesperado");
+      Swal.fire({
+        icon: "error",
+        title: "Error de inicio de sesión",
+        text: "Ocurrió un error inesperado.",
+      });
     }
   };
 
@@ -74,8 +77,6 @@ const Login: React.FC<LoginProps> = ({ closeModal }) => {
             {errors.password && <span>{errors.password}</span>}
           </div>
         </div>
-        {/* Resto del formulario */}
-        {/* ... */}
         <div className="row mt-4">
           <div className="col-md-12 mt-4">
             <button
@@ -89,7 +90,6 @@ const Login: React.FC<LoginProps> = ({ closeModal }) => {
             </button>
           </div>
         </div>
-        <p>{error}</p>
       </div>
     </form>
   );

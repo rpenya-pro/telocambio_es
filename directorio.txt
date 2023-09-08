@@ -43,3 +43,21 @@ microfrontend/
 │   ├── styles.css
 │   
 └── docker-compose.yml
+
+
+└── app-shared/
+    ├── src/  
+    ├── tsconfig.json
+    ├── webpack.config.js
+
+
+└── host-app/
+    ├── webpack.config.js
+    ├── tsconfig.json
+    ├── src/  
+         ├── telocambio-root-config.ts
+         ├── microfrontend-layout.html
+         ├── index.ejs
+         └── declarations.d.ts
+
+

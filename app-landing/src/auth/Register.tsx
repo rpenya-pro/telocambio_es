@@ -1,55 +1,35 @@
 import React, { useState } from "react";
-import process from "process";
-import { authenticate, registerUser } from "./Auth";
-import useValidateForm from "../hooks/useValidateForm"; // Asegúrate de que la ruta sea la correcta
-import Swal from "sweetalert2";
+import { useValidateRegisterForm, useAuth } from "teloc-hooks"; // Importa el nuevo hook de autenticación
 
 interface RegisterProps {
-  closeModal: () => void;
+  handleClose: () => void; // Define la prop handleClose
 }
 
-const Register: React.FC<RegisterProps> = ({ closeModal }) => {
-  const initialState = {
+const Register: React.FC<RegisterProps> = ({ handleClose }) => {
+  const initialRegisterFields = {
     email: "",
     password: "",
     repeat: "",
   };
 
   const [isCheckboxChecked, setCheckboxChecked] = useState(false);
-
-  const { values, errors, isValid, handleChange } = useValidateForm(
-    initialState,
+  const { values, errors, isValid, handleChange } = useValidateRegisterForm(
+    initialRegisterFields,
     isCheckboxChecked
   );
+
+  // Utiliza nuevo hook de autenticación
+  const { register, login } = useAuth();
 
   const handleRegister = async (event: React.FormEvent): Promise<void> => {
     event.preventDefault();
     try {
-      const { success, message } = await registerUser(
-        values.email,
-        values.password
-      );
+      const result = await register(values.email, values.password);
 
-      if (success) {
-        await Swal.fire({
-          icon: "success",
-          title: "Has sido registrado!",
-          text: "Ya estás registrado",
-          allowOutsideClick: false, // Evita que el usuario haga clic fuera del SweetAlert
-          showCancelButton: false, // No se muestra el botón "Cancelar"
-          confirmButtonText: "OK",
-        });
-
-        // Realizar inicio de sesión del usuario
-        const loginResult = await authenticate(values.email, values.password);
-
-        if (loginResult.success) {
-          closeModal();
-          window.location.href = `/dashboard`;
-        } else {
-          // Manejar error de inicio de sesión
-          alert(loginResult.message || "Error de inicio de sesión");
-        }
+      if (result.success) {
+        login(values.email, values.password);
+        handleClose();
+        window.location.reload();
       }
     } catch (error) {
       console.error("Ocurrió un error durante el registro", error);
