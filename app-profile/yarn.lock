@@ -1397,6 +1397,18 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
+"@sweetalert/transformer@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@sweetalert/transformer/-/transformer-0.1.1.tgz#638bdd20b862f03579fd906578dc9355db00887a"
+  integrity sha512-QdV8CrelIoK95kWOrZNMKXL9oEQFsvaForZcw2UijhmVJX/wzopPRLT/sAg51436TJ4q5angt8BvHQInehGFHA==
+
+"@sweetalert/with-react@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@sweetalert/with-react/-/with-react-0.1.1.tgz#5fe4ca967ae8fb34868ef0b9e52013b783e665d5"
+  integrity sha512-LC9eMYKsv8ydvhvKufdVPOIMDgbAFsxn7eeKWadwvXPsFcflosfm/cXZSO0Ras5TuaO3WxHEgvitKD6UfpeIwQ==
+  dependencies:
+    "@sweetalert/transformer" "^0.1.1"
+
 "@testing-library/dom@^8.0.0":
   version "8.20.1"
   resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-8.20.1.tgz#2e52a32e46fc88369eef7eef634ac2a192decd9f"
@@ -6589,6 +6601,11 @@ supports-preserve-symlinks-flag@^1.0.0:
   resolved "https://registry.yarnpkg.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
 
+sweetalert2@^11.7.27:
+  version "11.7.27"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-11.7.27.tgz#de19294e1b5ae7991de27bb4ae34aff3570aaa0e"
+  integrity sha512-QbRXGQn1sb7HEhzA/K2xtWIwQHh/qkSbb1w6jYcTql2xy17876lTREEt1D4X6Q0x2wHtfUjKJ+Cb8IVkRoq7DQ==
+
 symbol-tree@^3.2.4:
   version "3.2.4"
   resolved "https://registry.yarnpkg.com/symbol-tree/-/symbol-tree-3.2.4.tgz#430637d248ba77e078883951fb9aa0eed7c63fa2"
@@ -6620,14 +6637,16 @@ tapable@^2.0.0, tapable@^2.1.1, tapable@^2.2.0:
   resolved "https://registry.yarnpkg.com/tapable/-/tapable-2.2.1.tgz#1967a73ef4060a82f12ab96af86d52fdb76eeca0"
   integrity sha512-GNzQvQTOIP6RyTfE2Qxb8ZVlNmw0n88vp1szwWRimP02mnTsx3Wtn5qRdqY9w2XduFNUgvOwhNnQsjwCp+kqaQ==
 
-teloc-hooks@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/teloc-hooks/-/teloc-hooks-0.1.1.tgz#dbfac7cec3fb4fb6751a7cc5124f78eb48fffade"
-  integrity sha512-3nmCkXc+6zaQowS7+p8Gi2efN9Z9C5L+mjVh+s3RPDdb6INMJxkCzn0fWlpYhlFqbKYk3QWjclels4CNVutDRg==
+teloc-hooks@*:
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/teloc-hooks/-/teloc-hooks-0.3.2.tgz#5b191b904093150e29c5e4938eb97d89c28ce430"
+  integrity sha512-iCiVU0FxIIQlgsji+3LvVbYSGw190zgCLBo5ijJ9rkXW8RK9t2D3OmdtCiTVOFGcvWtsavHsrD5tq7QSyCa9nw==
   dependencies:
+    "@sweetalert/with-react" "^0.1.1"
     axios "^1.5.0"
     js-cookie "^3.0.5"
     jsrsasign "^10.8.6"
+    sweetalert2 "^11.7.27"
 
 terminal-link@^2.0.0:
   version "2.1.1"

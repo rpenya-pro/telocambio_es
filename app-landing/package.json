@@ -78,7 +78,7 @@
     "single-spa-react": "^4.3.1",
     "stream-browserify": "^3.0.0",
     "sweetalert2": "^11.7.27",
-    "teloc-hooks": "^0.2.2",
+    "teloc-hooks": "*",
     "util": "^0.12.5"
   },
   "types": "dist/app-landing-react-landing.d.ts"

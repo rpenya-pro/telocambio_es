@@ -1,7 +1,6 @@
 import { RefObject, FunctionComponent, useState } from "react";
 import { Usuario } from "../interfaces";
-//import { useDataProfileProcessor } from "teloc-hooks";
-import { useDataProfileProcessor } from "../hooks/useDataProfileProcessor";
+import { useDataProfileProcessor } from "teloc-hooks";
 
 interface ModalWindowProps {
   closeModal: () => void;
