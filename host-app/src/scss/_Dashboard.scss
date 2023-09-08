@@ -1,4 +1,20 @@
 .dashboard {
+  .dashboard__formulario label {
+    font-size: 12px;
+    margin-bottom: 5px;
+  }
+  .dashboard__formulario input::placeholder {
+    font-family: "Open Sans", sans-serif;
+    font-size: 13px;
+  }
+
+  .dashboard__modal-dialog {
+    height: 550px;
+    width: auto;
+    max-width: 800px;
+    max-height: none;
+  }
+
   .dashboard__menu-back {
     background-color: #000;
   }
@@ -71,6 +87,20 @@
     .dashboard__menu-drop-padding {
       padding-left: 0px;
       padding-right: 0px;
+    }
+  }
+
+  .visor {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    min-height: 180px;
+    height: auto;
+    z-index: 9999;
+
+    .alert-primary {
+      opacity: 0.9;
     }
   }
 }

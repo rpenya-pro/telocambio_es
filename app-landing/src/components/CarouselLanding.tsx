@@ -4,10 +4,14 @@ import { Carousel } from "./Carousel";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import Login from "../auth/Login";
 import ModalWindow from "./ModalWindow";
+import { useGetPayloadFromToken, useValidateToken } from "teloc-hooks";
 
 export const CarouselLanding = () => {
   const modalRef = useRef<HTMLDivElement>(null);
   let modalInstance: any = null;
+
+  const payload = useGetPayloadFromToken();
+  const isValid = useValidateToken();
 
   const openModal = () => {
     const BootstrapModal = (window as any).bootstrap.Modal;
@@ -47,17 +51,28 @@ export const CarouselLanding = () => {
               </h4>
             </div>
             <div className="mt-5">
-              <button
-                className="btn landing__button-primary"
-                onClick={openModal}
-              >
-                ¡Intercambia ahora!
-              </button>
+              {payload && isValid ? (
+                <>
+                  <a
+                    className="btn landing__button-primary pt-2"
+                    href="/dashboard"
+                  >
+                    Entra en tu área de usuario
+                  </a>
+                </>
+              ) : (
+                <button
+                  className="btn landing__button-primary"
+                  onClick={openModal}
+                >
+                  ¡Intercambia ahora!
+                </button>
+              )}
             </div>
             <div className="mt-5">
               <h5>
                 ¿Aún no tienes claro cómo hacerlo?{" "}
-                <a href="" className="landing__link-context">
+                <a href="/faq" className="landing__link-context">
                   te loexplico!
                 </a>
               </h5>

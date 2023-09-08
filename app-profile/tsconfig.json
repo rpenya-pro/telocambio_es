@@ -1,0 +1,15 @@
+{
+  "extends": "ts-config-single-spa",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "declarationDir": "dist",
+    "baseUrl": "./",  
+    "paths": {
+      "@app-shared/react-shared": ["../app-shared/src/components/"] ,
+      "@app-shared/react-hooks": ["../app-shared/src/hooks"]
+    }
+  },
+  "files": ["src/app-profile-react-profile.tsx"],
+  "include": ["src/**/*"],
+  "exclude": ["src/**/*.test*"]
+}

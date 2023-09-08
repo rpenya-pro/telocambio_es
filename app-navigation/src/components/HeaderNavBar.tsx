@@ -1,24 +1,36 @@
-import React, { useState } from "react";
-import { logoTeLoCambio, homeIcon } from "../assets/images";
+import React, { useEffect, useState } from "react";
+import { logoTeLoCambio, homeIcon, profileIcon } from "../assets/images";
+
+import {
+  ErrorProtectedComponent,
+  LoaderGenericComponent,
+  LoaderComponent,
+} from "@app-shared/react-shared";
+
+import {
+  useGetPayloadFromToken,
+  useValidateToken,
+  useFetchUserById,
+} from "teloc-hooks";
 
 import ErrorBoundary from "./ErrorBoundary";
 
-interface HeaderNavBarProps {
-  authenticated: boolean;
-  logout: () => void;
-}
-
-const HeaderNavBar: React.FC<HeaderNavBarProps> = ({
-  authenticated,
-  logout,
-}) => {
+const HeaderNavBar: React.FC = () => {
+  const payload = useGetPayloadFromToken();
+  const isValid = useValidateToken();
+  const { user, loading, error } = useFetchUserById(payload?._id);
   const [isLanding, setIsLanding] = useState<boolean>(true);
+  const [isAuth, setIsAuth] = useState<boolean>(false);
 
-  const handleLogout = () => {
-    logout();
-  };
+  const handleLogout = () => {};
 
-  return (
+  useEffect(() => {
+    setIsAuth(payload ? true : false);
+  }, [payload]);
+
+  return isValid && loading ? (
+    <LoaderGenericComponent />
+  ) : (
     <ErrorBoundary>
       <nav className="navbar navbar-expand-lg navbar-light  navigation">
         <div className="container-fluid">
@@ -43,7 +55,7 @@ const HeaderNavBar: React.FC<HeaderNavBarProps> = ({
           <div className="collapse navbar-collapse" id="navbarScroll">
             <ul className="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll">
               <li className="nav-item navigation__item me-3">
-                <a className="nav-link active" aria-current="page" href="#">
+                <a className="nav-link active" aria-current="page" href="/">
                   <img
                     src={homeIcon}
                     alt="Home Page"
@@ -52,55 +64,76 @@ const HeaderNavBar: React.FC<HeaderNavBarProps> = ({
                 </a>
               </li>
               <li className="nav-item navigation__item">
-                <a className="nav-link" href="#">
+                <a className="nav-link" href="/contacta">
                   Contacta
                 </a>
               </li>
               <li className="nav-item navigation__item navigation__item--divider">
-                <a className="nav-link" href="#">
-                  FAQs
+                <a className="nav-link" href="/faq">
+                  Cómo funciona
                 </a>
               </li>
 
-              {authenticated ? (
-                <li className="nav-item dropdown navigation__item navigation__item--accede">
-                  <a
-                    className="nav-link dropdown-toggle"
-                    href="#"
-                    id="navbarDropdown"
-                    role="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    Hola, chaval
-                  </a>
-                  <ul
-                    className="dropdown-menu"
-                    aria-labelledby="navbarDropdown"
-                  >
-                    <li>
-                      <a className="dropdown-item" href="#">
-                        Action
-                      </a>
-                    </li>
-                    <li>
-                      <a className="dropdown-item" href="#">
-                        Another action
-                      </a>
-                    </li>
-                    <li>
-                      <hr className="dropdown-divider" />
-                    </li>
-                    <li>
-                      <button
-                        className="btn dropdown-item"
-                        onClick={handleLogout}
+              {isAuth && isValid ? (
+                loading ? (
+                  <LoaderComponent />
+                ) : (
+                  <li className="nav-item dropdown navigation__item navigation__item--accede">
+                    <div className="d-flex align-items-center justify-content-between">
+                      <a
+                        className="nav-link dropdown-toggle"
+                        href="/dashboard"
+                        id="navbarDropdown"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
                       >
-                        Logout
-                      </button>
-                    </li>
-                  </ul>
-                </li>
+                        <img
+                          src={profileIcon}
+                          alt="Profile"
+                          className="navigation__profile-icon me-3"
+                        />
+                        {user?.firstName?.length > 10
+                          ? user?.firstName?.substring(0, 10) + "..."
+                          : user?.firstName}{" "}
+                        {user?.lastName?.length > 10
+                          ? user?.lastName?.substring(0, 10) + "..."
+                          : user?.lastName}
+                      </a>
+                      <ul
+                        className="dropdown-menu"
+                        aria-labelledby="navbarDropdown"
+                      >
+                        <li>
+                          <a className="dropdown-item" href="/profile">
+                            Profile
+                          </a>
+                        </li>
+                        <li>
+                          <a className="dropdown-item" href="#">
+                            Historial de intercambio
+                          </a>
+                        </li>
+                        <li>
+                          <a className="dropdown-item" href="#">
+                            Historial de intercambio
+                          </a>
+                        </li>
+                        <li>
+                          <hr className="dropdown-divider" />
+                        </li>
+                        <li>
+                          <button
+                            className="btn dropdown-item"
+                            onClick={handleLogout}
+                          >
+                            Logout
+                          </button>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                )
               ) : (
                 <li className="nav-item dropdown navigation__item navigation__item--accede">
                   <a className="nav-link" href="#">

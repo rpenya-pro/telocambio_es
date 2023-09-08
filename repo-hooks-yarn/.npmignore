@@ -1,0 +1,20 @@
+# Directorios
+node_modules/
+dist/      
+coverage/  
+__tests__/  
+
+# Archivos
+*.log
+*.tsbuildinfo
+*.map
+*.test.tsx?
+*.spec.tsx?
+tsconfig.json
+
+package-lock.json 
+yarn.lock
+*.env          
+
+# Otros
+.DS_Store       

@@ -40,4 +40,7 @@ declare module "*.svg" {
 
 declare module "@app-shared/react-hooks" {
   export function useValidateToken(): any;
+  export function useGetPayloadFromToken(): any;
+  export function useFetchUserById(): any;
+  export function useDataProfileProcessor(): any;
 }

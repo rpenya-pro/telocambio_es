@@ -57,13 +57,13 @@ module.exports = (webpackConfigEnv, argv) => {
         },
       }),
 
-      new webpack.DefinePlugin({
-        "process.env.REACT_APP_MONGODB_URI": JSON.stringify(
-          process.env.REACT_APP_MONGODB_URI
-        ),
-        "process.env.JWT_SECRET": JSON.stringify(process.env.JWT_SECRET),
-        "process.env.NODE_ENV": JSON.stringify("development"), // o 'production'
-      }),
+      // new webpack.DefinePlugin({
+      //   "process.env.REACT_APP_MONGODB_URI": JSON.stringify(
+      //     process.env.REACT_APP_MONGODB_URI
+      //   ),
+      //   "process.env.JWT_SECRET": JSON.stringify(process.env.JWT_SECRET),
+      //   "process.env.NODE_ENV": JSON.stringify("development"), // o 'production'
+      // }),
     ],
   });
 };

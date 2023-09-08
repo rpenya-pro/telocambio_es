@@ -1,0 +1,30 @@
+{
+  "name": "teloc-hooks",
+  "version": "0.1.1",
+  "description": "hooks pack for telocambio",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "author": "rpenyav",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "compile": "tsc"
+  },
+  "dependencies": {
+    "axios": "^1.5.0",
+    "js-cookie": "^3.0.5",
+    "jsrsasign": "^10.8.6"
+  },
+  "peerDependencies": {
+    "react": "^17.0.2"
+  },
+  "devDependencies": {
+    "@types/js-cookie": "^3.0.3",
+    "@types/jsrsasign": "^10.5.8",
+    "@types/react": "^18.2.21",
+    "@types/react-dom": "^18.2.7",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "^5.2.2"
+  }
+}

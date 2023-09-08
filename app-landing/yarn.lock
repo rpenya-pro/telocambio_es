@@ -7016,6 +7016,15 @@ tapable@^2.0.0, tapable@^2.1.1, tapable@^2.2.0:
   resolved "https://registry.npmjs.org/tapable/-/tapable-2.2.1.tgz"
   integrity sha512-GNzQvQTOIP6RyTfE2Qxb8ZVlNmw0n88vp1szwWRimP02mnTsx3Wtn5qRdqY9w2XduFNUgvOwhNnQsjwCp+kqaQ==
 
+teloc-hooks@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/teloc-hooks/-/teloc-hooks-0.1.1.tgz#dbfac7cec3fb4fb6751a7cc5124f78eb48fffade"
+  integrity sha512-3nmCkXc+6zaQowS7+p8Gi2efN9Z9C5L+mjVh+s3RPDdb6INMJxkCzn0fWlpYhlFqbKYk3QWjclels4CNVutDRg==
+  dependencies:
+    axios "^1.5.0"
+    js-cookie "^3.0.5"
+    jsrsasign "^10.8.6"
+
 terminal-link@^2.0.0:
   version "2.1.1"
   resolved "https://registry.npmjs.org/terminal-link/-/terminal-link-2.1.1.tgz"

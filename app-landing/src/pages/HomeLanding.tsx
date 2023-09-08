@@ -2,7 +2,7 @@ import React from "react";
 import { CarouselLanding } from "../components/CarouselLanding";
 import { HowToLanding } from "../components/HowToLanding";
 import { StartComponentLanding } from "../components/StartComponentLanding";
-import { useValidateToken } from "@app-shared/react-hooks";
+import { useValidateToken } from "teloc-hooks";
 
 export const HomeLanding = () => {
   const isValid = useValidateToken(); // Aquí usamos el Hook

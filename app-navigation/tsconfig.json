@@ -3,10 +3,10 @@
   "compilerOptions": {
     "jsx": "react-jsx",
     "declarationDir": "dist",
-    "baseUrl": "./",  // Es necesario para que "paths" funcione
+    "baseUrl": "./",  
     "paths": {
       "@app-shared/react-shared": ["../app-shared/src/components/"] ,
-      "@app-shared/react-hooks": ["../app-shared/src/hooks/*"]
+      "@app-shared/react-hooks": ["../app-shared/src/hooks"]
     }
   },
   "files": ["src/app-navigation-react-project.tsx"],

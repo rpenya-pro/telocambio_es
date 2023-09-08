@@ -1,5 +1,7 @@
 const { merge } = require("webpack-merge");
+
 const path = require("path");
+const webpack = require("webpack");
 const singleSpaDefaults = require("webpack-config-single-spa-react-ts");
 const ModuleFederationPlugin =
   require("webpack").container.ModuleFederationPlugin;
@@ -41,7 +43,7 @@ module.exports = (webpackConfigEnv, argv) => {
       new ModuleFederationPlugin({
         name: "app_shared",
         remotes: {
-          host_app: "host_app@http://localhost:9000/remoteEntry.js", // Ajusta la URL y el puerto según tu configuración
+          hostApp: "hostApp@http://localhost:9000/remoteEntry.js",
         },
         shared: {
           react: { singleton: true, eager: true, requiredVersion: "^17.0.2" },
