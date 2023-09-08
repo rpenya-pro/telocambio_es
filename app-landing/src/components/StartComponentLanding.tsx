@@ -1,28 +1,14 @@
 import { useGetPayloadFromToken, useValidateToken } from "teloc-hooks";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import ModalWindow from "./ModalWindow";
 
 export const StartComponentLanding = () => {
-  const modalRef = useRef<HTMLDivElement>(null);
-  let modalInstance: any = null;
+  const [show, setShow] = useState(false);
 
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   const payload = useGetPayloadFromToken();
   const isValid = useValidateToken();
-
-  const openModal = () => {
-    const BootstrapModal = (window as any).bootstrap.Modal;
-    const modal = new BootstrapModal(modalRef.current, {
-      backdrop: "static",
-      keyboard: false,
-    });
-    modal.show();
-  };
-
-  const closeModal = () => {
-    if (modalInstance) {
-      modalInstance.hide();
-    }
-  };
 
   return (
     <>
@@ -59,7 +45,7 @@ export const StartComponentLanding = () => {
               ) : (
                 <button
                   className="btn landing__big-button-primary"
-                  onClick={openModal}
+                  onClick={handleShow}
                 >
                   ¡Intercambia ahora!
                 </button>
@@ -78,7 +64,7 @@ export const StartComponentLanding = () => {
           <hr />
         </div>
       </div>
-      <ModalWindow closeModal={closeModal} modalRef={modalRef} />
+      <ModalWindow show={show} handleClose={handleClose} />
     </>
   );
 };

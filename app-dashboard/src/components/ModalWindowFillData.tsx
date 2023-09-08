@@ -1,7 +1,7 @@
-import React, { RefObject, FunctionComponent, useEffect } from "react";
-import { UserBase, Address, CurrentLocation } from "../interfaces/usuario";
-import useForm from "../hooks/useForm";
-import { useDataProfileProcessor } from "teloc-hooks";
+import { RefObject, FunctionComponent, useState } from "react";
+import { Usuario } from "../interfaces";
+//import { useDataProfileProcessor } from "teloc-hooks";
+import { useDataProfileProcessor } from "../hooks/useDataProfileProcessor";
 
 interface ModalWindowProps {
   closeModal: () => void;
@@ -14,26 +14,55 @@ const ModalWindowFillData: FunctionComponent<ModalWindowProps> = ({
   modalRef,
   identUser,
 }) => {
-  const initialState: Partial<UserBase> = {
+  const initialState = {
     firstName: "",
     lastName: "",
+    address: {
+      street: "",
+      postalCode: "",
+      city: "",
+      state: "",
+      country: "",
+    },
   };
 
   const { processData } = useDataProfileProcessor();
-  const { handleChange, handleSubmit, values, errors, formProcessed } =
-    useForm<UserBase>(initialState as any, processData, identUser);
+  const [values, setValues] = useState(initialState); // Utilizamos useState para el estado
+  const [formProcessed, setFormProcessed] = useState(false); // Utilizamos useState para el estado
+  const [errors, setErrors] = useState<{
+    firstName?: string;
+    lastName?: string;
+    general?: string;
+  }>({});
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setValues((prevValues) => ({
+      ...prevValues,
+      [name]: value,
+    }));
+  };
 
-  useEffect(() => {
-    if (formProcessed) {
-      closeModal();
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    const validatedData = {
+      identUser,
+      ...values,
+    };
+    try {
+      const processed = await processData(validatedData);
+      if (processed) {
+        console.log("ssssssssssssssssssss");
+        setFormProcessed(true);
+        window.location.reload();
+      }
+    } catch (error) {
+      console.error("Hubo un error al procesar los datos:", error);
+      setErrors({ ...errors, general: "Hubo un error al procesar los datos." });
     }
-  }, [formProcessed, closeModal]);
+  };
 
   const isFormValid = () => {
-    const hasFirstName = values.firstName && values.firstName.trim() !== "";
-    const hasLastName = values.lastName && values.lastName.trim() !== "";
-
-    return hasFirstName && hasLastName && !errors.firstName && !errors.lastName;
+    return values.firstName.trim() !== "" && values.lastName.trim() !== "";
   };
 
   return (
@@ -63,7 +92,7 @@ const ModalWindowFillData: FunctionComponent<ModalWindowProps> = ({
                           placeholder="Nombre"
                           name="firstName"
                           className="form-control"
-                          value={values.firstName || ""}
+                          value={values.firstName}
                           onChange={handleChange}
                         />
                         {errors.firstName && (
@@ -115,7 +144,7 @@ const ModalWindowFillData: FunctionComponent<ModalWindowProps> = ({
                           placeholder="Apellido"
                           name="lastName"
                           className="form-control"
-                          value={values.lastName || ""}
+                          value={values.lastName}
                           onChange={handleChange}
                         />
                         {errors.lastName && (

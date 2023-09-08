@@ -16,7 +16,6 @@ export function useGetPayloadFromToken() {
       const token = Cookies.get("authToken");
 
       if (!token) {
-        console.error("No se encontró el token en las cookies");
         setPayload(null);
         return;
       }

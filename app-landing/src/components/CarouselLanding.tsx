@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { logoTeLoCambio } from "../assets/images";
 import { Carousel } from "./Carousel";
 import "bootstrap/dist/js/bootstrap.bundle.min";
@@ -7,26 +7,13 @@ import ModalWindow from "./ModalWindow";
 import { useGetPayloadFromToken, useValidateToken } from "teloc-hooks";
 
 export const CarouselLanding = () => {
-  const modalRef = useRef<HTMLDivElement>(null);
-  let modalInstance: any = null;
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const payload = useGetPayloadFromToken();
   const isValid = useValidateToken();
-
-  const openModal = () => {
-    const BootstrapModal = (window as any).bootstrap.Modal;
-    const modal = new BootstrapModal(modalRef.current, {
-      backdrop: "static",
-      keyboard: false,
-    });
-    modal.show();
-  };
-
-  const closeModal = () => {
-    if (modalInstance) {
-      modalInstance.hide();
-    }
-  };
 
   return (
     <>
@@ -63,7 +50,7 @@ export const CarouselLanding = () => {
               ) : (
                 <button
                   className="btn landing__button-primary"
-                  onClick={openModal}
+                  onClick={handleShow}
                 >
                   ¡Intercambia ahora!
                 </button>
@@ -81,7 +68,7 @@ export const CarouselLanding = () => {
         </div>
       </div>
 
-      <ModalWindow closeModal={closeModal} modalRef={modalRef} />
+      <ModalWindow show={show} handleClose={handleClose} />
     </>
   );
 };

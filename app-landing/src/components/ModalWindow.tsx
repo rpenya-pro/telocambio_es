@@ -1,40 +1,49 @@
-import React, { RefObject, FunctionComponent } from "react";
+import React, { RefObject, FunctionComponent, useRef, useState } from "react";
 import Login from "../auth/Login";
 import Register from "../auth/Register";
+import { Button, Modal } from "react-bootstrap";
 
 interface ModalWindowProps {
-  closeModal: () => void;
-  modalRef: RefObject<HTMLDivElement>;
+  show: boolean;
+  handleClose: () => void;
 }
 
 const ModalWindow: FunctionComponent<ModalWindowProps> = ({
-  closeModal,
-  modalRef,
+  show,
+  handleClose,
 }) => {
   return (
-    <div className="landing modal fade" tabIndex={-1} ref={modalRef}>
-      <div className="modal-dialog modal-dialog-centered landing__modal-dialog">
-        <div className="modal-content">
-          <div className="modal-body p-5">
-            <div className="row">
-              <div className="col-md-12 mb-4">
-                <h3>Accede o regístrate</h3>
-              </div>
-            </div>
-            <div className="row" id="left">
-              <div className="col-md-5 ">
-                <Login closeModal={closeModal} />
-              </div>
-              <div className="col-md-2 d-flex justify-content-center">
-                <div className="borderend"></div>
-              </div>
-              <div className="col-md-5" id="right">
-                <Register closeModal={closeModal} />
-              </div>
+    <div
+      className="modal show"
+      style={{ display: "block", position: "initial" }}
+    >
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Body>
+          <div className="row landing__modal-dialog">
+            <div className="col-md-12 mb-4">
+              <h3>Accede o regístrate</h3>{" "}
+              <button
+                type="button"
+                className="btn btn-secondary"
+                onClick={handleClose} // Cierra la modal al hacer clic
+              >
+                Cerrar
+              </button>
             </div>
           </div>
-        </div>
-      </div>
+          <div className="row" id="left">
+            <div className="col-md-5 ">
+              <Login handleClose={handleClose} />
+            </div>
+            <div className="col-md-2 d-flex justify-content-center">
+              <div className="borderend"></div>
+            </div>
+            <div className="col-md-5" id="right">
+              <Register handleClose={handleClose} />
+            </div>
+          </div>
+        </Modal.Body>
+      </Modal>
     </div>
   );
 };

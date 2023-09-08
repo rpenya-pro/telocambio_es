@@ -5,7 +5,7 @@ import { StartComponentLanding } from "../components/StartComponentLanding";
 import { useValidateToken } from "teloc-hooks";
 
 export const HomeLanding = () => {
-  const isValid = useValidateToken(); // Aquí usamos el Hook
+  const isValid = useValidateToken();
 
   if (isValid === null) {
     return <p>Validando...</p>;
