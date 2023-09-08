@@ -74,3 +74,17 @@ interface Window {
   React: typeof import("react");
   ReactDOM: typeof import("react-dom");
 }
+
+// declare namespace NodeJS {
+//   interface ProcessEnv {
+//     REACT_APP_API_URL: string;
+//     REACT_APP_SECRET_KEY: string;
+//     REACT_APP_URL: string;
+//   }
+// }
+
+// declare module "@telocambio/root-config" {
+//   const REACT_APP_API_URL: string;
+//   const REACT_APP_SECRET_KEY: string;
+//   const REACT_APP_URL: string;
+// }

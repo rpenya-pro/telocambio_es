@@ -24,7 +24,7 @@ export class UserService {
 
     const salt = await bcrypt.genSalt();
     user.password = await bcrypt.hash(user.password, salt);
-    console.log('User antes de guardar:', user);
+
     const createdUser = new this.userModel(user);
     return createdUser.save();
   }
@@ -54,12 +54,13 @@ export class UserService {
 
   async findAll(): Promise<User[]> {
     const users = await this.userModel.find().exec();
-    console.log(users); // Añade esta línea para depurar
     return users;
   }
 
   async findOne(id: string): Promise<User> {
-    return this.userModel.findById(id);
+    const user = await this.userModel.findById(id);
+    console.log('Usuario encontrado:', user); // Añadir esto para depurar
+    return user;
   }
 
   async update(id: string, user: User): Promise<User> {

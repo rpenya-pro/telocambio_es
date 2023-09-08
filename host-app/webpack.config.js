@@ -1,5 +1,5 @@
-const webpack = require("webpack");
-const path = require("path"); // Importar path
+const Dotenv = require("dotenv-webpack");
+const path = require("path");
 const { merge } = require("webpack-merge");
 const singleSpaDefaults = require("webpack-config-single-spa-ts");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -16,24 +16,18 @@ module.exports = (webpackConfigEnv, argv) => {
 
   return merge(defaultConfig, {
     devServer: {
-      port: 9000, // Especifica que el puerto sea 9000
-      open: true, // Abre automáticamente el navegador
+      port: 9000,
+      open: true,
     },
     module: {
       rules: [
-        // ... (otras reglas que ya puedas tener)
         {
           test: /\.scss$/,
-          use: [
-            "style-loader", // Crea elementos de estilo en el DOM
-            "css-loader", // Traduce CSS en CommonJS
-            "sass-loader", // Compila Sass a CSS
-          ],
+          use: ["style-loader", "css-loader", "sass-loader"],
         },
       ],
     },
     resolve: {
-      // Añadir esta sección
       alias: {
         "@app-shared/react-shared": path.resolve(
           __dirname,
@@ -46,18 +40,16 @@ module.exports = (webpackConfigEnv, argv) => {
       },
     },
     plugins: [
-      new webpack.DefinePlugin({
-        "process.env.REACT_APP_MONGODB_URI": JSON.stringify(
-          process.env.REACT_APP_MONGODB_URI
-        ),
-        "process.env.JWT_SECRET": JSON.stringify(process.env.JWT_SECRET),
-      }),
+      new Dotenv(),
       new HtmlWebpackPlugin({
         inject: false,
         template: "src/index.ejs",
         templateParameters: {
           isLocal: webpackConfigEnv && webpackConfigEnv.isLocal,
           orgName,
+          REACT_APP_API_URL: process.env.REACT_APP_API_URL,
+          REACT_APP_URL: process.env.REACT_APP_URL,
+          REACT_APP_SECRET_KEY: process.env.REACT_APP_SECRET_KEY,
         },
       }),
     ],

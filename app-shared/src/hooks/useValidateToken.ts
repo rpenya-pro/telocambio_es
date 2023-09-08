@@ -54,6 +54,7 @@ export function useValidateToken() {
       }
 
       // Valida que email y stored_email sean iguales
+      //TODO almacenar y recoger el email de cookies encryptado, actualmente está visibe
       if (email === storedEmail) {
         setIsValid(true);
       } else {

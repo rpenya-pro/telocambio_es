@@ -1,6 +1,5 @@
-// Asignar React y ReactDOM desde el objeto window
-const React = window.React;
-const ReactDOM = window.ReactDOM;
+import React from "react";
+import ReactDOM from "react-dom";
 export * from "./hooks";
 
 export default function Root(props) {

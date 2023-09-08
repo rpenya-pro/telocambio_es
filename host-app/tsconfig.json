@@ -7,10 +7,11 @@
     "esModuleInterop": true,
     "baseUrl": "./",  // Es necesario para que "paths" funcione
     "paths": {
-      "@app-shared/react-shared": ["../app-shared/src/components/"] ,
-      "@app-shared/react-hooks": ["../app-shared/src/hooks/*"]
+      "@app-shared/react-shared": ["../app-shared/src/components"] ,
+      "@app-shared/react-hooks": ["../app-shared/src/hooks"]
+
     }
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "src/Share.ts"],
   "exclude": ["src/**/*.test*"]
 }

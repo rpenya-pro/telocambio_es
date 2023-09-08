@@ -3,4 +3,6 @@
 
 export * from "./Error404Component";
 export * from "./ErrorProtectedComponent";
+export * from "./LoaderComponent";
+export * from "./LoaderGenericComponent";
 // export * from "./auth/RenewToken";

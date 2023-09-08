@@ -1,0 +1,22 @@
+# Directorios
+node_modules/
+dist/       
+coverage/   
+__tests__/  
+
+# Archivos
+*.log
+*.tsbuildinfo
+*.map
+*.test.tsx?
+*.spec.tsx?
+*.env           
+tsconfig.json
+yarn.lock
+package-lock.json  
+
+# Otros
+.DS_Store       
+.editorconfig   
+.idea/          
+.vscode/        
