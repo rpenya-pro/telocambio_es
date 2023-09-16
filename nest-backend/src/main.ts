@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as compression from 'compression';
 import helmet from 'helmet';
+import { RequestMethod } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -13,8 +14,16 @@ async function bootstrap() {
     credentials: true,
   });
 
-  // app.use(compression());
-  // app.use(helmet()); // Asegúrate de que helmet se invoca como una función aquí
+  app.use((req, res, next) => {
+    if (req.method === RequestMethod.OPTIONS) {
+      res.status(200).send();
+      return;
+    }
+    next();
+  });
+
+  app.use(compression());
+  app.use(helmet()); // Asegúrate de que helmet se invoca como una función aquí
 
   await app.listen(process.env.PORT || 3000);
 }
