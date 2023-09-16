@@ -82,9 +82,9 @@ function HomePage() {
                       <div className="mt-4">
                         <h5>
                           ¿Aún no tienes claro cómo hacerlo?{" "}
-                          <a href="/faq" className="landing__link-context">
-                            te loexplico!
-                          </a>
+                          <Link to="/faq" className="landing__link-context">
+                            te lo explico!
+                          </Link>
                         </h5>
                       </div>
                     </div>
