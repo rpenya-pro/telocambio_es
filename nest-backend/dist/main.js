@@ -4,7 +4,6 @@ const core_1 = require("@nestjs/core");
 const app_module_1 = require("./app.module");
 const compression = require("compression");
 const helmet_1 = require("helmet");
-const common_1 = require("@nestjs/common");
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
     app.enableCors({
@@ -13,8 +12,12 @@ async function bootstrap() {
         credentials: true,
     });
     app.use((req, res, next) => {
-        if (req.method === common_1.RequestMethod.OPTIONS) {
-            res.status(200).send();
+        if (req.method === 'OPTIONS') {
+            res.header('Access-Control-Allow-Origin', 'http://www.rafapenya.com');
+            res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+            res.header('Access-Control-Allow-Headers', 'Content-Type');
+            res.header('Access-Control-Allow-Credentials', 'true');
+            res.status(200).end();
             return;
         }
         next();
