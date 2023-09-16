@@ -16,6 +16,11 @@ import { UserService } from './user.service';
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
+  @Get('defaultValue')
+  defaultValue() {
+    return 'Este es el valor predeterminado.';
+  }
+
   @Post('register')
   async create(@Body() user: User) {
     return this.userService.create(user);

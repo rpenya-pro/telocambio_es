@@ -13,4 +13,5 @@ export default defineConfig({
     port: 9008,
     host: true,
   },
+  base: "/telocambio/", // Configuración de la base
 });

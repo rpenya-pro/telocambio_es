@@ -2,7 +2,7 @@
   "name": "tlc",
   "private": true,
   "version": "0.0.0",
-  "homepage": "http://www.rafapenya.com/telocambio",
+  "homepage": "http://www.rafapenya.com/telocambio/",
   "type": "module",
   "scripts": {
     "dev": "vite",
