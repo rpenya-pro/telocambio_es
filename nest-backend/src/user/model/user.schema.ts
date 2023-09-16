@@ -1,6 +1,6 @@
 // user.schema.ts
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Document, Types } from 'mongoose';
 
 @Schema()
 export class User {
@@ -10,14 +10,29 @@ export class User {
   @Prop()
   lastName: string;
 
+  @Prop()
+  avatar: string;
+
+  @Prop({ unique: true })
+  slug: string;
+
   @Prop({ required: true })
   email: string;
 
   @Prop({ required: true })
   password: string;
 
+  @Prop({ default: Date.now })
+  publishDate: Date;
+
   @Prop()
   rating: number;
+
+  @Prop([String])
+  themesprefered: string[];
+
+  @Prop({ type: Boolean, default: true })
+  privateProfile: boolean;
 
   @Prop([String])
   badges: string[];
@@ -68,6 +83,19 @@ export class User {
     longitude: number;
     timestamp: Date;
   };
+
+  @Prop({
+    type: [
+      {
+        idFriend: { type: Types.ObjectId, required: true },
+        addedOn: { type: Date, required: true, default: Date.now },
+      },
+    ],
+  })
+  friends: {
+    idFriend: Types.ObjectId;
+    addedOn: Date;
+  }[];
 }
 
 export type UserDocument = User & Document;

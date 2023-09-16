@@ -1,0 +1,79 @@
+.ownerprofile {
+  .indent {
+    list-style-type: none;
+    padding-left: 20px;
+  }
+  .cursor {
+    cursor: pointer;
+  }
+  .texto-blanco {
+    color: #ffffff !important;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+  .small {
+    font-size: 13px;
+  }
+  .sans-serif {
+    font-family: "Open Sans", sans-serif;
+  }
+
+  .badge {
+    font-family: "Open Sans", sans-serif;
+    font-weight: lighter;
+    background-color: #ffffff !important;
+    border-radius: 12px;
+    padding: 6px;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-right: 4px;
+    color: #000;
+  }
+
+  .white-hr {
+    border: none;
+    height: 1px; /* Ajusta la altura según tus necesidades */
+    background-color: white; /* Establece el color blanco */
+    margin: 10px 0; /* Ajusta el margen superior e inferior según tus necesidades */
+  }
+
+  .ownerprofile__left {
+    height: 100vh;
+    padding: 30px;
+    background-color: $color-secondary;
+  }
+
+  .ownerprofile__right {
+    height: 100vh;
+    padding: 30px;
+    background-color: $color-landing;
+  }
+
+  .circular-image-container-big {
+    width: 155px;
+    height: 155px;
+    border-radius: 50%; // Esto hace que el div sea circular
+
+    img {
+      max-width: 100%; // La imagen se ajustará al tamaño del contenedor
+      max-height: 100%; // La imagen se ajustará al tamaño del contenedor
+      border-radius: 50%; // Esto hace que la imagen sea circular
+      display: block; // Para eliminar el espacio adicional debajo de la imagen
+    }
+  }
+
+  .circular-image-container {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%; // Esto hace que el div sea circular
+
+    img {
+      max-width: 100%; // La imagen se ajustará al tamaño del contenedor
+      max-height: 100%; // La imagen se ajustará al tamaño del contenedor
+      border-radius: 50%; // Esto hace que la imagen sea circular
+      display: block; // Para eliminar el espacio adicional debajo de la imagen
+    }
+  }
+}

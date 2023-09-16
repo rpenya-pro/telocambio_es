@@ -1,0 +1,61 @@
+.modal-header {
+  border: 0px;
+}
+
+.custom-close-button {
+  .btn-close {
+    font-size: 12px;
+  }
+}
+
+.modal-body {
+  padding: 60px;
+  padding-top: 30px;
+}
+
+.backline {
+  height: 100%;
+  width: 1px;
+  background-color: $color-grey;
+}
+
+/* modal for privacy policies*/
+.modalpolicys {
+  .modal-header {
+    background-color: $color-landing;
+  }
+  .modal-body {
+    background-color: $color-landing;
+    padding: 20px !important;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    max-height: 650px;
+    font-size: 14px;
+    overflow-y: auto;
+    font-family: "Open Sans", sans-serif;
+  }
+
+  .custom-close-button {
+    .btn-close {
+      font-size: 10px !important;
+    }
+  }
+
+  .backline {
+    height: 100%;
+    width: 1px;
+    background-color: $color-grey;
+  }
+
+  .modal-dialog {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    .modal-dialog {
+      width: 550px !important;
+      max-width: 100%;
+    }
+  }
+}

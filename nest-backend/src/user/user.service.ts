@@ -31,7 +31,13 @@ export class UserService {
   generateToken(user: any): string {
     const header = { alg: 'HS256', typ: 'JWT' };
     const sHeader = JSON.stringify(header);
-    const sPayload = JSON.stringify(user);
+    const expirationTime = Math.floor(Date.now() / 1000) + 60 * 60 * 8; // 60 segundos * 60 minutos * 8 horas
+    const payloadWithExpiration = {
+      ...user,
+      exp: expirationTime,
+    };
+
+    const sPayload = JSON.stringify(payloadWithExpiration);
     const sKey = this.configService.get<string>('SECRET_KEY');
     if (!sKey) {
       throw new Error('Secret key is not defined');
@@ -59,7 +65,12 @@ export class UserService {
 
   async findOne(id: string): Promise<User> {
     const user = await this.userModel.findById(id);
-    console.log('Usuario encontrado:', user); // Añadir esto para depurar
+
+    return user;
+  }
+
+  async findOneSlug(slug: string): Promise<User> {
+    const user = await this.userModel.findOne({ slug });
     return user;
   }
 

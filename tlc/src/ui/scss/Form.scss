@@ -1,0 +1,62 @@
+.forms {
+  .form-errors {
+    font-size: 13px;
+    font-family: "Open Sans", sans-serif;
+    color: rgb(207, 33, 2);
+  }
+
+  .flex-form-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* esto centrará verticalmente los elementos en caso de que tengan diferentes alturas */
+  }
+
+  .label-and-input {
+    display: flex;
+    flex-direction: column; /* esto mantendrá el label arriba del input */
+    flex-grow: 1; /* esto permitirá que el contenedor del label y el input crezca para ocupar el espacio disponible */
+  }
+
+  .form-errors {
+    margin-bottom: 8px; /* proporciona un poco de espacio entre el input y el mensaje de error */
+  }
+
+  .bgdark {
+    background-color: red;
+  }
+
+  .form-dividor {
+    height: 85px;
+  }
+  .button-primary-form {
+    width: 100%;
+    height: 40px;
+    border-radius: 28px;
+    border: 4px solid #000;
+    font-size: 15px;
+    background-color: rgba(92, 53, 86, 1);
+    color: white;
+    font-family: "Merriweather", serif;
+    font-weight: 400;
+    &:hover {
+      color: rgb(230, 181, 99); // Cambiar color de texto
+      background-color: black; // Cambiar color de fondo a negro
+    }
+  }
+
+  .button-primary-form-md {
+    width: 50%;
+    height: 40px;
+    border-radius: 28px;
+    border: 4px solid #000;
+    font-size: 15px;
+    background-color: rgba(92, 53, 86, 1);
+    color: white;
+    font-family: "Merriweather", serif;
+    font-weight: 400;
+    &:hover {
+      color: rgb(230, 181, 99); // Cambiar color de texto
+      background-color: black; // Cambiar color de fondo a negro
+    }
+  }
+}

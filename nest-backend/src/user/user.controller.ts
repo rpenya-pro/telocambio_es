@@ -43,14 +43,19 @@ export class UserController {
     return { access_token: this.userService.generateToken(user) };
   }
 
-  @Get()
+  @Get('all')
   getAllUsers() {
     return this.userService.findAll();
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string) {
+  async findOneById(@Param('id') id: string) {
     return this.userService.findOne(id);
+  }
+
+  @Get('slug/:slug')
+  async findOneBySlug(@Param('slug') slug: string) {
+    return this.userService.findOneSlug(slug);
   }
 
   @Put(':id')

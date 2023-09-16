@@ -52,7 +52,7 @@ export const Dashboard = () => {
     return <p>Validando...</p>;
   }
 
-  if (!payload && !isValid) {
+  if (payload._id === undefined && !isValid) {
     return (
       <div>
         <ErrorProtectedComponent />

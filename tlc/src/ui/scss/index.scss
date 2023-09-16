@@ -1,0 +1,29 @@
+@import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap");
+
+.wf-loading body {
+  visibility: hidden;
+}
+
+.wf-active body,
+.wf-inactive body {
+  visibility: visible;
+}
+
+body {
+  font-family: "Merriweather", serif;
+}
+
+@import "./Loaders";
+@import "./Colors";
+@import "./Globals";
+@import "./Modal";
+@import "./Form";
+@import "./Navbar";
+@import "./HomePage";
+@import "./Footer";
+@import "./Dashboard";
+@import "./Threads";
+@import "./Owner";
+@import "./Events";
+@import "./Proposition";
