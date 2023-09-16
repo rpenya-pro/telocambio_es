@@ -3,7 +3,9 @@ import { useState } from "react";
 type FormatType = "fullDate" | "customDate" | "time" | "shortDate";
 
 const useDateFormat = () => {
-  const [locale, setLocale] = useState<string>("es-ES"); // Cambia esto para establecer el idioma deseado
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // const [locale, setLocale] = useState<string>("es-ES"); // Cambia esto para establecer el idioma deseado
+  const [locale] = useState<string>("es-ES"); // Cambia esto para establecer el idioma deseado
 
   const formatDate = (
     publishDate: Date | string,

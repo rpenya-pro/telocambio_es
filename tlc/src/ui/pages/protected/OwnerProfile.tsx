@@ -12,13 +12,9 @@ import { ThemeBadges } from "../../components/protected/ThemeBadges";
  */
 export const OwnerProfile = () => {
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
-  const [fetchCounter, setFetchCounter] = useState(0);
+
   const { slug } = useParams();
-  const {
-    data: OwnerData,
-    isLoading,
-    isError,
-  } = useGetOwnerSlugData(slug!, fetchCounter);
+  const { data: OwnerData, isLoading, isError } = useGetOwnerSlugData(slug!);
 
   const { formatDate } = useDateFormat();
 
@@ -31,9 +27,7 @@ export const OwnerProfile = () => {
 
   // Actualizar los datos cada 60 segundos
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      setFetchCounter((prev) => prev + 1);
-    }, 60000); // 60 segundos
+    const intervalId = setInterval(() => {}, 60000); // 60 segundos
 
     return () => {
       clearInterval(intervalId);

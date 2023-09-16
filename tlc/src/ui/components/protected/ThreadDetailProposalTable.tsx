@@ -1,17 +1,6 @@
-import { useState, useEffect } from "react";
-import { returnIsTypeOf } from "../../../infrastructure/helpers/returnIsTypeOf";
 import useFetchThreadById from "../../../services/useFetchThreadById";
-import { useUserData } from "../../../services/useUserData";
-import { useAuth } from "../../hooks/useAuth";
+
 import useDateFormat from "../../hooks/useDateFormat";
-import { DetailCharacteristics } from "./DetailCharacteristics";
-import { DetailComponent } from "./DetailComponent";
-import { useNavigate, useParams } from "react-router-dom";
-import { InteractiveImage } from "./InteractiveImage";
-import { ModalAdults } from "./ModalAdults";
-import { OwnerIndicator } from "./OwnerIndicator";
-import { ThemeBadges } from "./ThemeBadges";
-import { DoProposition } from "../../pages/protected/DoProposition";
 
 interface DetailComponentProps {
   identificador: string;
@@ -25,8 +14,8 @@ interface DetailComponentProps {
 export const ThreadDetailProposalTable: React.FC<DetailComponentProps> = ({
   identificador,
 }) => {
-  const { userData } = useAuth();
-  const { data } = useUserData(userData?._id);
+  // const { userData } = useAuth();
+  // const { data } = useUserData(userData?._id);
   const { formatDate } = useDateFormat();
   const { data: dataByType } = useFetchThreadById(identificador);
 

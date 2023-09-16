@@ -63,7 +63,7 @@ export const DetailComponent: React.FC<DetailComponentProps> = ({
   };
   const encodedData = safeBase64Encode(joinedData);
 
-  const imageUrl = dataByType.threadImages && dataByType?.threadImages[0];
+  // const imageUrl = dataByType.threadImages && dataByType?.threadImages[0];
   // const src = imageUrl ? `/images/${imageUrl}` : noImage;
 
   const handleProposition = () => {

@@ -1,6 +1,5 @@
 import { useAuth } from "../hooks/useAuth";
 import HomePage from "./HomePage";
-import { NotFoundPage } from "./NotFoundPage";
 
 /**
  * Props para el componente ProtectComponent.

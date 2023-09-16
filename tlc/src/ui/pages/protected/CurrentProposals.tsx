@@ -1,13 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
 import { useUserData } from "../../../services/useUserData";
-import { useNavigate } from "react-router-dom";
 import { useUserProposals } from "../../../services/useUserProposals";
 import Proposal from "../../../interfaces/proposal";
 import useDateFormat from "../../hooks/useDateFormat";
-import { OwnerIndicator } from "../../components/protected/OwnerIndicator";
 import { OwnerIndicatorNoAnonim } from "../../components/protected/OwnerIndicatorNoAnonim";
-import { ThreadDetailProposal } from "../../components/protected/ThreadDetailProposal";
 import { ThreadDetailProposalTable } from "../../components/protected/ThreadDetailProposalTable";
 import { useDeleteProposal } from "../../../services/useDeleteProposal";
 import Swal from "sweetalert2";
@@ -17,7 +14,7 @@ export const CurrentProposals = () => {
   const { userData } = useAuth();
   const { data } = useUserData(userData?._id);
   const { formatDate } = useDateFormat();
-  const navigate = useNavigate();
+
   const [refresh, setRefresh] = useState(false);
   const queryClient = useQueryClient();
 

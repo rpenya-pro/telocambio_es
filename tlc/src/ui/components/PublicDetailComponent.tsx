@@ -68,8 +68,8 @@ export const PublicDetailComponent: React.FC<PublicDetailComponentProps> = ({
           <meta
             property="og:image"
             content={
-              allData.bookImages && allData.bookImages.length > 0
-                ? `${hostUrl}/images/${allData.bookImages[0]}`
+              allData.threadImages && allData.threadImages.length > 0
+                ? `${hostUrl}/images/${allData.threadImages[0]}`
                 : noImage
             }
           />
@@ -78,7 +78,7 @@ export const PublicDetailComponent: React.FC<PublicDetailComponentProps> = ({
 
       {isModalOpen && (
         <ImageModal
-          src={`/images/${allData.bookImages && allData.bookImages[0]}`}
+          src={`/images/${allData.threadImages && allData.threadImages[0]}`}
           alt={allData.description!}
           onClose={closeModal}
         />
@@ -91,13 +91,13 @@ export const PublicDetailComponent: React.FC<PublicDetailComponentProps> = ({
                 <img
                   className="thread__square-image"
                   src={
-                    allData.bookImages && allData.bookImages.length > 0
-                      ? `/images/${allData.bookImages[0]}`
+                    allData.threadImages && allData.threadImages.length > 0
+                      ? `/images/${allData.threadImages[0]}`
                       : noImage
                   }
                   alt={allData.description}
                   onClick={
-                    allData.bookImages && allData.bookImages.length > 0
+                    allData.threadImages && allData.threadImages.length > 0
                       ? openModal
                       : () => {}
                   }
