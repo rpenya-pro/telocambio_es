@@ -2,14 +2,14 @@
     "version": 2,
     "builds": [
         {
-            "src": "src/main.ts",
+            "src": "dist/main.js",
             "use": "@vercel/node"
         }
     ],
     "routes": [
         {
             "src": "/user/(.*)",
-            "dest": "src/main.ts",
+            "dest": "dist/main.js",
             "methods": [
                 "GET",
                 "POST",
@@ -19,7 +19,7 @@
         },
         {
             "src": "/threads/(.*)",
-            "dest": "src/main.ts",
+            "dest": "dist/main.js",
             "methods": [
                 "GET",
                 "POST"
@@ -27,7 +27,7 @@
         },
         {
             "src": "/proposals/(.*)",
-            "dest": "src/main.ts",
+            "dest": "dist/main.js",
             "methods": [
                 "GET",
                 "POST"
@@ -35,7 +35,7 @@
         },
         {
             "src": "/events/(.*)",
-            "dest": "src/main.ts",
+            "dest": "dist/main.js",
             "methods": [
                 "GET"
             ]
