@@ -16,8 +16,11 @@ import { PropositionProvider } from "../../context/propositionContext";
 import { CurrentProposals } from "../../../ui/pages/protected/CurrentProposals";
 
 const AppRoutes = () => {
+  const isProduction = process.env.NODE_ENV === "production";
+  const BASENAME = isProduction ? "/telocambio" : "/";
+
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={BASENAME}>
       <PropositionProvider>
         <Routes>
           <Route

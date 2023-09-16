@@ -10,7 +10,8 @@ import { ProposalsModule } from './proposals/proposals.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ envFilePath: '.env.dev' }),
+    // ConfigModule.forRoot({ envFilePath: '.env.development' }),
+    ConfigModule.forRoot({ envFilePath: '.env.production' }),
     UserModule,
     ThreadsModule,
     EventsModule,

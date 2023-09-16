@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Navbar, Container, Nav, NavDropdown, Button } from "react-bootstrap";
 import { ModalLoginComponent } from "./ModalLoginComponent";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { homeIcon, logoTeLoCambio } from "../../assets/images";
 import { useUserData } from "../../services/useUserData";
 import { ModalFillData } from "./ModalFillData";
@@ -32,7 +32,7 @@ const NavbarComponent: React.FC<ModalLoginProps> = () => {
     <>
       <Navbar expand="lg" className="bg-body-tertiary navigation">
         <Container>
-          <Navbar.Brand href="/">
+          <Navbar.Brand as={Link} to="/">
             <img
               src={logoTeLoCambio}
               alt="Home Icon"
@@ -42,15 +42,19 @@ const NavbarComponent: React.FC<ModalLoginProps> = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav " />
           <Navbar.Collapse id="basic-navbar-nav" className="pt-3">
             <Nav className="ms-auto">
-              <Nav.Link href="/">
+              <Nav.Link as={Link} to="/">
                 <img
                   src={homeIcon}
                   alt="Home Icon"
                   className="navbar-home-icon"
                 />
               </Nav.Link>
-              <Nav.Link href="/login">Contacta</Nav.Link>
-              <Nav.Link href="/login">¿Cómo funciona?</Nav.Link>
+              <Nav.Link as={Link} to="/login">
+                Contacta
+              </Nav.Link>
+              <Nav.Link as={Link} to="/login">
+                ¿Cómo funciona?
+              </Nav.Link>
               <div className="navbar-divider">&nbsp;</div>
               <Nav.Item>
                 {isAuthenticated ? (
@@ -75,17 +79,17 @@ const NavbarComponent: React.FC<ModalLoginProps> = () => {
                         }`}
                         id="basic-nav-dropdown"
                       >
-                        <NavDropdown.Item href="/dashboard">
+                        <NavDropdown.Item as={Link} to="/dashboard">
                           Área Privada
                         </NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.2">
+                        <NavDropdown.Item as={Link} to="#action/3.2">
                           Another action
                         </NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.3">
+                        <NavDropdown.Item as={Link} to="#action/3.3">
                           Something
                         </NavDropdown.Item>
                         <NavDropdown.Divider />
-                        <NavDropdown.Item href="#action/3.4">
+                        <NavDropdown.Item as={Link} to="#action/3.4">
                           <Button
                             className="navigation__logout-btn"
                             variant="primary"
