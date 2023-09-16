@@ -6,7 +6,6 @@ import * as Yup from "yup";
 import { Form as FormField, Row, Col, Button } from "react-bootstrap";
 
 import { useUserData } from "../../services/useUserData";
-import { Usuario } from "../../interfaces/user";
 
 interface Props {
   identificador: unknown;
@@ -66,6 +65,7 @@ export const ModalFillData: React.FC<Props> = ({ identificador }) => {
         setSubmitting(false);
       },
       onSuccess: (data: any) => {
+        console.log(data);
         setSubmitting(false);
       },
     });

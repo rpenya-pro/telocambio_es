@@ -1,4 +1,3 @@
-import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "../../../ui/pages/HomePage";
 import Layout from "../../../ui/layouts/Layout";

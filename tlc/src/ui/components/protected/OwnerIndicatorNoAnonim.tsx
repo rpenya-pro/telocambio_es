@@ -14,7 +14,7 @@ export const OwnerIndicatorNoAnonim: React.FC<PropsOwner> = ({
   user,
 }) => {
   const navigate = useNavigate();
-
+  console.log(user);
   if (ownerId === "") {
     return;
   }

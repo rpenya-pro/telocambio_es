@@ -19,6 +19,7 @@ interface DoPropositionProps {
 export const DoProposition: React.FC<DoPropositionProps> = ({
   description,
 }) => {
+  console.log(description);
   const [proposition, setProposition] = useState<{
     owner: string;
     ident: string;

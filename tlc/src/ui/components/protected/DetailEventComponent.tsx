@@ -1,6 +1,6 @@
 import React from "react";
 
-import noImage from "../../../assets/images/noimage.png";
+// import noImage from "../../../assets/images/noimage.png";
 
 import useDateFormat from "../../hooks/useDateFormat";
 import { InteractiveImage } from "./InteractiveImage";
@@ -18,8 +18,8 @@ export const DetailEventComponent: React.FC<DetailEventComponentProps> = ({
   // const { data } = useUserData(userData?._id);
   const { formatDate } = useDateFormat();
 
-  const imageUrl = eventData.imagesEvent && eventData?.imagesEvent[0];
-  const src = imageUrl ? `/images/${imageUrl}` : noImage;
+  // const imageUrl = eventData.imagesEvent && eventData?.imagesEvent[0];
+  // const src = imageUrl ? `/images/${imageUrl}` : noImage;
 
   return (
     <>
@@ -28,7 +28,6 @@ export const DetailEventComponent: React.FC<DetailEventComponentProps> = ({
           <div className="col-md-4 pe-4">
             <InteractiveImage
               allImages={eventData?.imagesEvent}
-              src={src}
               alt={eventData.contentEvent || ""}
             />
           </div>

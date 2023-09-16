@@ -12,7 +12,12 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     <div className="container-fluid layout">
       <LoadingComponent />
       <header className="header">
-        <NavbarComponent />
+        <NavbarComponent
+          show={false}
+          onHide={function (): void {
+            throw new Error("Function not implemented.");
+          }}
+        />
       </header>
 
       <main className="main-content">{children}</main>
