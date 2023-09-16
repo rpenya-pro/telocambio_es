@@ -2,26 +2,26 @@
     "version": 2,
     "builds": [
         {
-            "src": "src/main.ts",
+            "src": "dist/main.js",
             "use": "@vercel/node"
         }
     ],
     "routes": [
         {
             "src": "/user/(.*)",
-            "dest": "src/main.ts"
+            "dest": "dist/main.js"
         },
         {
             "src": "/threads/(.*)",
-            "dest": "src/main.ts"
+            "dest": "dist/main.js"
         },
         {
             "src": "/proposals/(.*)",
-            "dest": "src/main.ts"
+            "dest": "dist/main.js"
         },
         {
             "src": "/events/(.*)",
-            "dest": "src/main.ts"
+            "dest": "dist/main.js"
         }
     ]
 }
