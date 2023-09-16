@@ -6,7 +6,12 @@ import helmet from 'helmet';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  app.enableCors();
+  // Habilitando CORS específicamente para http://www.rafapenya.com
+  app.enableCors({
+    origin: 'http://www.rafapenya.com',
+    credentials: true,
+  });
+
   app.use(compression());
   app.use(helmet()); // Asegúrate de que helmet se invoca como una función aquí
 
