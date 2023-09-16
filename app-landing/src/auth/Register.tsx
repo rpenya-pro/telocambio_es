@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import { useAuthRegister } from "../hooks/useAuthRegister";
 import { useValidateRegisterForm, useAuth } from "teloc-hooks"; // Importa el nuevo hook de autenticación
+import { Usuario } from "../../../repo-hooks-yarn/src/interfaces/usuario";
+import { useAuthContext } from "./AuthContext";
 
 interface RegisterProps {
-  handleClose: () => void; // Define la prop handleClose
+  handleClose: () => void;
 }
 
 const Register: React.FC<RegisterProps> = ({ handleClose }) => {
@@ -12,30 +15,46 @@ const Register: React.FC<RegisterProps> = ({ handleClose }) => {
     repeat: "",
   };
 
+  //----------- realiza el registro del usuario
+  const isAuthenticated = useAuthContext();
+
+  const {
+    isRegisteredUser,
+    successMessage,
+    errorMessage,
+    registerUser,
+    loginUser,
+    clearMessages,
+  } = useAuthRegister();
+
+  const [user, setUser] = useState<Usuario>({
+    email: "",
+    password: "",
+  });
+
+  //----------------valida los campos -----------------------------
   const [isCheckboxChecked, setCheckboxChecked] = useState(false);
   const { values, errors, isValid, handleChange } = useValidateRegisterForm(
     initialRegisterFields,
     isCheckboxChecked
   );
-
-  // Utiliza nuevo hook de autenticación
-  const { register, login } = useAuth();
-
   const handleRegister = async (event: React.FormEvent): Promise<void> => {
     event.preventDefault();
-    try {
-      const result = await register(values.email, values.password);
-
-      if (result.success) {
-        login(values.email, values.password);
-        handleClose();
-        window.location.reload();
-      }
-    } catch (error) {
-      console.error("Ocurrió un error durante el registro", error);
-    }
+    user.email = values.email;
+    user.password = values.password;
+    await registerUser(user);
+    clearMessages();
   };
 
+  //---------- comprueba que el registro ha tenido éxito y logea, cierra la modal y refresca
+  if (isRegisteredUser) {
+    console.log("LLisRegisteredUser", isRegisteredUser);
+    loginUser(values.email, values.password);
+
+    //     handleClose();
+    //     window.location.reload();
+  }
+  console.log("Sesion iniciada?", isAuthenticated);
   return (
     <>
       <form onSubmit={handleRegister}>

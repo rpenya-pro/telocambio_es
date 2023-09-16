@@ -1,0 +1,93 @@
+a {
+  color: $color-primary;
+}
+
+a:hover {
+  color: $color-primary;
+  text-decoration: none;
+}
+
+.form-control-global {
+  border-bottom: 1px solid #b6b6b6;
+  border-top: 0px;
+  border-right: 0px;
+  border-left: 0px;
+  border-radius: 0px;
+  width: 100% !important;
+  padding: 0px;
+  padding-bottom: 8px;
+  font-size: 13px;
+  font-family: "Open Sans", sans-serif;
+}
+.divisor {
+  width: 30%;
+}
+.link-no-a {
+  color: $color-primary;
+}
+.link-no-a:hover {
+  color: $color-primary;
+  text-decoration: none;
+}
+
+.grey-text {
+  color: $color-greystrong;
+  font-weight: lighter;
+}
+
+.globals {
+  /*FONT SIZES*/
+  .small {
+    font-size: 13px;
+  }
+  .middle {
+    font-size: 15px;
+  }
+  .normal {
+    font-size: 16px;
+  }
+  .big {
+    font-size: 18px;
+  }
+  .sans-serif {
+    font-family: "Open Sans", sans-serif;
+  }
+  .text-color-magenta {
+    color: rgb(156, 8, 124);
+  }
+  .text-color-bluegrey {
+    color: rgb(109, 109, 148);
+  }
+}
+
+.activity {
+  .activity__button-primary {
+    width: 250px;
+    height: 50px;
+    border-radius: 28px;
+    border: 4px solid #000;
+    color: rgb(230, 181, 99); // Cambiar color de texto
+    background-color: black; // Cambiar color de fondo a negro
+    font-family: "Merriweather", serif;
+    font-weight: 700;
+
+    &:hover {
+      background-color: rgba(92, 53, 86, 1);
+      color: white;
+    }
+  }
+}
+
+.red-button {
+  background-color: rgb(116, 5, 5);
+  color: #ffffff;
+}
+.blue-button {
+  background-color: rgb(35, 35, 107);
+  color: #ffffff;
+}
+.modal-backdrop.show {
+  opacity: 1; // Ajusta este valor al que desees.
+  background-color: rgba(255, 255, 255);
+  filter: blur(105px);
+}

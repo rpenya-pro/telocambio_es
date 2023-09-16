@@ -1,0 +1,23 @@
+/src
+|-- /core
+|   |-- /domain           # Entidades y lógica del dominio central
+|   |-- /application      # Casos de uso, servicios de aplicación
+|
+|-- /infrastructure
+|   |-- /api              # Implementaciones concretas para llamadas API usando axios
+|   |-- /db               # (Opcional) Si interactúas directamente con alguna base de datos
+|   |-- /auth             # Implementaciones concretas relacionadas con la autenticación
+|
+|-- /interfaces
+|   |-- /adapters         # Adaptadores para conectar la lógica del dominio con detalles externos
+|   |-- /repositories     # Interfaces (contratos) para operaciones de datos
+|   |-- /services         # Interfaces para otros servicios (ejemplo: notificaciones)
+|
+|-- /ui
+|   |-- /components       # Componentes reutilizables
+|   |-- /pages            # Componentes de nivel de página o vistas
+|   |-- /contexts         # Contextos de React
+|   |-- /hooks            # Hooks personalizados
+|
+|-- App.tsx               # Componente principal
+|-- index.tsx             # Punto de entrada

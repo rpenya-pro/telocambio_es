@@ -1,0 +1,143 @@
+.thread-item {
+  h4 {
+    font-size: 18px;
+  }
+
+  .small {
+    font-size: 13px;
+  }
+  .middle {
+    font-size: 15px;
+  }
+  .normal {
+    font-size: 16px;
+  }
+  .big {
+    font-size: 18px;
+  }
+  .sans-serif {
+    font-family: "Open Sans", sans-serif;
+  }
+
+  .cursor {
+    cursor: pointer;
+  }
+  .thread__square-container {
+    cursor: pointer;
+    width: 100%;
+
+    position: relative;
+    overflow: hidden;
+  }
+  .thread__square-image {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+  }
+
+  .thread__square-container-mini {
+    cursor: pointer;
+    width: 100%;
+    max-width: 100px;
+    position: relative;
+    overflow: hidden;
+  }
+  .thread__square-image-mini {
+    width: 100%;
+    height: 100%;
+    max-width: 100px;
+    object-fit: cover;
+  }
+
+  /* ImageModal.css */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(
+      0,
+      0,
+      0,
+      0.5
+    ); /* Fondo semitransparente para el overlay */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000; /* Asegura que el modal esté por encima de otros elementos */
+  }
+
+  .modal-content {
+    background-color: white;
+    padding: 20px;
+    max-width: 40%; /* Ajusta el ancho del modal según tus necesidades */
+    max-height: 70%; /* Ajusta la altura máxima del modal según tus necesidades */
+    overflow: auto; /* Agrega scroll si el contenido es demasiado grande */
+    position: relative;
+  }
+
+  .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: #333; /* Color del icono de cierre */
+  }
+
+  .badge {
+    font-family: "Open Sans", sans-serif;
+    font-weight: lighter;
+    background-color: $color-secondary !important;
+    border-radius: 18px;
+    padding: 8px;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-right: 4px;
+  }
+
+  .circular-image-container {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%; // Esto hace que el div sea circular
+
+    img {
+      max-width: 100%; // La imagen se ajustará al tamaño del contenedor
+      max-height: 100%; // La imagen se ajustará al tamaño del contenedor
+      border-radius: 50%; // Esto hace que la imagen sea circular
+      display: block; // Para eliminar el espacio adicional debajo de la imagen
+    }
+  }
+
+  .btn-view-more {
+    width: 100%;
+    font-size: 12px;
+    font-family: "Open Sans", sans-serif;
+    border: 0px;
+    border-top: 1px solid #e2e2e2;
+    margin-top: 12px;
+    padding-top: 6px;
+    color: #c0c0c0;
+    background-color: transparent;
+  }
+
+  .landing__button-primary {
+    width: 360px;
+    height: 60px;
+    border-radius: 28px;
+    border: 4px solid #000;
+    font-size: 24px;
+    background-color: rgba(92, 53, 86, 1);
+    color: white;
+    font-family: "Merriweather", serif;
+    font-weight: 700;
+    &:hover {
+      color: rgb(230, 181, 99); // Cambiar color de texto
+      background-color: black; // Cambiar color de fondo a negro
+    }
+  }
+}

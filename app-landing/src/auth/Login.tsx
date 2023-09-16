@@ -1,4 +1,5 @@
 import React from "react";
+import singleSpa from "single-spa";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useValidateLoginForm, useAuth } from "teloc-hooks";
@@ -25,8 +26,9 @@ const Login: React.FC<LoginProps> = ({ handleClose }) => {
       const { success, message } = await login(values.email, values.password);
 
       if (success) {
-        handleClose(); // Cierra el modal
-        // Puedes redirigir usando react-router-dom si lo estás utilizando
+        //singleSpa.triggerAppChange();
+        window.dispatchEvent(new Event("login-success"));
+        handleClose();
         navigate("/dashboard");
       } else {
         Swal.fire({

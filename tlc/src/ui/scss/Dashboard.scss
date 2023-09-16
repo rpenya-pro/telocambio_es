@@ -1,0 +1,39 @@
+.main-content-dashboard {
+  .activity {
+    height: auto;
+    overflow: visible;
+  }
+
+  .navbar-cog-icon {
+    width: 20px;
+    height: auto;
+    display: block;
+  }
+  .navbar-cog-icon svg path {
+    width: 20px;
+    fill: $color-yellow;
+  }
+
+  h3 {
+    font-size: 20px;
+    margin: 0px;
+    padding: 0px;
+  }
+  .activity {
+    h5 {
+      font-size: 14px;
+    }
+    .activity__ccolumn {
+      border-left: 1px solid $color-grey;
+      border-right: 1px solid $color-grey;
+      background-color: $color-landing;
+    }
+
+    .activity__c3olumn {
+      border-left: 1px solid $color-grey;
+
+      border-right: 1px solid $color-grey;
+      background-color: $color-landinglow;
+    }
+  }
+}
