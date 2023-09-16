@@ -790,10 +790,10 @@
   "resolved" "https://registry.npmjs.org/@nestjs/passport/-/passport-10.0.1.tgz"
   "version" "10.0.1"
 
-"@nestjs/platform-express@^10.0.0":
-  "integrity" "sha512-E9F6WYo6bNwvTT0saJpkr8t4BJLbZRwrX5EKbtBRQqyRcw6NAvlKdacKzoo+Sompdre0IbF8AvNRFk4uLZTWqA=="
-  "resolved" "https://registry.npmjs.org/@nestjs/platform-express/-/platform-express-10.2.4.tgz"
-  "version" "10.2.4"
+"@nestjs/platform-express@^10.0.0", "@nestjs/platform-express@^10.2.5":
+  "integrity" "sha512-BChjJfsVtsvds31rp5V7LwM2XEQaxkFKUE0TGSH91m95FRO65Fii5RH6atasmhZTIW+T8LR5LuI/MO7cgZOiVg=="
+  "resolved" "https://registry.npmjs.org/@nestjs/platform-express/-/platform-express-10.2.5.tgz"
+  "version" "10.2.5"
   dependencies:
     "body-parser" "1.20.2"
     "cors" "2.8.5"
