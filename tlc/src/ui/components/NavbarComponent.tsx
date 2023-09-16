@@ -23,9 +23,7 @@ const NavbarComponent: React.FC<ModalLoginProps> = () => {
     navigation("/");
   };
 
-  const { data, isLoading, isError, error } = useUserData(
-    userData?._id || "defaultValue"
-  );
+  const { data, isLoading, isError, error } = useUserData(userData?._id);
 
   if (isLoading) return <p>Loading...</p>;
   if (isError && error) return <p>Error: {error.message}</p>;

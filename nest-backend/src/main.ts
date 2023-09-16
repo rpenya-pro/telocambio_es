@@ -10,6 +10,6 @@ async function bootstrap() {
   app.use(compression());
   app.use(helmet()); // Asegúrate de que helmet se invoca como una función aquí
 
-  await app.listen(3000);
+  await app.listen(process.env.PORT || 3000);
 }
 bootstrap();
