@@ -5,5 +5,23 @@
             "src": "src/main.ts",
             "use": "@vercel/node"
         }
+    ],
+    "routes": [
+        {
+            "src": "/user/(.*)",
+            "dest": "src/main.ts"
+        },
+        {
+            "src": "/threads/(.*)",
+            "dest": "src/main.ts"
+        },
+        {
+            "src": "/proposals/(.*)",
+            "dest": "src/main.ts"
+        },
+        {
+            "src": "/events/(.*)",
+            "dest": "src/main.ts"
+        }
     ]
 }
