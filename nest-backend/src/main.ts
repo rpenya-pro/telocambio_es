@@ -9,7 +9,7 @@ async function bootstrap() {
 
   // Habilitando CORS específicamente para http://www.rafapenya.com
   app.enableCors({
-    origin: 'http://www.rafapenya.com',
+    origin: ['http://www.rafapenya.com', 'http://www.rafapenya.com/telocambio'],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     credentials: true,
   });
