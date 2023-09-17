@@ -1,7 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as compression from 'compression';
-import helmet from 'helmet';
 import { RequestMethod } from '@nestjs/common';
 
 async function bootstrap() {
@@ -42,7 +41,6 @@ async function bootstrap() {
   );
 
   app.use(compression());
-  app.use(helmet()); // Asegúrate de que helmet se invoca como una función aquí
 
   await app.listen(process.env.PORT || 3000);
 }
