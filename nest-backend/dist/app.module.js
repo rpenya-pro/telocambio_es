@@ -16,12 +16,17 @@ const mongoose_1 = require("@nestjs/mongoose");
 const threads_module_1 = require("./threads/threads.module");
 const events_module_1 = require("./eventos/events.module");
 const proposals_module_1 = require("./proposals/proposals.module");
+const serve_static_1 = require("@nestjs/serve-static");
+const path_1 = require("path");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
+            serve_static_1.ServeStaticModule.forRoot({
+                rootPath: (0, path_1.join)(__dirname, '..', 'public'),
+            }),
             config_1.ConfigModule.forRoot({ envFilePath: '.env.production' }),
             user_module_1.UserModule,
             threads_module_1.ThreadsModule,
