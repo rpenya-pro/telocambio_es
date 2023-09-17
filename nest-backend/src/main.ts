@@ -8,11 +8,13 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true });
 
   // Habilitando CORS específicamente para http://www.rafapenya.com
-  app.enableCors({
-    origin: ['http://www.rafapenya.com', 'http://www.rafapenya.com/telocambio'],
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-    credentials: true,
-  });
+  // app.enableCors({
+  //   origin: ['http://www.rafapenya.com', 'http://www.rafapenya.com/telocambio'],
+  //   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+  //   credentials: true,
+  // });
+
+  app.enableCors({ origin: /.+/ });
 
   app.use(
     (
