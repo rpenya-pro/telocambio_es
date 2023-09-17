@@ -6,7 +6,11 @@ const compression = require("compression");
 const helmet_1 = require("helmet");
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule, { cors: true });
-    app.enableCors({ origin: /.+/ });
+    app.enableCors({
+        origin: 'http://www.rafapenya.com',
+        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+        allowedHeaders: 'Content-Type',
+    });
     app.use((req, res, next) => {
         if (req.method === 'OPTIONS') {
             res.header('Access-Control-Allow-Origin', 'http://www.rafapenya.com');
