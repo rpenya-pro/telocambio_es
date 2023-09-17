@@ -1008,13 +1008,6 @@
   dependencies:
     "@types/node" "*"
 
-"@types/helmet@^4.0.0":
-  "integrity" "sha512-ONIn/nSNQA57yRge3oaMQESef/6QhoeX7llWeDli0UZIfz8TQMkfNPTXA8VnnyeA1WUjG2pGqdjEIueYonMdfQ=="
-  "resolved" "https://registry.npmjs.org/@types/helmet/-/helmet-4.0.0.tgz"
-  "version" "4.0.0"
-  dependencies:
-    "helmet" "*"
-
 "@types/http-errors@*":
   "integrity" "sha512-/K3ds8TRAfBvi5vfjuz8y6+GiAYBZ0x4tXv1Av6CWBWn0IlADc+ZX9pMq7oU0fNQPnBwIZl3rmeLp6SBApbxSQ=="
   "resolved" "https://registry.npmjs.org/@types/http-errors/-/http-errors-2.0.1.tgz"
@@ -3004,7 +2997,7 @@
   dependencies:
     "function-bind" "^1.1.1"
 
-"helmet@*", "helmet@^7.0.0":
+"helmet@^7.0.0":
   "integrity" "sha512-MsIgYmdBh460ZZ8cJC81q4XJknjG567wzEmv46WOBblDb6TUd3z8/GhgmsM9pn8g2B80tAJ4m5/d3Bi1KrSUBQ=="
   "resolved" "https://registry.npmjs.org/helmet/-/helmet-7.0.0.tgz"
   "version" "7.0.0"
