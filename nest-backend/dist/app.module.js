@@ -16,7 +16,13 @@ const mongoose_1 = require("@nestjs/mongoose");
 const threads_module_1 = require("./threads/threads.module");
 const events_module_1 = require("./eventos/events.module");
 const proposals_module_1 = require("./proposals/proposals.module");
+const options_middleware_1 = require("./options.middleware");
 let AppModule = class AppModule {
+    configure(consumer) {
+        consumer
+            .apply(options_middleware_1.OptionsMiddleware)
+            .forRoutes({ path: '*', method: common_1.RequestMethod.OPTIONS });
+    }
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
