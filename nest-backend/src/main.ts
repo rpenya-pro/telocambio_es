@@ -2,7 +2,6 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as compression from 'compression';
 import helmet from 'helmet';
-import { RequestMethod } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true });
@@ -13,33 +12,8 @@ async function bootstrap() {
     allowedHeaders: 'Content-Type',
   });
 
-  app.use(
-    (
-      req: { method: string },
-      res: {
-        header: (arg0: string, arg1: string) => void;
-        status: (arg0: number) => {
-          (): any;
-          new (): any;
-          end: { (): void; new (): any };
-        };
-      },
-      next: () => void,
-    ) => {
-      if (req.method === 'OPTIONS') {
-        res.header('Access-Control-Allow-Origin', 'http://www.rafapenya.com');
-        res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-        res.header('Access-Control-Allow-Headers', 'Content-Type');
-        res.header('Access-Control-Allow-Credentials', 'true');
-        res.status(200).end();
-        return;
-      }
-      next();
-    },
-  );
-
   app.use(compression());
-  app.use(helmet()); // Asegúrate de que helmet se invoca como una función aquí
+  app.use(helmet());
 
   await app.listen(process.env.PORT || 3000);
 }
