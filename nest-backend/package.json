@@ -21,7 +21,6 @@
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
-    "@nestjs/cli": "^10.0.0",
     "@nestjs/config": "^3.0.1",
     "@nestjs/core": "^10.0.0",
     "@nestjs/jwt": "^10.1.1",
@@ -43,6 +42,7 @@
     "winston": "^3.10.0"
   },
   "devDependencies": {
+    "@nestjs/cli": "^10.0.0",
     "@nestjs/schematics": "^10.0.0",
     "@nestjs/testing": "^10.0.0",
     "@types/compression": "^1.7.3",
