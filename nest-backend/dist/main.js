@@ -11,17 +11,6 @@ async function bootstrap() {
         methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
         allowedHeaders: 'Content-Type',
     });
-    app.use((req, res, next) => {
-        if (req.method === 'OPTIONS') {
-            res.header('Access-Control-Allow-Origin', 'http://www.rafapenya.com');
-            res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-            res.header('Access-Control-Allow-Headers', 'Content-Type');
-            res.header('Access-Control-Allow-Credentials', 'true');
-            res.status(200).end();
-            return;
-        }
-        next();
-    });
     app.use(compression());
     app.use((0, helmet_1.default)());
     await app.listen(process.env.PORT || 3000);
