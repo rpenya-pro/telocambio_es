@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import useDateFormat from "../../hooks/useDateFormat";
 import { OwnerIndicator } from "../../components/protected/OwnerIndicator";
 import { ThemeBadges } from "../../components/protected/ThemeBadges";
-
+const baseUrl = import.meta.env.VITE_HOST_URL;
 /**
  * Página del Propietario de un Thread
  * llamamos propietario a todo usuario que no sea el logeado
@@ -43,7 +43,7 @@ export const OwnerProfile = () => {
           <div className="d-flex justify-content-center">
             <div className="circular-image-container-big">
               <img
-                src={`/images/${OwnerData?.avatar}`}
+                src={`${baseUrl}/images/${OwnerData?.avatar}`}
                 alt={`${OwnerData?.firstName} ${OwnerData?.lastName}`}
               />
             </div>
