@@ -1,0 +1,3 @@
+[build]
+  command = "npm run build" # Comando para compilar tu proyecto
+  publish = "dist" # Directorio de salida después de la compilación
