@@ -5,7 +5,7 @@ import helmet from 'helmet';
 import { RequestMethod } from '@nestjs/common';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, { cors: true });
 
   // Habilitando CORS específicamente para http://www.rafapenya.com
   app.enableCors({
