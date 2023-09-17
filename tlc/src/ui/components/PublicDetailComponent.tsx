@@ -7,7 +7,7 @@ import useDateFormat from "../hooks/useDateFormat";
 import ImageModal from "./ImageModal";
 import useFetchThreadById from "../../services/useFetchThreadById";
 import { ModalLoginComponent } from "./ModalLoginComponent";
-
+const baseUrl = import.meta.env.VITE_HOST_URL;
 //TODO boton para registrarse PERO guardar en cookies esta página para mostrarla de nuevo en modo protected cuando el usuario esté logeado
 
 interface PublicDetailComponentProps {
@@ -78,7 +78,9 @@ export const PublicDetailComponent: React.FC<PublicDetailComponentProps> = ({
 
       {isModalOpen && (
         <ImageModal
-          src={`/images/${allData.threadImages && allData.threadImages[0]}`}
+          src={`${baseUrl}/images/${
+            allData.threadImages && allData.threadImages[0]
+          }`}
           alt={allData.description!}
           onClose={closeModal}
         />
@@ -92,7 +94,7 @@ export const PublicDetailComponent: React.FC<PublicDetailComponentProps> = ({
                   className="thread__square-image"
                   src={
                     allData.threadImages && allData.threadImages.length > 0
-                      ? `/images/${allData.threadImages[0]}`
+                      ? `${baseUrl}/images/${allData.threadImages[0]}`
                       : noImage
                   }
                   alt={allData.description}

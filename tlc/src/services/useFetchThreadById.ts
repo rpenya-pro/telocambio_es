@@ -2,12 +2,14 @@ import { useQuery } from "react-query";
 import axios from "axios";
 import { Thread } from "../interfaces";
 
+const API_URL = import.meta.env.VITE_API_URL || "";
+
 const fetchThreadById = async (id: string): Promise<Thread> => {
   if (!id || id === "Cargando propietario") {
     throw new Error("ID no válido");
   }
 
-  const response = await axios.get(`http://localhost:3000/thread/${id}`);
+  const response = await axios.get(`${API_URL}/thread/${id}`);
   if (response.status !== 200) {
     throw new Error(`Error fetching thread: ${response.statusText}`);
   }

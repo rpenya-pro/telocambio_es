@@ -8,7 +8,7 @@ import { ModalThread } from "./ModalThread";
 import { Badge } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { OwnerIndicator } from "./OwnerIndicator";
-
+const baseUrl = import.meta.env.VITE_HOST_URL;
 interface ThreadItemProps {
   allData?: Thread;
 
@@ -61,18 +61,19 @@ const ThreadItem: React.FC<ThreadItemProps> = ({ allData, user }) => {
     <>
       {isModalOpen && (
         <ImageModal
-          src={`/images/${allData.threadImages && allData.threadImages[0]}`}
+          src={`${baseUrl}/images/${
+            allData.threadImages && allData.threadImages[0]
+          }`}
           alt={allData.description!}
           onClose={closeModal}
         />
       )}
-
+      VITE_HOST_URL
       <ModalThread
         show={showModal}
         onHide={handleCloseModal}
         data={allData && allData}
       />
-
       <div className="card ms-3 me-3 mb-3">
         <div className="row thread-item p-3">
           <div className="col-4">
@@ -81,7 +82,7 @@ const ThreadItem: React.FC<ThreadItemProps> = ({ allData, user }) => {
                 className="thread__square-image"
                 src={
                   allData.threadImages && allData.threadImages.length > 0
-                    ? `/images/${allData.threadImages[0]}`
+                    ? `${baseUrl}/images/${allData.threadImages[0]}`
                     : noImage
                 }
                 alt={allData.description}

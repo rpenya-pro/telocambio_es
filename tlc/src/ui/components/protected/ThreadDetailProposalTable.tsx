@@ -5,7 +5,7 @@ import useDateFormat from "../../hooks/useDateFormat";
 interface DetailComponentProps {
   identificador: string;
 }
-
+const baseUrl = import.meta.env.VITE_HOST_URL;
 /**
  * Página Detalle de un thread para el proposal
  * @returns
@@ -28,7 +28,7 @@ export const ThreadDetailProposalTable: React.FC<DetailComponentProps> = ({
           <div className="d-flex justify-content-start">
             <img
               className="img-fluid me-2"
-              src={`/images/${
+              src={`${baseUrl}/images/${
                 dataByType?.threadImages && dataByType?.threadImages![0]
               }`}
               alt={dataByType.description || ""}

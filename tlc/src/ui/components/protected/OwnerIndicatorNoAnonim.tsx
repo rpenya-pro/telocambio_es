@@ -1,7 +1,7 @@
 import React from "react";
 import { useGetOwnerData } from "../../../services/useGetOwnerData";
 import { useNavigate } from "react-router-dom";
-
+const baseUrl = import.meta.env.VITE_HOST_URL;
 interface PropsOwner {
   ownerId: string;
   addedOn?: string;
@@ -55,7 +55,7 @@ export const OwnerIndicatorNoAnonim: React.FC<PropsOwner> = ({
               <div>
                 <div className="circular-image-container">
                   <img
-                    src={`/images/${OwnerData?.avatar}`}
+                    src={`${baseUrl}/images/${OwnerData?.avatar}`}
                     alt={`${OwnerData?.firstName} ${OwnerData?.lastName}`}
                   />
                 </div>

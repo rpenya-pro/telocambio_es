@@ -5,7 +5,7 @@ interface InteractiveImageProps {
   allImages: string[] | undefined;
   alt: string;
 }
-
+const baseUrl = import.meta.env.VITE_HOST_URL;
 export const InteractiveImage: React.FC<InteractiveImageProps> = ({
   allImages,
   alt,
@@ -26,9 +26,9 @@ export const InteractiveImage: React.FC<InteractiveImageProps> = ({
       <div className="thread__square-container">
         <img
           className="thread__square-image"
-          src={`/images/${mainImage}`}
+          src={`${baseUrl}/images/${mainImage}`}
           alt={alt}
-          onClick={() => openModal(`/images/${mainImage}`)}
+          onClick={() => openModal(`${baseUrl}/images/${mainImage}`)}
         />
       </div>
       <div className="d-flex justify-content-left mt-2">
@@ -36,9 +36,9 @@ export const InteractiveImage: React.FC<InteractiveImageProps> = ({
           <div key={index} className="thread__square-container-mini me-2">
             <img
               className="thread__square-image-mini"
-              src={`/images/${image}`}
+              src={`${baseUrl}/images/${image}`}
               alt={alt}
-              onClick={() => openModal(`/images/${image}`)}
+              onClick={() => openModal(`${baseUrl}/images/${image}`)}
             />
           </div>
         ))}

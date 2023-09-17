@@ -5,7 +5,7 @@ import { ThemeBadges } from "../../components/protected/ThemeBadges";
 import { useUserData } from "../../../services/useUserData";
 import { FriendsComponent } from "./FriendsComponent";
 import { useAuth } from "../../hooks/useAuth";
-
+const baseUrl = import.meta.env.VITE_HOST_URL;
 export const UserProfileComponent = () => {
   const { userData } = useAuth();
   const { data } = useUserData(userData?._id);
@@ -18,7 +18,7 @@ export const UserProfileComponent = () => {
       <div className="d-flex justify-content-center mt-5">
         <div className="circular-image-container-big">
           <img
-            src={`/images/${data?.avatar}`}
+            src={`${baseUrl}/images/${data?.avatar}`}
             alt={`${data?.firstName} ${data?.lastName}`}
           />
         </div>

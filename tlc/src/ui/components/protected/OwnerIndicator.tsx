@@ -7,7 +7,7 @@ interface PropsOwner {
   addedOn?: string;
   user: string | undefined;
 }
-
+const baseUrl = import.meta.env.VITE_HOST_URL;
 export const OwnerIndicator: React.FC<PropsOwner> = ({
   ownerId,
   addedOn,
@@ -59,7 +59,7 @@ export const OwnerIndicator: React.FC<PropsOwner> = ({
                 <div>
                   <div className="circular-image-container">
                     <img
-                      src={`/images/${OwnerData?.avatar}`}
+                      src={`${baseUrl}/images/${OwnerData?.avatar}`}
                       alt={`${OwnerData?.firstName} ${OwnerData?.lastName}`}
                     />
                   </div>
