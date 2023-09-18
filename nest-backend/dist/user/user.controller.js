@@ -15,10 +15,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserController = void 0;
 const common_1 = require("@nestjs/common");
 const user_schema_1 = require("./model/user.schema");
+const platform_express_1 = require("@nestjs/platform-express");
 const user_service_1 = require("./user.service");
+const cloudinary_service_1 = require("../cloudinary/cloudinary.service");
 let UserController = class UserController {
-    constructor(userService) {
+    constructor(userService, cloudinaryService) {
         this.userService = userService;
+        this.cloudinaryService = cloudinaryService;
     }
     defaultValue() {
         return 'Este es el valor predeterminado.';
@@ -48,6 +51,13 @@ let UserController = class UserController {
     }
     async findOneBySlug(slug) {
         return this.userService.findOneSlug(slug);
+    }
+    async uploadImage(image) {
+        if (!image || !image.buffer) {
+            throw new common_1.BadRequestException('No se proporcionó un archivo válido.');
+        }
+        const result = await this.cloudinaryService.uploadImage(image.buffer);
+        return { imageUrl: result.url };
     }
     async update(id, user) {
         return this.userService.update(id, user);
@@ -105,6 +115,14 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "findOneBySlug", null);
 __decorate([
+    (0, common_1.Post)('upload'),
+    (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('image')),
+    __param(0, (0, common_1.UploadedFile)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "uploadImage", null);
+__decorate([
     (0, common_1.Put)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
@@ -121,6 +139,7 @@ __decorate([
 ], UserController.prototype, "delete", null);
 exports.UserController = UserController = __decorate([
     (0, common_1.Controller)('user'),
-    __metadata("design:paramtypes", [user_service_1.UserService])
+    __metadata("design:paramtypes", [user_service_1.UserService,
+        cloudinary_service_1.CloudinaryService])
 ], UserController);
 //# sourceMappingURL=user.controller.js.map

@@ -43,7 +43,7 @@ export const OwnerProfile = () => {
           <div className="d-flex justify-content-center">
             <div className="circular-image-container-big">
               <img
-                src={`${baseUrl}/images/${OwnerData?.avatar}`}
+                src={`${OwnerData?.avatar}`}
                 alt={`${OwnerData?.firstName} ${OwnerData?.lastName}`}
               />
             </div>

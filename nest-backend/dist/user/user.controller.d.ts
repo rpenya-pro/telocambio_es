@@ -1,8 +1,10 @@
 import { User } from './model/user.schema';
 import { UserService } from './user.service';
+import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
 export declare class UserController {
     private readonly userService;
-    constructor(userService: UserService);
+    private readonly cloudinaryService;
+    constructor(userService: UserService, cloudinaryService: CloudinaryService);
     defaultValue(): string;
     create(user: User): Promise<User>;
     login(loginDto: {
@@ -19,6 +21,7 @@ export declare class UserController {
     getAllUsers(): Promise<User[]>;
     findOneById(id: string): Promise<User>;
     findOneBySlug(slug: string): Promise<User>;
+    uploadImage(image: any): Promise<any>;
     update(id: string, user: User): Promise<User>;
     delete(id: string): Promise<User>;
 }

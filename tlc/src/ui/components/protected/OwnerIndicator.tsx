@@ -59,7 +59,7 @@ export const OwnerIndicator: React.FC<PropsOwner> = ({
                 <div>
                   <div className="circular-image-container">
                     <img
-                      src={`${baseUrl}/images/${OwnerData?.avatar}`}
+                      src={`${OwnerData?.avatar}`}
                       alt={`${OwnerData?.firstName} ${OwnerData?.lastName}`}
                     />
                   </div>

@@ -10,7 +10,7 @@ export const menuDashboard = [
   {
     title: "Perfil de usuario",
     submenus: [
-      { title: "Configuración Personal", link: "/configuracion-personal" },
+      { title: "Configuración Personal", link: "/profile/settings" },
       { title: "Historial de Intercambio", link: "/historial-intercambio" },
       {
         title: "Calificaciones y Reseñas Recibidas",

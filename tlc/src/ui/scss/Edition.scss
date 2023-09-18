@@ -1,0 +1,62 @@
+.edition {
+  .imagen-fluida {
+    width: 100%;
+    max-width: 280px;
+  }
+  .image-container {
+    position: relative;
+    width: auto; /* o cualquier ancho específico que desees */
+  }
+
+  .camera-icon-btn {
+    position: absolute;
+    right: 25px;
+    z-index: 10;
+    width: 46px; /* Ajusta según el tamaño que desees para el círculo */
+    height: 46px; /* Ajusta según el tamaño que desees para el círculo */
+    border-radius: 50%; /* Esto lo convierte en un círculo */
+    background-color: rgba(
+      255,
+      255,
+      255,
+      0.5
+    ); /* Color negro semitransparente */
+    display: flex;
+    justify-content: center; /* Centra el icono horizontalmente */
+    align-items: center; /* Centra el icono verticalmente */
+    border: 0px;
+    padding: 0; /* Puede que necesites ajustar el padding dependiendo de tus íconos */
+    transition: background-color 0.3s;
+  }
+
+  .camera-icon-btn:hover {
+    background-color: rgba(
+      173,
+      9,
+      9,
+      0.8
+    ); /* Color negro más oscuro al hacer hover */
+  }
+
+  .btn-edit {
+    top: 10px;
+  }
+
+  .btn-save {
+    bottom: 10px; /* Ajusta según la altura de tus botones */
+  }
+
+  .btn-cancel {
+    bottom: 62px; /* Ajusta según la altura de tus botones */
+  }
+
+  .edit-camera-icon {
+    width: 30px;
+    height: auto;
+    display: block;
+  }
+  .edit-camera-icon svg path {
+    width: 30px;
+    fill: $color-yellow;
+  }
+}

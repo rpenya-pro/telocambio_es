@@ -1,5 +1,6 @@
 // user.controller.ts
 import {
+  BadRequestException,
   Body,
   Controller,
   Delete,
@@ -8,13 +9,21 @@ import {
   Post,
   Put,
   UnauthorizedException,
+  UploadedFile,
+  UseInterceptors,
 } from '@nestjs/common';
 import { User } from './model/user.schema';
+
+import { FileInterceptor } from '@nestjs/platform-express';
 import { UserService } from './user.service';
+import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
 
 @Controller('user')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(
+    private readonly userService: UserService,
+    private readonly cloudinaryService: CloudinaryService,
+  ) {}
 
   @Get('defaultValue')
   defaultValue() {
@@ -61,6 +70,18 @@ export class UserController {
   @Get('slug/:slug')
   async findOneBySlug(@Param('slug') slug: string) {
     return this.userService.findOneSlug(slug);
+  }
+
+  @Post('upload')
+  @UseInterceptors(FileInterceptor('image'))
+  async uploadImage(@UploadedFile() image): Promise<any> {
+    // Verificación del archivo
+    if (!image || !image.buffer) {
+      throw new BadRequestException('No se proporcionó un archivo válido.');
+    }
+
+    const result = await this.cloudinaryService.uploadImage(image.buffer);
+    return { imageUrl: result.url };
   }
 
   @Put(':id')

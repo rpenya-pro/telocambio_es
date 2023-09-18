@@ -14,6 +14,7 @@ import { DoProposition } from "../../../ui/pages/protected/DoProposition";
 import { ProcessStep1 } from "../../../ui/pages/protected/ProcessStep1";
 import { PropositionProvider } from "../../context/propositionContext";
 import { CurrentProposals } from "../../../ui/pages/protected/CurrentProposals";
+import { ProfileSettings } from "../../../ui/pages/protected/ProfileSettings";
 
 const AppRoutes = () => {
   const isProduction = process.env.NODE_ENV === "production";
@@ -122,6 +123,17 @@ const AppRoutes = () => {
               <LayoutDashboard>
                 <ProtectComponent>
                   <CurrentProposals />
+                </ProtectComponent>
+              </LayoutDashboard>
+            }
+          />
+
+          <Route
+            path="/profile/settings"
+            element={
+              <LayoutDashboard>
+                <ProtectComponent>
+                  <ProfileSettings />
                 </ProtectComponent>
               </LayoutDashboard>
             }

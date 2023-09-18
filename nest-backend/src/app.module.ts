@@ -9,6 +9,7 @@ import { EventsModule } from './eventos/events.module';
 import { ProposalsModule } from './proposals/proposals.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { CloudinaryModule } from './cloudinary/cloudinary.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { join } from 'path';
       }),
       inject: [ConfigService],
     }),
+    CloudinaryModule,
   ],
   controllers: [AppController],
   providers: [AppService],

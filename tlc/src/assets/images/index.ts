@@ -12,3 +12,7 @@ export { default as duoLibros } from "./duo-libros.svg";
 export { default as duoRopa } from "./duo-ropa.svg";
 export { default as cogIcon } from "./cog-icon.svg";
 export { default as flechas } from "./flechas.svg";
+export { default as cameraIcon } from "./camera-icon.svg";
+
+export { default as agreeIcon } from "./agree-icon.svg";
+export { default as notAgreeIcon } from "./notagree-icon.svg";

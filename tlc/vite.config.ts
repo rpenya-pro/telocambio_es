@@ -2,7 +2,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   plugins: [react()],
   resolve: {
     alias: {
@@ -13,5 +13,5 @@ export default defineConfig({
     port: 9008,
     host: true,
   },
-  base: "/telocambio/", // Configuración de la base
-});
+  base: mode === "production" ? "/telocambio/" : "/", //el path solamente rula en produccion
+}));

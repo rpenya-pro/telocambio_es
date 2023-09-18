@@ -18,7 +18,7 @@ export const UserProfileComponent = () => {
       <div className="d-flex justify-content-center mt-5">
         <div className="circular-image-container-big">
           <img
-            src={`${baseUrl}/images/${data?.avatar}`}
+            src={`${data?.avatar}`}
             alt={`${data?.firstName} ${data?.lastName}`}
           />
         </div>

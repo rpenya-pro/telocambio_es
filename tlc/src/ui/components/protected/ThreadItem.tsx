@@ -8,7 +8,9 @@ import { ModalThread } from "./ModalThread";
 import { Badge } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { OwnerIndicator } from "./OwnerIndicator";
+
 const baseUrl = import.meta.env.VITE_HOST_URL;
+
 interface ThreadItemProps {
   allData?: Thread;
 
@@ -68,7 +70,6 @@ const ThreadItem: React.FC<ThreadItemProps> = ({ allData, user }) => {
           onClose={closeModal}
         />
       )}
-      VITE_HOST_URL
       <ModalThread
         show={showModal}
         onHide={handleCloseModal}

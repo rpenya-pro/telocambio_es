@@ -18,6 +18,7 @@ const events_module_1 = require("./eventos/events.module");
 const proposals_module_1 = require("./proposals/proposals.module");
 const serve_static_1 = require("@nestjs/serve-static");
 const path_1 = require("path");
+const cloudinary_module_1 = require("./cloudinary/cloudinary.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -39,6 +40,7 @@ exports.AppModule = AppModule = __decorate([
                 }),
                 inject: [config_1.ConfigService],
             }),
+            cloudinary_module_1.CloudinaryModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

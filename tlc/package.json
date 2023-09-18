@@ -12,8 +12,11 @@
     "docs": "react-docgen src/pages/**/*.jsx > docs.json"
   },
   "dependencies": {
+    "@cloudinary/react": "^1.11.2",
+    "@cloudinary/url-gen": "^1.11.2",
     "axios": "^1.5.0",
     "bootstrap": "^5.3.1",
+    "cloudinary": "^1.40.0",
     "formik": "^2.4.4",
     "js-cookie": "^3.0.5",
     "jsrsasign": "^10.8.6",

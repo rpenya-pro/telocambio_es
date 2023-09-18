@@ -13,17 +13,20 @@ const mongoose_1 = require("@nestjs/mongoose");
 const user_schema_1 = require("./model/user.schema");
 const user_controller_1 = require("./user.controller");
 const user_service_1 = require("./user.service");
+const cloudinary_service_1 = require("../cloudinary/cloudinary.service");
+const cloudinary_module_1 = require("../cloudinary/cloudinary.module");
 let UserModule = class UserModule {
 };
 exports.UserModule = UserModule;
 exports.UserModule = UserModule = __decorate([
     (0, common_1.Module)({
         imports: [
+            cloudinary_module_1.CloudinaryModule,
             config_1.ConfigModule,
             mongoose_1.MongooseModule.forFeature([{ name: 'User', schema: user_schema_1.UserSchema }]),
         ],
         controllers: [user_controller_1.UserController],
-        providers: [user_service_1.UserService],
+        providers: [user_service_1.UserService, cloudinary_service_1.CloudinaryService],
     })
 ], UserModule);
 //# sourceMappingURL=user.module.js.map
