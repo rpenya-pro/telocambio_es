@@ -23,7 +23,7 @@ export interface Usuario {
   lastName?: string;
   privateProfile?: boolean;
   memberSince?: Date;
-  password: string;
+  password?: string;
   email: string;
   avatar?: string;
   slug?: string;

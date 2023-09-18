@@ -1,6 +1,7 @@
 import { User } from './model/user.schema';
 import { UserService } from './user.service';
 import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
+import { ChangePasswordDto } from './change-password.dto';
 export declare class UserController {
     private readonly userService;
     private readonly cloudinaryService;
@@ -24,4 +25,5 @@ export declare class UserController {
     uploadImage(image: any): Promise<any>;
     update(id: string, user: User): Promise<User>;
     delete(id: string): Promise<User>;
+    changePassword(id: string, changePasswordDto: ChangePasswordDto): Promise<any>;
 }

@@ -18,6 +18,7 @@ const user_schema_1 = require("./model/user.schema");
 const platform_express_1 = require("@nestjs/platform-express");
 const user_service_1 = require("./user.service");
 const cloudinary_service_1 = require("../cloudinary/cloudinary.service");
+const change_password_dto_1 = require("./change-password.dto");
 let UserController = class UserController {
     constructor(userService, cloudinaryService) {
         this.userService = userService;
@@ -64,6 +65,9 @@ let UserController = class UserController {
     }
     async delete(id) {
         return this.userService.delete(id);
+    }
+    async changePassword(id, changePasswordDto) {
+        return this.userService.changePassword(id, changePasswordDto.currentPassword, changePasswordDto.newPassword);
     }
 };
 exports.UserController = UserController;
@@ -137,6 +141,14 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "delete", null);
+__decorate([
+    (0, common_1.Put)('change-password/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, change_password_dto_1.ChangePasswordDto]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "changePassword", null);
 exports.UserController = UserController = __decorate([
     (0, common_1.Controller)('user'),
     __metadata("design:paramtypes", [user_service_1.UserService,

@@ -59,4 +59,32 @@
     width: 30px;
     fill: $color-yellow;
   }
+
+  .input-icon-container {
+    position: relative;
+    width: 100%;
+    display: inline-block;
+  }
+
+  .input-icon {
+    position: absolute;
+    right: 5px; /* o la cantidad que necesites para el padding deseado */
+    top: 50%;
+    transform: translateY(-50%);
+    height: 20px; /* o la altura que quieras para el ícono */
+    width: auto;
+  }
+  .greencolor {
+    color: rgb(2, 145, 2);
+  }
+  label {
+    display: block;
+    font-family: "Open Sans", sans-serif;
+    font-size: 12px;
+  }
+  /* Si deseas añadir padding al input para evitar que el texto se superponga con el ícono */
+  input {
+    width: 100%;
+    padding-right: 30px; /* o la cantidad necesaria según el tamaño de tu ícono */
+  }
 }

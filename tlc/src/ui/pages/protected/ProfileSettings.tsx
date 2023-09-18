@@ -28,7 +28,7 @@ export const ProfileSettings = () => {
               <EditProfileImage userImage={data?.avatar} user={userId} />
             </div>
           </div>
-          <EditProfileData user={userId} />
+          <EditProfileData usuario={data} />
         </div>
         <div className="col-md-8">
           <div className="row">

@@ -17,6 +17,7 @@ import { User } from './model/user.schema';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { UserService } from './user.service';
 import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
+import { ChangePasswordDto } from './change-password.dto';
 
 @Controller('user')
 export class UserController {
@@ -92,5 +93,17 @@ export class UserController {
   @Delete(':id')
   async delete(@Param('id') id: string) {
     return this.userService.delete(id);
+  }
+
+  @Put('change-password/:id')
+  async changePassword(
+    @Param('id') id: string,
+    @Body() changePasswordDto: ChangePasswordDto,
+  ) {
+    return this.userService.changePassword(
+      id,
+      changePasswordDto.currentPassword,
+      changePasswordDto.newPassword,
+    );
   }
 }

@@ -79,6 +79,20 @@ let UserService = class UserService {
     async delete(id) {
         return this.userModel.findByIdAndRemove(id);
     }
+    async changePassword(userId, currentPassword, newPassword) {
+        const user = await this.userModel.findById(userId);
+        if (!user) {
+            throw new common_1.UnauthorizedException('Usuario no encontrado.');
+        }
+        const isPasswordValid = await bcrypt.compare(currentPassword, user.password);
+        if (!isPasswordValid) {
+            throw new common_1.UnauthorizedException('La contraseña actual es incorrecta.');
+        }
+        const salt = await bcrypt.genSalt();
+        user.password = await bcrypt.hash(newPassword, salt);
+        await user.save();
+        return { message: 'Contraseña actualizada con éxito' };
+    }
 };
 exports.UserService = UserService;
 exports.UserService = UserService = __decorate([

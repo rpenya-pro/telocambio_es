@@ -16,3 +16,4 @@ export { default as cameraIcon } from "./camera-icon.svg";
 
 export { default as agreeIcon } from "./agree-icon.svg";
 export { default as notAgreeIcon } from "./notagree-icon.svg";
+export { default as verifyIcon } from "./verify.svg";

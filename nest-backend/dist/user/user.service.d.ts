@@ -14,4 +14,5 @@ export declare class UserService {
     findOneSlug(slug: string): Promise<User>;
     update(id: string, user: User): Promise<User>;
     delete(id: string): Promise<User>;
+    changePassword(userId: string, currentPassword: string, newPassword: string): Promise<any>;
 }
