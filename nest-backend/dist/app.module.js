@@ -19,20 +19,37 @@ const proposals_module_1 = require("./proposals/proposals.module");
 const serve_static_1 = require("@nestjs/serve-static");
 const path_1 = require("path");
 const cloudinary_module_1 = require("./cloudinary/cloudinary.module");
+const themes_module_1 = require("./themes/themes.module");
+const jwt_1 = require("@nestjs/jwt");
+const jwt_strategy_1 = require("./jwt-strategy");
+const passport_1 = require("@nestjs/passport");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
+            config_1.ConfigModule.forRoot({ envFilePath: '.env.production' }),
+            passport_1.PassportModule.register({ defaultStrategy: 'jwt' }),
             serve_static_1.ServeStaticModule.forRoot({
                 rootPath: (0, path_1.join)(__dirname, '..', 'public'),
             }),
-            config_1.ConfigModule.forRoot({ envFilePath: '.env.production' }),
             user_module_1.UserModule,
             threads_module_1.ThreadsModule,
+            themes_module_1.ThemesModule,
             events_module_1.EventsModule,
             proposals_module_1.ProposalsModule,
+            jwt_1.JwtModule.registerAsync({
+                imports: [config_1.ConfigModule],
+                useFactory: async (configService) => {
+                    console.log('Secret Key:', configService.get('SECRET_KEY'));
+                    return {
+                        secret: configService.get('SECRET_KEY'),
+                        signOptions: { expiresIn: '1h' },
+                    };
+                },
+                inject: [config_1.ConfigService],
+            }),
             mongoose_1.MongooseModule.forRootAsync({
                 imports: [config_1.ConfigModule],
                 useFactory: async (configService) => ({
@@ -43,7 +60,7 @@ exports.AppModule = AppModule = __decorate([
             cloudinary_module_1.CloudinaryModule,
         ],
         controllers: [app_controller_1.AppController],
-        providers: [app_service_1.AppService],
+        providers: [app_service_1.AppService, jwt_strategy_1.JwtStrategy],
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map

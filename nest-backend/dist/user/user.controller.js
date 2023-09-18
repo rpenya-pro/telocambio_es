@@ -19,6 +19,7 @@ const platform_express_1 = require("@nestjs/platform-express");
 const user_service_1 = require("./user.service");
 const cloudinary_service_1 = require("../cloudinary/cloudinary.service");
 const change_password_dto_1 = require("./change-password.dto");
+const jwt_guard_1 = require("../jwt-guard");
 let UserController = class UserController {
     constructor(userService, cloudinaryService) {
         this.userService = userService;
@@ -67,7 +68,15 @@ let UserController = class UserController {
         return this.userService.delete(id);
     }
     async changePassword(id, changePasswordDto) {
-        return this.userService.changePassword(id, changePasswordDto.currentPassword, changePasswordDto.newPassword);
+        try {
+            return this.userService.changePassword(id, changePasswordDto.currentPassword, changePasswordDto.newPassword);
+        }
+        catch (error) {
+            if (error.message === 'La contraseña actual es incorrecta.') {
+                throw new common_1.HttpException('La contraseña actual es incorrecta.', common_1.HttpStatus.BAD_REQUEST);
+            }
+            throw error;
+        }
     }
 };
 exports.UserController = UserController;
@@ -106,6 +115,7 @@ __decorate([
 ], UserController.prototype, "getAllUsers", null);
 __decorate([
     (0, common_1.Get)(':id'),
+    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),

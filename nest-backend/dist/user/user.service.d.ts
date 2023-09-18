@@ -1,10 +1,12 @@
 import { ConfigService } from '@nestjs/config';
 import { Model } from 'mongoose';
 import { User, UserDocument } from './model/user.schema';
+import { JwtService } from '@nestjs/jwt';
 export declare class UserService {
     private userModel;
     private configService;
-    constructor(userModel: Model<UserDocument>, configService: ConfigService);
+    private readonly jwtService;
+    constructor(userModel: Model<UserDocument>, configService: ConfigService, jwtService: JwtService);
     create(user: User): Promise<User>;
     generateToken(user: any): string;
     validateUser(email: string, password: string): Promise<any>;

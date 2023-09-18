@@ -15,6 +15,7 @@ const user_controller_1 = require("./user.controller");
 const user_service_1 = require("./user.service");
 const cloudinary_service_1 = require("../cloudinary/cloudinary.service");
 const cloudinary_module_1 = require("../cloudinary/cloudinary.module");
+const jwt_1 = require("@nestjs/jwt");
 let UserModule = class UserModule {
 };
 exports.UserModule = UserModule;
@@ -22,6 +23,14 @@ exports.UserModule = UserModule = __decorate([
     (0, common_1.Module)({
         imports: [
             cloudinary_module_1.CloudinaryModule,
+            jwt_1.JwtModule.registerAsync({
+                imports: [config_1.ConfigModule],
+                useFactory: async (configService) => ({
+                    secret: configService.get('SECRET_KEY'),
+                    signOptions: { expiresIn: '1h' },
+                }),
+                inject: [config_1.ConfigService],
+            }),
             config_1.ConfigModule,
             mongoose_1.MongooseModule.forFeature([{ name: 'User', schema: user_schema_1.UserSchema }]),
         ],

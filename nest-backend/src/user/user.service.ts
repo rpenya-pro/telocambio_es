@@ -10,12 +10,14 @@ import * as jsrsasign from 'jsrsasign';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User, UserSchema, UserDocument } from './model/user.schema';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectModel(User.name) private userModel: Model<UserDocument>,
     private configService: ConfigService,
+    private readonly jwtService: JwtService,
   ) {}
 
   async create(user: User): Promise<User> {
@@ -32,21 +34,29 @@ export class UserService {
     const createdUser = new this.userModel(user);
     return createdUser.save();
   }
-  generateToken(user: any): string {
-    const header = { alg: 'HS256', typ: 'JWT' };
-    const sHeader = JSON.stringify(header);
-    const expirationTime = Math.floor(Date.now() / 1000) + 60 * 60 * 8; // 60 segundos * 60 minutos * 8 horas
-    const payloadWithExpiration = {
-      ...user,
-      exp: expirationTime,
-    };
+  // generateToken(user: any): string {
+  //   const header = { alg: 'HS256', typ: 'JWT' };
+  //   const sHeader = JSON.stringify(header);
+  //   const expirationTime = Math.floor(Date.now() / 1000) + 60 * 60 * 8; // 60 segundos * 60 minutos * 8 horas
+  //   const payloadWithExpiration = {
+  //     ...user,
+  //     exp: expirationTime,
+  //   };
 
-    const sPayload = JSON.stringify(payloadWithExpiration);
-    const sKey = this.configService.get<string>('SECRET_KEY');
-    if (!sKey) {
-      throw new Error('Secret key is not defined');
-    }
-    return jsrsasign.jws.JWS.sign('HS256', sHeader, sPayload, sKey);
+  //   const sPayload = JSON.stringify(payloadWithExpiration);
+  //   const sKey = this.configService.get<string>('SECRET_KEY');
+  //   if (!sKey) {
+  //     throw new Error('Secret key is not defined');
+  //   }
+  //   return jsrsasign.jws.JWS.sign('HS256', sHeader, sPayload, sKey);
+  // }
+
+  generateToken(user: any): string {
+    const payload = {
+      _id: user._id,
+      email: user.email,
+    };
+    return this.jwtService.sign(payload);
   }
 
   async validateUser(email: string, password: string): Promise<any> {

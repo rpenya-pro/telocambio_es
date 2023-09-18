@@ -4,5 +4,16 @@ interface ProfileImageProps {
 }
 
 export const EditProfilePreferences: FC<ProfileImageProps> = ({ user }) => {
-  return <div>Preferencias de la aplicación</div>;
+  return (
+    <div className="row mt-5 mb-5">
+      <div className="col-md-12">
+        <div className="edition__preferences-title mb-4">
+          <strong>Preferencias de la aplicación</strong>
+        </div>
+        <div className="edition__preferences-content">
+          Preferencias de la aplicación
+        </div>
+      </div>
+    </div>
+  );
 };

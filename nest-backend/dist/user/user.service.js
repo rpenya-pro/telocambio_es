@@ -16,14 +16,15 @@ exports.UserService = void 0;
 const common_1 = require("@nestjs/common");
 const bcrypt = require("bcrypt");
 const config_1 = require("@nestjs/config");
-const jsrsasign = require("jsrsasign");
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 const user_schema_1 = require("./model/user.schema");
+const jwt_1 = require("@nestjs/jwt");
 let UserService = class UserService {
-    constructor(userModel, configService) {
+    constructor(userModel, configService, jwtService) {
         this.userModel = userModel;
         this.configService = configService;
+        this.jwtService = jwtService;
     }
     async create(user) {
         const existingUser = await this.userModel.findOne({ email: user.email });
@@ -36,19 +37,11 @@ let UserService = class UserService {
         return createdUser.save();
     }
     generateToken(user) {
-        const header = { alg: 'HS256', typ: 'JWT' };
-        const sHeader = JSON.stringify(header);
-        const expirationTime = Math.floor(Date.now() / 1000) + 60 * 60 * 8;
-        const payloadWithExpiration = {
-            ...user,
-            exp: expirationTime,
+        const payload = {
+            _id: user._id,
+            email: user.email,
         };
-        const sPayload = JSON.stringify(payloadWithExpiration);
-        const sKey = this.configService.get('SECRET_KEY');
-        if (!sKey) {
-            throw new Error('Secret key is not defined');
-        }
-        return jsrsasign.jws.JWS.sign('HS256', sHeader, sPayload, sKey);
+        return this.jwtService.sign(payload);
     }
     async validateUser(email, password) {
         const user = await this.userModel.findOne({ email });
@@ -99,6 +92,7 @@ exports.UserService = UserService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, mongoose_1.InjectModel)(user_schema_1.User.name)),
     __metadata("design:paramtypes", [mongoose_2.Model,
-        config_1.ConfigService])
+        config_1.ConfigService,
+        jwt_1.JwtService])
 ], UserService);
 //# sourceMappingURL=user.service.js.map

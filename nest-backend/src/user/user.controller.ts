@@ -5,11 +5,14 @@ import {
   Controller,
   Delete,
   Get,
+  HttpException,
+  HttpStatus,
   Param,
   Post,
   Put,
   UnauthorizedException,
   UploadedFile,
+  UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
 import { User } from './model/user.schema';
@@ -18,6 +21,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { UserService } from './user.service';
 import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
 import { ChangePasswordDto } from './change-password.dto';
+import { JwtAuthGuard } from 'src/jwt-guard';
 
 @Controller('user')
 export class UserController {
@@ -64,6 +68,7 @@ export class UserController {
   }
 
   @Get(':id')
+  @UseGuards(JwtAuthGuard)
   async findOneById(@Param('id') id: string) {
     return this.userService.findOne(id);
   }
@@ -99,11 +104,21 @@ export class UserController {
   async changePassword(
     @Param('id') id: string,
     @Body() changePasswordDto: ChangePasswordDto,
-  ) {
-    return this.userService.changePassword(
-      id,
-      changePasswordDto.currentPassword,
-      changePasswordDto.newPassword,
-    );
+  ): Promise<any> {
+    try {
+      return this.userService.changePassword(
+        id,
+        changePasswordDto.currentPassword,
+        changePasswordDto.newPassword,
+      );
+    } catch (error) {
+      if (error.message === 'La contraseña actual es incorrecta.') {
+        throw new HttpException(
+          'La contraseña actual es incorrecta.',
+          HttpStatus.BAD_REQUEST,
+        );
+      }
+      throw error;
+    }
   }
 }

@@ -1,52 +1,52 @@
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import { useAuth } from "../../../hooks/useAuth";
 import { useChangePassword } from "../../../../services/useChangePassword";
+import Swal from "sweetalert2";
+import CustomButton from "../../CustomButton";
 
-export const EditChangePassword = () => {
+interface PropsChange {
+  idUser: string | undefined;
+}
+
+export const EditChangePassword: FC<PropsChange> = ({ idUser }) => {
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const mutation = useChangePassword();
 
-  const { userData } = useAuth(); // Para obtener los datos del usuario actual, si es necesario
-  console.log(userData?.password);
+  const mutation = useChangePassword({
+    onSuccess: () => {},
+    onError: (error: any) => {
+      alert(
+        error.response?.data?.message ||
+          "Ocurrió un error al cambiar la contraseña"
+      );
+    },
+    onSettled: () => {
+      setCurrentPassword("");
+      setNewPassword("");
+      setConfirmPassword("");
+    },
+  });
+
   const handlePasswordChange = async () => {
-    if (!currentPassword) {
-      alert("Por favor, introduce tu contraseña actual.");
-      return;
-    }
-
     if (newPassword !== confirmPassword) {
-      alert("Las contraseñas no coinciden.");
+      Swal.fire({
+        title: "¡ERROR!",
+        text: "La nueva contraseña no coincide con el campo Repite el nuevo password.",
+        icon: "error",
+      });
       return;
     }
     if (newPassword.length < 6) {
-      alert("La nueva contraseña debe tener al menos 6 caracteres.");
+      Swal.fire({
+        title: "¡ERROR!",
+        text: "La nueva contraseña debe tenerl al menos 6 carácteres.",
+        icon: "error",
+      });
       return;
     }
 
-    // Validar el password actual con el servidor...
-    // Dependiendo de tu backend, puedes necesitar hacer esto en otro lugar o de otra manera
-
-    mutation.mutate({ currentPassword, newPassword });
-  };
-
-  const handleCurrentPasswordChange = (e: {
-    target: { value: React.SetStateAction<string> };
-  }) => {
-    setCurrentPassword(e.target.value);
-  };
-
-  const handleNewPasswordChange = (e: {
-    target: { value: React.SetStateAction<string> };
-  }) => {
-    setNewPassword(e.target.value);
-  };
-
-  const handleConfirmPasswordChange = (e: {
-    target: { value: React.SetStateAction<string> };
-  }) => {
-    setConfirmPassword(e.target.value);
+    mutation.mutate({ _id: idUser, currentPassword, newPassword });
   };
 
   return (
@@ -65,9 +65,8 @@ export const EditChangePassword = () => {
               className="form-control"
               type="password"
               value={currentPassword}
-              onChange={handleCurrentPasswordChange}
+              onChange={(e) => setCurrentPassword(e.target.value)}
             />
-            {/* No agregamos el icono de cambio aquí porque no estamos verificando un valor original */}
           </div>
         </div>
       </div>
@@ -80,9 +79,8 @@ export const EditChangePassword = () => {
               className="form-control"
               type="password"
               value={newPassword}
-              onChange={handleNewPasswordChange}
+              onChange={(e) => setNewPassword(e.target.value)}
             />
-            {/* No agregamos el icono de cambio aquí porque no estamos verificando un valor original */}
           </div>
         </div>
       </div>
@@ -95,20 +93,22 @@ export const EditChangePassword = () => {
               className="form-control"
               type="password"
               value={confirmPassword}
-              onChange={handleConfirmPasswordChange}
+              onChange={(e) => setConfirmPassword(e.target.value)}
             />
-            {/* No agregamos el icono de cambio aquí porque no estamos verificando un valor original */}
           </div>
         </div>
       </div>
-
       <div className="row">
-        <div className="col-12 mb-2">
-          <button onClick={handlePasswordChange}>Cambiar contraseña</button>
-          {mutation.isError ? <div>Error al cambiar contraseña</div> : null}
-          {mutation.isSuccess ? (
-            <div>Contraseña cambiada exitosamente</div>
-          ) : null}
+        <div className="col-12 mb-2 globals mt-3">
+          <CustomButton
+            fontSize="16px"
+            padding="4px 10px"
+            height="40px"
+            onClick={handlePasswordChange}
+          >
+            Cambiar contraseña
+          </CustomButton>
+          {mutation.isLoading && <div>Cambiando contraseña...</div>}
         </div>
       </div>
     </>

@@ -187,7 +187,7 @@ export const EditProfileData: FC<ProfileImageProps> = ({ usuario }) => {
       </div>
       <hr />
       <div className="row globals">
-        <EditChangePassword />
+        <EditChangePassword idUser={usuario?._id} />
       </div>
     </ErrorBoundary>
   );

@@ -36,6 +36,7 @@ const useLogin = () => {
 
       if (response.data && response.data.access_token) {
         Cookies.set("access_token", response.data.access_token);
+        console.log("response.data.access_token", response.data.access_token);
 
         if (rememberMe) {
           localStorage.setItem("access_token", response.data.access_token); // Suponiendo que recibes un token como respuesta

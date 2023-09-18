@@ -1,10 +1,11 @@
-import { KJUR } from "jsrsasign";
 import Cookies from "js-cookie";
 import { ReactNode, useState, useEffect } from "react";
+import Swal from "sweetalert2"; // <-- Importamos SweetAlert2
 import { Usuario } from "../../interfaces/user";
 import useRenewToken from "../../services/useRenewToken";
 import { AuthContext } from "../auth/authContext";
 import { base64UrlDecoded } from "../helpers/base64UrlDecoded";
+import { decodeToken, isExpired } from "react-jwt";
 
 /**
  * Propiedades esperadas para el proveedor de autenticación.
@@ -22,13 +23,24 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [userData, setUserData] = useState<Usuario | null>(null);
+  const [isValid, setIsValid] = useState(false);
+
   /**
    * Cierra la sesión del usuario y elimina el token.
    */
-  const logout = () => {
+  const logout = (showAlert = false) => {
     Cookies.remove("access_token");
     localStorage.removeItem("access_token");
     setIsAuthenticated(false);
+
+    if (showAlert) {
+      Swal.fire({
+        title: "Sesión finalizada",
+        text: "Tu sesión ha expirado, por favor inicia sesión nuevamente.",
+        icon: "warning",
+        confirmButtonText: "Entendido",
+      });
+    }
   };
 
   /**
@@ -36,24 +48,29 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
    */
   useEffect(() => {
     const token = Cookies.get("access_token");
-    const sKey = import.meta.env.VITE_JWS_SECRET_KEY || "";
 
     if (token) {
-      const isValid = KJUR.jws.JWS.verifyJWT(token, sKey, { alg: ["HS256"] });
-      if (!isValid) {
-        console.error("Token inválido.");
-        logout();
+      const isMyTokenExpired = isExpired(token);
+
+      setIsValid(!isMyTokenExpired); // Cambiar la posición de esta línea para que se ejecute antes de las condiciones
+
+      console.log(
+        isMyTokenExpired
+          ? "El token ha expirado"
+          : "El token sigue siendo válido"
+      );
+
+      if (isMyTokenExpired) {
+        // Sólo comprueba si el token ha expirado
+        console.error("Token inválido o expirado.");
+        logout(true); // <-- Aquí especificamos que queremos mostrar el SweetAlert
       } else {
         setIsAuthenticated(true);
+        const payloadStr = base64UrlDecoded(token.split(".")[1]);
+        const payload = JSON.parse(payloadStr);
+        setUserData(payload);
       }
     }
-
-    if (token && KJUR.jws.JWS.verifyJWT(token, sKey, { alg: ["HS256"] })) {
-      const payloadStr = base64UrlDecoded(token.split(".")[1]);
-      const payload = JSON.parse(payloadStr);
-      setUserData(payload);
-    }
-
     setIsLoading(false);
   }, []);
 

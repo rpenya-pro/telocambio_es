@@ -87,4 +87,25 @@
     width: 100%;
     padding-right: 30px; /* o la cantidad necesaria según el tamaño de tu ícono */
   }
+
+  .edition__preferences-title {
+    border-bottom: 1px solid #b1b1b1;
+    padding-bottom: 6px;
+  }
+
+  .edition__preferences-content {
+    font-size: 13px;
+  }
+
+  .multiple-select {
+    height: 180px;
+  }
+
+  optgroup {
+    font-weight: 100;
+    color: rgb(211, 211, 211);
+  }
+  .badge {
+    margin-bottom: 4px;
+  }
 }

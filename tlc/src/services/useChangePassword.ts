@@ -1,21 +1,62 @@
-import { useMutation } from "react-query";
-import axios from "axios";
+import { UseMutationOptions, useMutation } from "react-query";
+import { AxiosError } from "axios";
+import Swal from "sweetalert2";
+import { axiosInstance } from "../infrastructure/api/axios"; // Importamos nuestra nueva instancia
 
-const changePasswordAPI = async ({
-  currentPassword,
-  newPassword,
-}: {
+type ChangePasswordInputs = {
+  _id: string | undefined;
   currentPassword: string;
   newPassword: string;
-}) => {
-  // Aquí puedes ajustar la dirección y método de la API según sea necesario
-  const response = await axios.put("/api/user/change-password", {
-    currentPassword,
-    newPassword,
-  });
-  return response.data;
 };
 
-export const useChangePassword = () => {
-  return useMutation(changePasswordAPI);
+type ReturnTypeAPI = {
+  message: string;
+};
+
+type APIError = {
+  response: any;
+  message: string;
+};
+
+const changePasswordAPI = async (
+  input: ChangePasswordInputs
+): Promise<ReturnTypeAPI> => {
+  const { _id, currentPassword, newPassword } = input;
+  try {
+    const response = await axiosInstance.put<ReturnTypeAPI>(
+      `/user/change-password/${_id}`,
+      { currentPassword, newPassword }
+    );
+
+    Swal.fire({
+      title: "¡Éxito!",
+      text: "Contraseña cambiada correctamente.",
+      icon: "success",
+    });
+
+    return response.data;
+  } catch (error) {
+    const axiosError = error as AxiosError<any>;
+
+    if (
+      axiosError.response?.data?.message ===
+      "La contraseña actual es incorrecta."
+    ) {
+      Swal.fire({
+        title: "Error",
+        text: "La contraseña actual es incorrecta.",
+        icon: "error",
+      });
+    }
+    throw error;
+  }
+};
+
+export const useChangePassword = (
+  options?: UseMutationOptions<ReturnTypeAPI, APIError, ChangePasswordInputs>
+) => {
+  return useMutation<ReturnTypeAPI, APIError, ChangePasswordInputs>(
+    changePasswordAPI,
+    options
+  );
 };

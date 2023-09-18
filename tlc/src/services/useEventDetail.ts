@@ -1,12 +1,10 @@
 import { useQuery } from "react-query";
-import axios from "axios";
+import { axiosInstance } from "../infrastructure/api/axios"; // Importa la nueva instancia
 import Eventos from "../interfaces/events";
 
-const API_URL = import.meta.env.VITE_API_URL || "";
-
 const fetchEventDetail = async (slugEvent: string): Promise<Eventos> => {
-  const url = `${API_URL}/event/slug/${slugEvent}`;
-  const response = await axios.get<Eventos>(url);
+  const url = `/event/slug/${slugEvent}`;
+  const response = await axiosInstance.get<Eventos>(url);
   return response.data;
 };
 

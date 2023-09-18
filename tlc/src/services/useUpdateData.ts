@@ -1,12 +1,10 @@
 import { useMutation } from "react-query";
-import axios from "axios";
+import { axiosInstance } from "../infrastructure/api/axios"; // Importamos la instancia que has creado
 import { Usuario } from "../interfaces/user";
-
-const API_URL = import.meta.env.VITE_API_URL || "";
 
 const updateUserData = async (data: Usuario) => {
   const userId = data._id;
-  const response = await axios.put(`${API_URL}/user/${userId}`, data);
+  const response = await axiosInstance.put(`/user/${userId}`, data); // Usamos la instancia y no necesitamos el URL base
 
   if (response.status !== 200) {
     throw new Error("Error al actualizar la data.");

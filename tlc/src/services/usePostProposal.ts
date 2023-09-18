@@ -1,5 +1,5 @@
 import { useMutation } from "react-query";
-import axios from "axios";
+import { axiosInstance } from "../infrastructure/api/axios"; // Importamos la nueva instancia
 import Proposal from "../interfaces/proposal";
 import Swal from "sweetalert2";
 
@@ -9,10 +9,8 @@ interface UsePostProposalConfig {
   // Puedes añadir más propiedades aquí si necesitas otras configuraciones personalizadas.
 }
 
-const API_URL = import.meta.env.VITE_API_URL || "";
-
 const postProposal = async (proposal: Proposal) => {
-  const response = await axios.post(`${API_URL}/proposal/new`, proposal);
+  const response = await axiosInstance.post(`/proposal/new`, proposal); // Usamos la instancia y no necesitamos el URL base
   return response.data;
 };
 

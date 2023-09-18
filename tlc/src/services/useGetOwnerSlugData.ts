@@ -1,11 +1,9 @@
-import axios from "axios";
 import { useQuery } from "react-query";
 import { Usuario } from "../interfaces/user";
-
-const API_URL = import.meta.env.VITE_API_URL || "";
+import { axiosInstance } from "../infrastructure/api/axios"; // Importamos la nueva instancia
 
 const fetchOwnerSlugData = async (slug: string) => {
-  const response = await axios.get(`${API_URL}/user/slug/${slug}`);
+  const response = await axiosInstance.get(`/user/slug/${slug}`); // Usamos la instancia y no necesitamos el URL base
   if (response.status !== 200) {
     throw new Error(`Error fetching owner data: ${response.statusText}`);
   }
