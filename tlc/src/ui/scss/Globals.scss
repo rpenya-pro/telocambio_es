@@ -102,8 +102,11 @@ a:hover {
   background-color: rgb(35, 35, 107);
   color: #ffffff;
 }
-.modal-backdrop.show {
-  opacity: 1; // Ajusta este valor al que desees.
-  background-color: rgba(255, 255, 255);
-  filter: blur(105px);
+
+.onlyadults {
+  .modal-backdrop.show {
+    opacity: 1; // Ajusta este valor al que desees.
+    background-color: rgba(255, 255, 255);
+    filter: blur(105px);
+  }
 }

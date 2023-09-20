@@ -36,7 +36,6 @@ const fetchEvents = async ({
   const url = baseURL + queryString;
 
   const response = await axios.get<EventsResponse>(url);
-  console.log("Server Response:", response.data);
 
   return response.data;
 };

@@ -31,8 +31,14 @@ export class User {
   @Prop([String])
   themesprefered: string[];
 
+  @Prop([String])
+  themesblocked: string[];
+
   @Prop({ type: Boolean, default: true })
   privateProfile: boolean;
+
+  @Prop({ type: Boolean, default: true })
+  freezeProfile: boolean;
 
   @Prop([String])
   badges: string[];
@@ -94,6 +100,19 @@ export class User {
   })
   friends: {
     idFriend: Types.ObjectId;
+    addedOn: Date;
+  }[];
+
+  @Prop({
+    type: [
+      {
+        idEnemy: { type: Types.ObjectId, required: true },
+        addedOn: { type: Date, required: true, default: Date.now },
+      },
+    ],
+  })
+  peopleBlocked: {
+    idEnemy: Types.ObjectId;
     addedOn: Date;
   }[];
 }

@@ -9,8 +9,6 @@ import { Badge } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { OwnerIndicator } from "./OwnerIndicator";
 
-const baseUrl = import.meta.env.VITE_HOST_URL;
-
 interface ThreadItemProps {
   allData?: Thread;
 
@@ -21,7 +19,7 @@ const safeBase64Encode = (data: string) => {
   const encoded = btoa(data);
   return encoded.replace("+", "-").replace("/", "_").replace(/=+$/, "");
 };
-
+const baseUrl = import.meta.env.VITE_HOST_URL;
 const ThreadItem: React.FC<ThreadItemProps> = ({ allData, user }) => {
   const { formatDate } = useDateFormat();
   const navigate = useNavigate();

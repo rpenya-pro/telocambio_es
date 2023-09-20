@@ -2,8 +2,6 @@ import { useInfiniteQuery } from "react-query";
 import { axiosInstance } from "../infrastructure/api/axios";
 import { Thread } from "../interfaces";
 
-const API_URL = import.meta.env.VITE_API_URL || "";
-
 type FetchThreadsResponse = {
   hasMore: any;
   threads: Thread[];
@@ -15,8 +13,6 @@ const fetchThreads = async (
   themesPreferred?: string[],
   selectedTheme?: string
 ) => {
-  const url = `${API_URL}/thread/all`;
-
   const params: { [key: string]: string | string[] | number } = {};
   // if (userId) params.owner = userId;
   if (themesPreferred && themesPreferred.length)
@@ -30,7 +26,7 @@ const fetchThreads = async (
   // Usamos el parámetro 'orderBy' para determinar el orden
   params.sortBy = orderBy === "desc" ? "-publishDate" : "publishDate";
 
-  const response = await axiosInstance.get(url, { params });
+  const response = await axiosInstance.get(`/thread/all`, { params });
   const responseData = response.data as FetchThreadsResponse;
   return responseData;
 };
@@ -82,8 +78,7 @@ const useGetThreads = (
     ) || [];
 
   const error = rawError ? (rawError as Error).message : null;
-  console.log(selectedTheme);
-  console.log(filteredThreads);
+
   return {
     threads: filteredThreads,
     fetchNextPage,

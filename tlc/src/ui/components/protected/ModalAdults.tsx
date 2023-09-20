@@ -21,7 +21,7 @@ export const ModalAdults: React.FC<ModalAdultsThreadProps> = ({
   };
 
   return (
-    <div className="activity">
+    <div className="activity onlyadults">
       <Modal size="lg" show={show} onHide={onHide} centered backdrop="static">
         <Modal.Body>
           <h1>

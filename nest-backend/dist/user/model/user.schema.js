@@ -52,9 +52,17 @@ __decorate([
     __metadata("design:type", Array)
 ], User.prototype, "themesprefered", void 0);
 __decorate([
+    (0, mongoose_1.Prop)([String]),
+    __metadata("design:type", Array)
+], User.prototype, "themesblocked", void 0);
+__decorate([
     (0, mongoose_1.Prop)({ type: Boolean, default: true }),
     __metadata("design:type", Boolean)
 ], User.prototype, "privateProfile", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ type: Boolean, default: true }),
+    __metadata("design:type", Boolean)
+], User.prototype, "freezeProfile", void 0);
 __decorate([
     (0, mongoose_1.Prop)([String]),
     __metadata("design:type", Array)
@@ -104,6 +112,17 @@ __decorate([
     }),
     __metadata("design:type", Array)
 ], User.prototype, "friends", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({
+        type: [
+            {
+                idEnemy: { type: mongoose_2.Types.ObjectId, required: true },
+                addedOn: { type: Date, required: true, default: Date.now },
+            },
+        ],
+    }),
+    __metadata("design:type", Array)
+], User.prototype, "peopleBlocked", void 0);
 exports.User = User = __decorate([
     (0, mongoose_1.Schema)()
 ], User);

@@ -1,13 +1,13 @@
 import React from "react";
 import { useGetOwnerData } from "../../../services/useGetOwnerData";
 import { useNavigate } from "react-router-dom";
-const baseUrl = import.meta.env.VITE_HOST_URL;
+
 interface PropsOwner {
   ownerId: string;
   addedOn?: string;
   user: string | undefined;
 }
-
+const baseUrl = import.meta.env.VITE_HOST_URL;
 export const OwnerIndicatorNoAnonim: React.FC<PropsOwner> = ({
   ownerId,
   addedOn,

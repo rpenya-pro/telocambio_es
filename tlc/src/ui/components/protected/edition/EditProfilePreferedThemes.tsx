@@ -13,7 +13,6 @@ export const EditProfilePreferedThemes: FC<ProfilePreferedProps> = ({
   const {
     themesprefered,
     isLoading,
-    updateThemes,
     isUpdating,
     errorUpdating,
     allThemes,
@@ -22,10 +21,6 @@ export const EditProfilePreferedThemes: FC<ProfilePreferedProps> = ({
     noAvailableThemesMessage,
     addThemeToPreferred,
   } = useUserPreferredThemes(user);
-
-  const handleUpdateThemes = (newThemes: string[]) => {
-    updateThemes(newThemes);
-  };
 
   if (isLoading) return <p>Cargando...</p>;
 
@@ -38,7 +33,7 @@ export const EditProfilePreferedThemes: FC<ProfilePreferedProps> = ({
   };
 
   return (
-    <div className="row mt-5 mb-5 edition">
+    <div className="row mt-5  edition">
       <div className="col-md-12">
         <div className="edition__preferences-title mb-4">
           <strong>Tus temas preferidos</strong>
@@ -51,7 +46,7 @@ export const EditProfilePreferedThemes: FC<ProfilePreferedProps> = ({
             </p>
           </div>
         </div>
-        <div className="row mb-4">
+        <div className="row ">
           <div className="col-md-6">
             <label htmlFor="selector mb-2">
               Haz doble click para añadir los temas.
@@ -86,6 +81,7 @@ export const EditProfilePreferedThemes: FC<ProfilePreferedProps> = ({
               </label>
               <hr />
               <ThemeBadges
+                section="preferred"
                 user={user}
                 themes={themesprefered}
                 isDeleting={true}

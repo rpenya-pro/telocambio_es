@@ -1,4 +1,3 @@
-import React from "react";
 import { useAuth } from "../../hooks/useAuth";
 import { useUserData } from "../../../services/useUserData";
 import { EditProfileImage } from "../../components/protected/edition/EditProfileImage";
@@ -53,7 +52,11 @@ export const ProfileSettings = () => {
           </div>
           <div className="row">
             <div className="col-12">
-              <EditProfileAccountShow user={userId} />
+              <EditProfileAccountShow
+                user={userId}
+                privateProfile={data?.privateProfile!}
+                freezeProfile={data?.freezeProfile!}
+              />
             </div>
           </div>
         </div>

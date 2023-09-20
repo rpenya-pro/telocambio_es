@@ -11,11 +11,12 @@ import useFetchThreadById from "../../../services/useFetchThreadById";
 import { useProposition } from "../../../infrastructure/context/propositionContext";
 import { useUserProposals } from "../../../services/useUserProposals";
 import Proposal from "../../../interfaces/proposal";
-const baseUrl = import.meta.env.VITE_HOST_URL;
+
 interface DoPropositionProps {
   description: string | undefined;
 }
 
+const baseUrl = import.meta.env.VITE_HOST_URL;
 export const DoProposition: React.FC<DoPropositionProps> = ({
   description,
 }) => {

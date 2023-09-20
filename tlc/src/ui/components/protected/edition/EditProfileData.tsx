@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { Usuario } from "../../../../interfaces/user";
 import { verifyIcon } from "../../../../assets/images";
 import ErrorBoundary from "../../ErrorBoundary";

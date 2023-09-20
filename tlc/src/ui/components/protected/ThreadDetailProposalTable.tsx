@@ -5,7 +5,7 @@ import useDateFormat from "../../hooks/useDateFormat";
 interface DetailComponentProps {
   identificador: string;
 }
-const baseUrl = import.meta.env.VITE_HOST_URL;
+
 /**
  * Página Detalle de un thread para el proposal
  * @returns
@@ -20,7 +20,7 @@ export const ThreadDetailProposalTable: React.FC<DetailComponentProps> = ({
   const { data: dataByType } = useFetchThreadById(identificador);
 
   if (!dataByType) return null;
-
+  const baseUrl = import.meta.env.VITE_HOST_URL;
   return (
     <>
       <div className="mt-2">

@@ -7,13 +7,13 @@ import Eventos from "../../../interfaces/events";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import { truncateText } from "../../../infrastructure/helpers/truncateText";
-const baseUrl = import.meta.env.VITE_HOST_URL;
+
 export const EventsComponent = () => {
   const navigate = useNavigate();
   const { userData } = useAuth();
   const { data } = useUserData(userData?._id);
   const [selectedThemeEvent, setSelectedThemeEvent] = useState("");
-
+  const baseUrl = import.meta.env.VITE_HOST_URL;
   const fetchParams: FetchEventsParams = {
     tagsEvent: selectedThemeEvent,
     publishedBy: "",

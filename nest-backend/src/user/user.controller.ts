@@ -8,6 +8,7 @@ import {
   HttpException,
   HttpStatus,
   Param,
+  Patch,
   Post,
   Put,
   UnauthorizedException,
@@ -22,6 +23,7 @@ import { UserService } from './user.service';
 import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
 import { ChangePasswordDto } from './change-password.dto';
 import { JwtAuthGuard } from 'src/jwt-guard';
+import { Types } from 'mongoose';
 
 @Controller('user')
 export class UserController {
@@ -120,5 +122,21 @@ export class UserController {
       }
       throw error;
     }
+  }
+
+  @Delete(':userId/unblock/:enemyId')
+  async unblockEnemy(
+    @Param('userId') userId: Types.ObjectId,
+    @Param('enemyId') enemyId: Types.ObjectId,
+  ): Promise<User> {
+    console.log('unblockEnemy - userId:', userId, 'enemyId:', enemyId);
+    const result = await this.userService.unblockEnemy(userId, enemyId);
+    console.log('unblockEnemy - result:', result);
+    return result;
+  }
+
+  @Patch(':id')
+  async patchUser(@Param('id') id: string, @Body() updateData: any) {
+    return this.userService.patchUser(id, updateData);
   }
 }

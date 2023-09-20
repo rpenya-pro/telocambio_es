@@ -160,7 +160,7 @@ export const DetailComponent: React.FC<DetailComponentProps> = ({
             </div>
             <hr />
             <div>
-              <ThemeBadges themes={dataByType?.threadTemathic} />
+              <ThemeBadges themes={dataByType?.threadTemathic} section={""} />
             </div>
             <hr />
             <div className="mt-4">

@@ -5,7 +5,7 @@ import { Usuario } from "../../interfaces/user";
 import useRenewToken from "../../services/useRenewToken";
 import { AuthContext } from "../auth/authContext";
 import { base64UrlDecoded } from "../helpers/base64UrlDecoded";
-import { decodeToken, isExpired } from "react-jwt";
+import { isExpired } from "react-jwt";
 
 /**
  * Propiedades esperadas para el proveedor de autenticación.
@@ -23,7 +23,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [userData, setUserData] = useState<Usuario | null>(null);
-  const [isValid, setIsValid] = useState(false);
+  // const [isValid, setIsValid] = useState(false);
 
   /**
    * Cierra la sesión del usuario y elimina el token.
@@ -52,13 +52,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     if (token) {
       const isMyTokenExpired = isExpired(token);
 
-      setIsValid(!isMyTokenExpired); // Cambiar la posición de esta línea para que se ejecute antes de las condiciones
-
-      console.log(
-        isMyTokenExpired
-          ? "El token ha expirado"
-          : "El token sigue siendo válido"
-      );
+      //  setIsValid(!isMyTokenExpired); // Cambiar la posición de esta línea para que se ejecute antes de las condiciones
 
       if (isMyTokenExpired) {
         // Sólo comprueba si el token ha expirado

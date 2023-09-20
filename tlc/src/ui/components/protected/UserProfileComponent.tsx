@@ -1,11 +1,9 @@
 import useDateFormat from "../../hooks/useDateFormat";
 
-import { ThemeBadges } from "../../components/protected/ThemeBadges";
-
 import { useUserData } from "../../../services/useUserData";
 import { FriendsComponent } from "./FriendsComponent";
 import { useAuth } from "../../hooks/useAuth";
-const baseUrl = import.meta.env.VITE_HOST_URL;
+
 export const UserProfileComponent = () => {
   const { userData } = useAuth();
   const { data } = useUserData(userData?._id);
@@ -50,7 +48,7 @@ export const UserProfileComponent = () => {
       <div className="mt-2">
         <p className="p-0 m-0 mb-3  small sans-serif">Temas preferidos:</p>
         <div className="p-0 m-0  ">
-          <ThemeBadges themes={data?.themesprefered} />
+          {/* <ThemeBadges themes={data?.themesprefered} section={""} /> */}
         </div>
         <hr className=" mb-2" />
       </div>

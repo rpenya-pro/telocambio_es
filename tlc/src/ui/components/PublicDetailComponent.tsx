@@ -7,7 +7,7 @@ import useDateFormat from "../hooks/useDateFormat";
 import ImageModal from "./ImageModal";
 import useFetchThreadById from "../../services/useFetchThreadById";
 import { ModalLoginComponent } from "./ModalLoginComponent";
-const baseUrl = import.meta.env.VITE_HOST_URL;
+
 //TODO boton para registrarse PERO guardar en cookies esta página para mostrarla de nuevo en modo protected cuando el usuario esté logeado
 
 interface PublicDetailComponentProps {
@@ -19,6 +19,7 @@ export const PublicDetailComponent: React.FC<PublicDetailComponentProps> = ({
 }) => {
   // const HOST_URL = import.meta.env.VITE_HOST_URL || "";
   const hostUrl = "http://localhost:9008";
+  const baseUrl = import.meta.env.VITE_HOST_URL;
 
   const [modalShow, setModalShow] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false); //modal images

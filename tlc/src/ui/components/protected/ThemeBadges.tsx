@@ -1,21 +1,29 @@
 import { Badge } from "react-bootstrap";
 import { useUserPreferredThemes } from "../../../services/useUserPreferredThemes";
+import { useUserBlockedThemes } from "../../../services/useUserBlockedThemes";
 
 interface ThemeBadgesProps {
   themes: string[] | undefined;
   isDeleting?: boolean;
   user?: string | undefined;
+  section: string;
 }
 
 export const ThemeBadges: React.FC<ThemeBadgesProps> = ({
   themes,
   isDeleting,
   user,
+  section,
 }) => {
   const { removeThemeFromPreferred } = useUserPreferredThemes(user);
+  const { removeThemeFromBlocked } = useUserBlockedThemes(user);
 
   const handleThemeRemoval = (theme: string) => {
-    removeThemeFromPreferred(theme);
+    if (section === "preferred") {
+      removeThemeFromPreferred(theme);
+    } else {
+      removeThemeFromBlocked(theme);
+    }
   };
 
   return (

@@ -108,4 +108,12 @@
   .badge {
     margin-bottom: 4px;
   }
+
+  .custom-border tr:not(:last-child) {
+    border-bottom: 1px solid #cccccc;
+  }
+
+  .bordered-cell {
+    border-right: 1px solid #cccccc;
+  }
 }

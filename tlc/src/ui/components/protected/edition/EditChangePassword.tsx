@@ -1,5 +1,5 @@
-import React, { FC, useState } from "react";
-import { useAuth } from "../../../hooks/useAuth";
+import { FC, useState } from "react";
+
 import { useChangePassword } from "../../../../services/useChangePassword";
 import Swal from "sweetalert2";
 import CustomButton from "../../CustomButton";

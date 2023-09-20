@@ -4,8 +4,15 @@ import AppRoutes from "./infrastructure/api/routes/AppRoutes";
 
 import { QueryClient, QueryClientProvider } from "react-query";
 import { AuthProvider } from "./infrastructure/api/AuthProvider";
+import ErrorBoundary from "./ui/components/ErrorBoundary";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: true,
+    },
+  },
+});
 
 const App = () => {
   useEffect(() => {
@@ -22,11 +29,13 @@ const App = () => {
   }, []);
 
   return (
-    <AuthProvider key={key}>
-      <QueryClientProvider client={queryClient}>
-        <AppRoutes />
-      </QueryClientProvider>
-    </AuthProvider>
+    <ErrorBoundary>
+      <AuthProvider key={key}>
+        <QueryClientProvider client={queryClient}>
+          <AppRoutes />
+        </QueryClientProvider>
+      </AuthProvider>
+    </ErrorBoundary>
   );
 };
 

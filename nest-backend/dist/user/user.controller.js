@@ -20,6 +20,7 @@ const user_service_1 = require("./user.service");
 const cloudinary_service_1 = require("../cloudinary/cloudinary.service");
 const change_password_dto_1 = require("./change-password.dto");
 const jwt_guard_1 = require("../jwt-guard");
+const mongoose_1 = require("mongoose");
 let UserController = class UserController {
     constructor(userService, cloudinaryService) {
         this.userService = userService;
@@ -77,6 +78,15 @@ let UserController = class UserController {
             }
             throw error;
         }
+    }
+    async unblockEnemy(userId, enemyId) {
+        console.log('unblockEnemy - userId:', userId, 'enemyId:', enemyId);
+        const result = await this.userService.unblockEnemy(userId, enemyId);
+        console.log('unblockEnemy - result:', result);
+        return result;
+    }
+    async patchUser(id, updateData) {
+        return this.userService.patchUser(id, updateData);
     }
 };
 exports.UserController = UserController;
@@ -159,6 +169,22 @@ __decorate([
     __metadata("design:paramtypes", [String, change_password_dto_1.ChangePasswordDto]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "changePassword", null);
+__decorate([
+    (0, common_1.Delete)(':userId/unblock/:enemyId'),
+    __param(0, (0, common_1.Param)('userId')),
+    __param(1, (0, common_1.Param)('enemyId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [mongoose_1.Types.ObjectId, mongoose_1.Types.ObjectId]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "unblockEnemy", null);
+__decorate([
+    (0, common_1.Patch)(':id'),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "patchUser", null);
 exports.UserController = UserController = __decorate([
     (0, common_1.Controller)('user'),
     __metadata("design:paramtypes", [user_service_1.UserService,

@@ -3,6 +3,11 @@ export interface Friend {
   addedOn: Date;
 }
 
+export interface Enemy {
+  idEnemy: string;
+  addedOn: Date;
+}
+
 interface Address {
   street?: string;
   city?: string;
@@ -22,6 +27,7 @@ export interface Usuario {
   firstName?: string;
   lastName?: string;
   privateProfile?: boolean;
+  freezeProfile?: boolean;
   memberSince?: Date;
   password?: string;
   email: string;
@@ -32,6 +38,9 @@ export interface Usuario {
   address?: Address;
   otherAddresses?: Address[];
   currentLocation?: CurrentLocation;
-  friends?: Friend[]; // Actualización de la estructura de friends
+  friends?: Friend[];
+  peopleBlocked?: Enemy[];
+
   themesprefered?: string[];
+  themesblocked?: string[];
 }

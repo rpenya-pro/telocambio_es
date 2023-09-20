@@ -62,6 +62,15 @@ let UserService = class UserService {
         const user = await this.userModel.findById(id);
         return user;
     }
+    async unblockEnemy(userId, enemyId) {
+        console.log('Service unblockEnemy - userId:', userId, 'enemyId:', enemyId);
+        const user = await this.userModel.findById(userId);
+        if (!user) {
+            throw new common_1.NotFoundException('User not found');
+        }
+        user.peopleBlocked = user.peopleBlocked.filter((enemy) => !enemy.idEnemy.equals(enemyId));
+        return user.save();
+    }
     async findOneSlug(slug) {
         const user = await this.userModel.findOne({ slug });
         return user;
@@ -85,6 +94,21 @@ let UserService = class UserService {
         user.password = await bcrypt.hash(newPassword, salt);
         await user.save();
         return { message: 'Contraseña actualizada con éxito' };
+    }
+    async patchUser(id, updateData) {
+        const user = await this.userModel.findById(id);
+        if (!user) {
+            throw new common_1.NotFoundException('Usuario no encontrado.');
+        }
+        if (updateData.password) {
+            const salt = await bcrypt.genSalt();
+            updateData.password = await bcrypt.hash(updateData.password, salt);
+        }
+        const updatedUser = await this.userModel.findByIdAndUpdate(id, { $set: updateData }, { new: true });
+        if (!updatedUser) {
+            throw new common_1.NotFoundException('Error al actualizar el usuario.');
+        }
+        return updatedUser;
     }
 };
 exports.UserService = UserService;

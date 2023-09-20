@@ -7,14 +7,13 @@ interface ProfileImageProps {
   user: string | undefined;
 }
 
-const baseUrl = import.meta.env.VITE_HOST_URL;
-
 export const EditProfileImage: FC<ProfileImageProps> = ({
   userImage,
   user,
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [file, setFile] = useState<File | null>(null); // Ahora almacenamos el archivo en lugar del nombre del archivo
+  // eslint-disable-next-line no-unused-vars
+  const [_file, setFile] = useState<File | null>(null);
   const [previewImage, setPreviewImage] = useState<string | undefined>();
   const { uploadMutation, updateMutation } = useUpdateImage();
 

@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import useDateFormat from "../../hooks/useDateFormat";
 import { OwnerIndicator } from "../../components/protected/OwnerIndicator";
 import { ThemeBadges } from "../../components/protected/ThemeBadges";
-const baseUrl = import.meta.env.VITE_HOST_URL;
+
 /**
  * Página del Propietario de un Thread
  * llamamos propietario a todo usuario que no sea el logeado
@@ -83,7 +83,7 @@ export const OwnerProfile = () => {
             </p>
             <hr className="white-hr " />
             <div className="p-0 m-0 texto-blanco ">
-              <ThemeBadges themes={OwnerData?.themesprefered} />
+              <ThemeBadges themes={OwnerData?.themesprefered} section={""} />
             </div>
           </div>
           <div className="mt-5">

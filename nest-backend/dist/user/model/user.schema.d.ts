@@ -33,7 +33,9 @@ export declare class User {
     publishDate: Date;
     rating: number;
     themesprefered: string[];
+    themesblocked: string[];
     privateProfile: boolean;
+    freezeProfile: boolean;
     badges: string[];
     address: {
         street: string;
@@ -56,6 +58,10 @@ export declare class User {
     };
     friends: {
         idFriend: Types.ObjectId;
+        addedOn: Date;
+    }[];
+    peopleBlocked: {
+        idEnemy: Types.ObjectId;
         addedOn: Date;
     }[];
 }

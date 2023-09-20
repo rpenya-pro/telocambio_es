@@ -7,7 +7,7 @@ interface PropsOwner {
   addedOn?: string;
   user: string | undefined;
 }
-const baseUrl = import.meta.env.VITE_HOST_URL;
+
 export const OwnerIndicator: React.FC<PropsOwner> = ({
   ownerId,
   addedOn,
@@ -54,7 +54,10 @@ export const OwnerIndicator: React.FC<PropsOwner> = ({
               </p>
             </div>
           ) : (
-            <div className="card p-2 mt-2 mb-3" onClick={handleNavigateProfile}>
+            <div
+              className="card p-2 mt-2 mb-3 "
+              onClick={handleNavigateProfile}
+            >
               <div className="d-flex justify-content-start align-items-center">
                 <div>
                   <div className="circular-image-container">
@@ -64,11 +67,14 @@ export const OwnerIndicator: React.FC<PropsOwner> = ({
                     />
                   </div>
                 </div>
+
                 <div className="ms-3">
                   <h5>
                     {OwnerData?.firstName} {OwnerData?.lastName}
                   </h5>
-                  <p className="small">Amigo desde: {addedOn}</p>
+                  {addedOn ? (
+                    <p className="small">Amigo desde: {addedOn}</p>
+                  ) : null}
                 </div>
               </div>
             </div>

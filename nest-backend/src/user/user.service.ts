@@ -3,12 +3,13 @@ import {
   Injectable,
   ConflictException,
   UnauthorizedException,
+  NotFoundException,
 } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { ConfigService } from '@nestjs/config';
 import * as jsrsasign from 'jsrsasign';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { User, UserSchema, UserDocument } from './model/user.schema';
 import { JwtService } from '@nestjs/jwt';
 
@@ -83,6 +84,22 @@ export class UserService {
     return user;
   }
 
+  async unblockEnemy(
+    userId: Types.ObjectId,
+    enemyId: Types.ObjectId,
+  ): Promise<User> {
+    console.log('Service unblockEnemy - userId:', userId, 'enemyId:', enemyId);
+
+    const user = await this.userModel.findById(userId);
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+    user.peopleBlocked = user.peopleBlocked.filter(
+      (enemy) => !enemy.idEnemy.equals(enemyId),
+    );
+    return user.save();
+  }
+
   async findOneSlug(slug: string): Promise<User> {
     const user = await this.userModel.findOne({ slug });
     return user;
@@ -122,5 +139,32 @@ export class UserService {
     await user.save();
 
     return { message: 'Contraseña actualizada con éxito' };
+  }
+
+  async patchUser(id: string, updateData: any): Promise<User> {
+    const user = await this.userModel.findById(id);
+
+    if (!user) {
+      throw new NotFoundException('Usuario no encontrado.');
+    }
+
+    // Si se está actualizando la contraseña, necesitas hashearla antes de guardarla
+    if (updateData.password) {
+      const salt = await bcrypt.genSalt();
+      updateData.password = await bcrypt.hash(updateData.password, salt);
+    }
+
+    // Realizamos la actualización parcial
+    const updatedUser = await this.userModel.findByIdAndUpdate(
+      id,
+      { $set: updateData },
+      { new: true },
+    );
+
+    if (!updatedUser) {
+      throw new NotFoundException('Error al actualizar el usuario.');
+    }
+
+    return updatedUser;
   }
 }
