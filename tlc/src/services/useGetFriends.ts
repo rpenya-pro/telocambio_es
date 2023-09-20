@@ -38,7 +38,7 @@ const useGetFriends = (friendsInfo: FriendInfo[] | undefined) => {
     enabled: !!friendsInfo,
     refetchOnWindowFocus: false,
   });
-  debugger;
+
   return {
     friends,
     isLoading,
